@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dianne Ting — Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #E04F72;
+      --accent-soft: rgba(224, 79, 114, 0.07);
+      --accent-mid: rgba(224, 79, 114, 0.18);
+      --black: #111111;
+      --gray: #999999;
+      --light: #F7F7F7;
+      --border: rgba(0,0,0,0.08);
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      cursor: none;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CURSOR ── */
+    #cursor-dot {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s, height 0.25s, background 0.25s;
+      mix-blend-mode: multiply;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0.45;
+      transition: width 0.35s ease, height 0.35s ease, opacity 0.35s;
+    }
+    body.cursor-hover #cursor-dot {
+      width: 44px; height: 44px;
+      background: var(--accent-mid);
+    }
+    body.cursor-hover #cursor-ring {
+      opacity: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+
+    .nav-logo {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+    }
+    .nav-logo .dot { color: var(--accent); }
+
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+
+    .nav-right a {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--gray); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--black); }
+
+    .lang-btn {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      cursor: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 52px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text { position: relative; z-index: 2; }
+
+    .hero-tag {
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 19px);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--gray);
+      max-width: 420px;
+    }
+    .hero-sub em {
+      font-style: normal;
+      color: var(--black);
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      margin-top: 40px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: none; border-radius: 28px;
+      padding: 12px 24px;
+      text-decoration: none;
+      cursor: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-ghost {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      text-decoration: none;
+      cursor: none;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--black); }
+
+    .hero-badge {
+      margin-top: 20px;
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .badge-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* Hero right: visual */
+    .hero-visual {
+      position: relative;
+      height: 480px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .hero-circle-outer {
+      position: absolute;
+      width: 340px; height: 340px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: transform 0.15s ease-out;
+    }
+    .hero-circle-inner {
+      position: absolute;
+      width: 220px; height: 220px;
+      border: 1px solid rgba(224,79,114,0.2);
+      border-radius: 50%;
+      transition: transform 0.1s ease-out;
+    }
+    .hero-circle-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-stat {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-stat-val {
+      font-size: 22px; font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+    .hero-stat-val span { color: var(--accent); }
+    .hero-stat-label {
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    .hero-stat-a { top: 30px; right: 20px; }
+    .hero-stat-b { bottom: 60px; left: 0px; }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 32px; left: 52px;
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gray);
+      display: flex; align-items: center; gap: 10px;
+      animation: fadeup 1.2s 1s both;
+    }
+    .hero-scroll-hint::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--border);
+    }
+
+    /* ── NOW STRIP ── */
+    .now-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .now-label-wrap {
+      flex-shrink: 0;
+      padding: 0 24px;
+      border-right: 1px solid var(--border);
+      height: 100%;
+      display: flex; align-items: center;
+      background: var(--accent-soft);
+    }
+    .now-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .now-text {
+      flex: 1;
+      overflow: hidden;
+      padding: 0 24px;
+    }
+    .now-ticker {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 26s linear infinite;
+      font-size: 12px; color: var(--gray);
+      letter-spacing: 0.02em;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .now-sep { color: var(--accent); margin: 0 20px; }
+
+    /* ── WORK SECTION ── */
+    .work-section {
+      padding: 88px 52px;
+    }
+    .section-head {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gray);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-title::after {
+      content: '';
+      width: 48px; height: 1px;
+      background: var(--border);
+    }
+    .section-link {
+      font-size: 12px; font-weight: 400;
+      color: var(--gray);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .section-link:hover { color: var(--accent); }
+    .section-link::after { content: ' →'; }
+
+    /* Asymmetric work layout */
+    .work-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+
+    .work-card {
+      position: relative;
+      background: var(--light);
+      overflow: hidden;
+      cursor: none;
+      transition: background 0.3s;
+    }
+    .work-card-main {
+      grid-row: 1 / 3;
+      min-height: 500px;
+    }
+    .work-card-sm { min-height: 243px; }
+
+    .work-card:hover { background: #EFEFEF; }
+
+    .work-card-image {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #CCCCCC;
+      min-height: inherit;
+    }
+
+    .work-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(to top, rgba(255,255,255,0.97) 60%, transparent);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+    .work-card:hover .work-card-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .work-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 5px;
+    }
+    .work-title {
+      font-size: 14px; font-weight: 500;
+      color: var(--black); line-height: 1.35;
+    }
+    .work-meta {
+      font-size: 11px; color: var(--gray); margin-top: 4px;
+    }
+
+    /* ── ABOUT TEASER ── */
+    .about-section {
+      padding: 88px 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-quote {
+      font-size: clamp(19px, 2.2vw, 26px);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+    .about-quote em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .about-quote-attr {
+      margin-top: 32px;
+      font-size: 12px; color: var(--gray);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .about-quote-attr::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--border);
+    }
+
+    .about-facts { display: flex; flex-direction: column; gap: 0; }
+    .about-fact {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-fact:first-child { border-top: 1px solid var(--border); }
+    .fact-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 5px;
+    }
+    .fact-val {
+      font-size: 14px; font-weight: 400;
+      color: var(--black); line-height: 1.5;
+    }
+
+    /* ── CREATIVE STRIP ── */
+    .creative-section {
+      padding: 0 52px 88px;
+    }
+    .creative-row {
+      display: flex;
+      gap: 3px;
+      height: 200px;
+      overflow: hidden;
+    }
+    .c-thumb {
+      flex: 1;
+      background: var(--light);
+      overflow: hidden;
+      position: relative;
+      cursor: none;
+      transition: flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .c-thumb:hover { flex: 2.2; }
+    .c-thumb-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: flex-end;
+      padding: 16px 20px;
+    }
+    .c-thumb-label {
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .c-thumb:hover .c-thumb-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* placeholder tints */
+    .c-thumb:nth-child(1) { background: #F0EEF0; }
+    .c-thumb:nth-child(2) { background: #EEF0EF; }
+    .c-thumb:nth-child(3) { background: #F0EEEE; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 52px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy { font-size: 11px; color: var(--gray); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 11px; color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+
+    /* ── HERO ANIMATION ── */
+    @keyframes fadeup {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text > * {
+      animation: fadeup 0.9s ease both;
+    }
+    .hero-tag   { animation-delay: 0.1s; }
+    .hero-name  { animation-delay: 0.25s; }
+    .hero-sub   { animation-delay: 0.4s; }
+    .hero-cta   { animation-delay: 0.55s; }
+    .hero-visual { animation: fadeup 1.1s 0.3s ease both; }
+    .hero-stat-a { animation: fadeup 0.9s 0.6s ease both; }
+    .hero-stat-b { animation: fadeup 0.9s 0.75s ease both; }
+
+    /* ── LANG HIDDEN ── */
+    .zh-hide { display: none; }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="/" class="nav-logo">D<span class="dot">·</span>L</a>
+    <div class="nav-right">
+      <a href="#work"     class="en-text">Work</a>
+      <a href="#work"     class="zh-hide zh-text">作品</a>
+      <a href="#creative" class="en-text">Creative</a>
+      <a href="#creative" class="zh-hide zh-text">創作</a>
+      <a href="#about"    class="en-text">About</a>
+      <a href="#about"    class="zh-hide zh-text">關於</a>
+      <a href="#contact"  class="en-text">Contact</a>
+      <a href="#contact"  class="zh-hide zh-text">聯絡</a>
+      <button class="lang-btn" id="lang-btn">中文</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <span class="en-text">Product Design · Photography · AI Collaboration</span>
+        <span class="zh-hide zh-text">產品設計 · 攝影 · AI 協作</span>
+      </div>
+      <h1 class="hero-name">Dianne Ting</h1>
+      <p class="hero-sub en-text">
+        I design the gap between <em>confusion</em> and "oh, I get it."
+      </p>
+      <p class="hero-sub zh-hide zh-text">
+        我設計那段距離——從<em>複雜</em>到「原來如此」。
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary en-text">View Work</a>
+        <a href="#work" class="btn-primary zh-hide zh-text">看作品</a>
+        <a href="#about" class="btn-ghost en-text">About Dianne →</a>
+        <a href="#about" class="btn-ghost zh-hide zh-text">關於 Dianne →</a>
+      </div>
+      <div class="hero-badge en-text">
+        <span class="badge-dot"></span>Designs in Figma. Builds with Claude.
+      </div>
+      <div class="hero-badge zh-hide zh-text">
+        <span class="badge-dot"></span>用 Figma 設計。用 Claude 建造。
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-circle-outer" id="orb-outer"></div>
+      <div class="hero-circle-inner" id="orb-inner"></div>
+      <div class="hero-circle-dot"></div>
+      <div class="hero-stat hero-stat-a">
+        <div class="hero-stat-val">4<span>+</span></div>
+        <div class="hero-stat-label en-text">Years in UX</div>
+        <div class="hero-stat-label zh-hide zh-text">UX 設計年資</div>
+      </div>
+      <div class="hero-stat hero-stat-b">
+        <div class="hero-stat-val">Seattle<span>,</span> WA</div>
+        <div class="hero-stat-label en-text">Based in</div>
+        <div class="hero-stat-label zh-hide zh-text">現居地</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span class="en-text">Scroll</span>
+      <span class="zh-hide zh-text">往下</span>
+    </div>
+  </section>
+
+  <!-- NOW STRIP -->
+  <div class="now-strip">
+    <div class="now-label-wrap">
+      <span class="now-label en-text">Now</span>
+      <span class="now-label zh-hide zh-text">動態</span>
+    </div>
+    <div class="now-text">
+      <span class="now-ticker en-text">
+        Building her own AI-assisted portfolio with Claude — documenting every step
+        <span class="now-sep">·</span>
+        Seattle, WA
+        <span class="now-sep">·</span>
+        March 2026
+        <span class="now-sep">·</span>
+        Building her own AI-assisted portfolio with Claude — documenting every step
+        <span class="now-sep">·</span>
+        Seattle, WA
+        <span class="now-sep">·</span>
+        March 2026
+        <span class="now-sep">·</span>
+      </span>
+      <span class="now-ticker zh-hide zh-text">
+        正在用 Claude 打造 AI 協作個人網站，並記錄整個過程
+        <span class="now-sep">·</span>
+        西雅圖
+        <span class="now-sep">·</span>
+        2026 年 3 月
+        <span class="now-sep">·</span>
+        正在用 Claude 打造 AI 協作個人網站，並記錄整個過程
+        <span class="now-sep">·</span>
+        西雅圖
+        <span class="now-sep">·</span>
+        2026 年 3 月
+        <span class="now-sep">·</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section class="work-section" id="work">
+    <div class="section-head reveal">
+      <div class="section-title en-text">Selected Work</div>
+      <div class="section-title zh-hide zh-text">精選作品</div>
+      <a href="/work" class="section-link en-text">All projects</a>
+      <a href="/work" class="section-link zh-hide zh-text">所有作品</a>
+    </div>
+
+    <div class="work-layout">
+      <!-- Featured -->
+      <div class="work-card work-card-main reveal delay-1">
+        <div class="work-card-image">
+          Arxtect — project image
+        </div>
+        <div class="work-card-info">
+          <div class="work-tag">Product Design · Brand</div>
+          <div class="work-title en-text">Redefining Research Tools<br>for an AI LaTeX Editor</div>
+          <div class="work-title zh-hide zh-text">為 AI LaTeX 編輯器<br>重新定義研究工具體驗</div>
+          <div class="work-meta">Arxtect · 2025</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="work-card work-card-sm reveal delay-2">
+        <div class="work-card-image">Miirr.ai — project image</div>
+        <div class="work-card-info">
+          <div class="work-tag">UX · Rapid Prototyping</div>
+          <div class="work-title en-text">AI Fashion Platform in 4 Weeks</div>
+          <div class="work-title zh-hide zh-text">四週打造 AI 時尚平台</div>
+          <div class="work-meta">Miirr.ai · 2025</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="work-card work-card-sm reveal delay-3">
+        <div class="work-card-image">Extralit — project image</div>
+        <div class="work-card-info">
+          <div class="work-tag">UX Research · Design</div>
+          <div class="work-title en-text">Redesigning an Open-Source<br>Research Platform</div>
+          <div class="work-title zh-hide zh-text">重新設計開源<br>學術研究平台</div>
+          <div class="work-meta">Extralit Labs · 2024–25</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section class="about-section reveal" id="about">
+    <div>
+      <p class="about-quote en-text">
+        From crowded shopping centers in Taiwan to design systems in Seattle —
+        Dianne has always been designing for the moment things
+        <em>click into place.</em>
+      </p>
+      <p class="about-quote zh-hide zh-text">
+        從台灣人潮洶湧的百貨公司到西雅圖的數位設計系統，
+        Dianne 一直在設計那個讓人豁然開朗的<em>瞬間。</em>
+      </p>
+      <div class="about-quote-attr en-text">BA Film & Graphic Design · MFA User Experience</div>
+      <div class="about-quote-attr zh-hide zh-text">電影與視覺設計學士 · 使用者體驗碩士</div>
+    </div>
+
+    <div class="about-facts reveal delay-1">
+      <div class="about-fact">
+        <div class="fact-label en-text">Based in</div>
+        <div class="fact-label zh-hide zh-text">現居地</div>
+        <div class="fact-val">Seattle, WA</div>
+      </div>
+      <div class="about-fact">
+        <div class="fact-label en-text">Fluent in</div>
+        <div class="fact-label zh-hide zh-text">語言</div>
+        <div class="fact-val en-text">English · Mandarin (Traditional)</div>
+        <div class="fact-val zh-hide zh-text">英文 · 中文（繁體）</div>
+      </div>
+      <div class="about-fact">
+        <div class="fact-label en-text">Also does</div>
+        <div class="fact-label zh-hide zh-text">設計以外</div>
+        <div class="fact-val en-text">Swing dance · Photography · Hiking with Ella</div>
+        <div class="fact-val zh-hide zh-text">搖擺舞 · 攝影 · 和 Ella 一起爬山</div>
+      </div>
+      <div class="about-fact">
+        <div class="fact-label en-text">Available for</div>
+        <div class="fact-label zh-hide zh-text">合作類型</div>
+        <div class="fact-val en-text">Full-time · Contract · Freelance</div>
+        <div class="fact-val zh-hide zh-text">全職 · 合約 · 自由接案</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATIVE -->
+  <section class="creative-section reveal" id="creative">
+    <div class="section-head" style="margin-bottom:24px">
+      <div class="section-title en-text">Creative</div>
+      <div class="section-title zh-hide zh-text">創作</div>
+    </div>
+    <div class="creative-row">
+      <div class="c-thumb">
+        <div class="c-thumb-bg">
+          <span class="c-thumb-label en-text">Photography</span>
+          <span class="c-thumb-label zh-hide zh-text">攝影</span>
+        </div>
+      </div>
+      <div class="c-thumb">
+        <div class="c-thumb-bg">
+          <span class="c-thumb-label en-text">Art & Experiments</span>
+          <span class="c-thumb-label zh-hide zh-text">藝術創作</span>
+        </div>
+      </div>
+      <div class="c-thumb">
+        <div class="c-thumb-bg">
+          <span class="c-thumb-label en-text">Life</span>
+          <span class="c-thumb-label zh-hide zh-text">生活</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <span class="footer-copy">© 2026 Dianne Ting</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/dianneli" target="_blank">LinkedIn</a>
+      <a href="https://github.com/LiChiaTing" target="_blank">GitHub</a>
+      <a href="mailto:hello@diannedesign.me" class="en-text">Say hello</a>
+      <a href="mailto:hello@diannedesign.me" class="zh-hide zh-text">寫信給我</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── CURSOR ──
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+    });
+
+    (function tick() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+
+    document.querySelectorAll('a, button, .work-card, .c-thumb').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
+    });
+
+    // ── HERO ORB PARALLAX ──
+    const orbOuter = document.getElementById('orb-outer');
+    const orbInner = document.getElementById('orb-inner');
+    document.addEventListener('mousemove', e => {
+      const cx = (e.clientX / innerWidth  - 0.5);
+      const cy = (e.clientY / innerHeight - 0.5);
+      orbOuter.style.transform = `translate(${cx * 22}px, ${cy * 22}px)`;
+      orbInner.style.transform = `translate(${cx * 14}px, ${cy * 14}px)`;
+    });
+
+    // ── SCROLL REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── LANGUAGE TOGGLE ──
+    const btn = document.getElementById('lang-btn');
+    let isZh = false;
+
+    function setLang(zh) {
+      isZh = zh;
+      document.querySelectorAll('.en-text').forEach(el => el.style.display = zh ? 'none' : '');
+      document.querySelectorAll('.zh-text').forEach(el => el.style.display = zh ? '' : 'none');
+      btn.textContent = zh ? 'EN' : '中文';
+      document.documentElement.lang = zh ? 'zh-TW' : 'en';
+    }
+
+    btn.addEventListener('click', () => setLang(!isZh));
+  </script>
+</body>
+</html>
