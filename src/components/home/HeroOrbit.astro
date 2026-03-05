@@ -1,32 +1,56 @@
 ---
-// Orbital tag cards — planetary motion with mouse gravity/escape interaction
+// Orbital tag cards — planetary motion with camera reticle center
+// Tags reveal progressively: professional first → casual last
 const tags = [
-  { key: 'ux',        en: '#UX Designer',          zh: '#UX 設計師',       delay: 0 },
-  { key: 'location',  en: '#Taipei → Seattle',      zh: '#台北 → 西雅圖',   delay: 0.4 },
-  { key: 'figma',     en: '#Figma & Claude',        zh: '#Figma & Claude', delay: 0.8 },
-  { key: 'film',      en: '#Film Background',       zh: '#電影背景',        delay: 1.2 },
-  { key: 'photo',     en: '#Photographer',          zh: '#攝影師',          delay: 1.6 },
-  { key: 'dancer',    en: '#Former Dance Teacher',  zh: '#前舞蹈老師',      delay: 2.2 },
-  { key: 'pets',      en: '#2 Cats 1 Dog',          zh: '#兩貓一狗',        delay: 2.8 },
-  { key: 'drive',     en: '#Doesn\'t Drive',        zh: '#不喜歡開車',      delay: 3.4 },
+  { en: '#UX Designer',         zh: '#UX 設計師',    delay: 0.2  },
+  { en: '#Taipei → Seattle',    zh: '#台北 → 西雅圖', delay: 0.8  },
+  { en: '#Figma & Claude',      zh: '#Figma & Claude', delay: 1.5 },
+  { en: '#Film Background',     zh: '#電影背景',      delay: 2.4  },
+  { en: '#Photographer',        zh: '#攝影師',        delay: 3.4  },
+  { en: '#Former Dance Teacher',zh: '#前舞蹈老師',    delay: 5.0  },
+  { en: '#2 Cats 1 Dog',        zh: '#兩貓一狗',      delay: 6.8  },
+  { en: "#Doesn't Drive",       zh: '#不喜歡開車',    delay: 8.5  },
 ];
 ---
 
-<div class="hero-orbit-container relative" id="hero-orbit" aria-hidden="true">
-  <!-- Centre orb -->
-  <div class="orbit-center" id="orbit-center">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+<div class="orbit-wrap" id="hero-orbit" aria-hidden="true">
+
+  <!-- Camera reticle SVG center -->
+  <div class="reticle-wrap" id="orbit-center">
+    <svg class="reticle" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Corner brackets -->
+      <!-- Top-left -->
+      <line x1="8"  y1="22" x2="8"  y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line x1="8"  y1="8"  x2="22" y2="8"  stroke="#111" stroke-width="1.2"/>
+      <!-- Top-right -->
+      <line x1="112" y1="22" x2="112" y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line x1="112" y1="8"  x2="98"  y2="8"  stroke="#111" stroke-width="1.2"/>
+      <!-- Bottom-left -->
+      <line x1="8"  y1="98"  x2="8"  y2="112" stroke="#111" stroke-width="1.2"/>
+      <line x1="8"  y1="112" x2="22" y2="112" stroke="#111" stroke-width="1.2"/>
+      <!-- Bottom-right -->
+      <line x1="112" y1="98"  x2="112" y2="112" stroke="#111" stroke-width="1.2"/>
+      <line x1="112" y1="112" x2="98"  y2="112" stroke="#111" stroke-width="1.2"/>
+
+      <!-- Center crosshair -->
+      <line x1="52" y1="60" x2="68" y2="60" stroke="#E04F72" stroke-width="1"/>
+      <line x1="60" y1="52" x2="60" y2="68" stroke="#E04F72" stroke-width="1"/>
+
+      <!-- Center dot -->
+      <circle cx="60" cy="60" r="2.5" fill="#E04F72"/>
+
+      <!-- Inner focus ring (dashed) -->
+      <circle cx="60" cy="60" r="18" stroke="#111" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.25"/>
+    </svg>
   </div>
 
-  <!-- Orbital tag cards (initially hidden, JS places & animates them) -->
+  <!-- Orbital tag cards -->
   {tags.map((tag, i) => (
     <div
       class="orbit-card"
-      data-index={i}
-      data-delay={tag.delay}
-      style={`opacity: 0;`}
+      data-index={String(i)}
+      data-delay={String(tag.delay)}
+      style="opacity:0; position:absolute; top:0; left:0;"
     >
       <span class="en-text">{tag.en}</span>
       <span class="zh-text">{tag.zh}</span>
@@ -35,125 +59,103 @@ const tags = [
 </div>
 
 <style>
-  .hero-orbit-container {
-    width: 100%;
-    height: 480px;
+  .orbit-wrap {
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    height: 520px;
+    overflow: visible;
   }
 
-  .orbit-center {
+  .reticle-wrap {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    animation: reticle-breathe 4s ease-in-out infinite;
   }
 
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.15;
-  }
-  .orb-1 {
-    width: 120px; height: 120px;
-    background: radial-gradient(circle, #E04F72, transparent);
-    top: 0; left: 0;
-    animation: breathe 4s ease-in-out infinite;
-  }
-  .orb-2 {
-    width: 80px; height: 80px;
-    background: radial-gradient(circle, #E04F72, transparent);
-    top: 20px; left: 20px;
-    opacity: 0.25;
-    animation: breathe 4s ease-in-out infinite 0.5s;
-  }
-  .orb-3 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, #E04F72, transparent);
-    top: -40px; left: -40px;
-    opacity: 0.06;
-    animation: breathe 6s ease-in-out infinite 1s;
+  .reticle {
+    width: 100%;
+    height: 100%;
   }
 
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); opacity: 0.15; }
-    50% { transform: scale(1.08); opacity: 0.25; }
+  @keyframes reticle-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 1;   }
+    50%       { transform: translate(-50%, -50%) scale(1.06); opacity: 0.7; }
+  }
+
+  /* Focus-in on load */
+  .reticle-wrap {
+    animation: reticle-focus 0.8s cubic-bezier(0.22,1,0.36,1) forwards,
+               reticle-breathe 4s ease-in-out 0.8s infinite;
+  }
+
+  @keyframes reticle-focus {
+    from { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+    to   { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
   }
 
   .orbit-card {
-    position: absolute;
-    background: white;
-    border: 1px solid rgba(0,0,0,0.08);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 9999px;
-    padding: 6px 14px;
-    font-size: 0.72rem;
+    padding: 5px 13px;
+    font-size: 0.7rem;
     font-weight: 500;
     color: #111;
     white-space: nowrap;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
     pointer-events: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
 
-  .orbit-card:hover,
-  .orbit-card.chased {
+  .orbit-card.escaping {
     border-color: #E04F72;
-    box-shadow: 0 4px 20px rgba(224,79,114,0.15);
+    box-shadow: 0 2px 16px rgba(224,79,114,0.12);
   }
 </style>
 
 <script>
-  const container = document.getElementById('hero-orbit') as HTMLElement;
-  const cards = container.querySelectorAll<HTMLElement>('.orbit-card');
+  const container = document.getElementById('hero-orbit') as HTMLElement | null;
+  if (!container) throw new Error('orbit container missing');
 
-  if (!container || !cards.length) throw new Error('orbit init failed');
+  const cards = Array.from(container.querySelectorAll<HTMLElement>('.orbit-card'));
+  const startTime = performance.now();
 
-  const W = container.offsetWidth;
-  const H = container.offsetHeight;
+  const W = container.offsetWidth || 500;
+  const H = container.offsetHeight || 520;
   const cx = W / 2;
   const cy = H / 2;
 
-  // Each card gets its own orbital parameters (elliptical, different inclinations)
-  interface CardState {
+  interface State {
     el: HTMLElement;
-    a: number;      // semi-major axis
-    b: number;      // semi-minor axis
-    tilt: number;   // orbit inclination in radians
-    speed: number;  // radians per frame
-    t: number;      // current angle
-    x: number;      // current screen position
-    y: number;
-    vx: number;     // velocity (for gravity/escape)
-    vy: number;
-    visible: boolean;
-    revealDelay: number;
+    a: number; b: number; tilt: number;
+    speed: number; t: number;
+    vx: number; vy: number;
+    visible: boolean; delay: number;
   }
 
-  const states: CardState[] = Array.from(cards).map((el, i) => {
-    const delay = parseFloat(el.dataset.delay || '0');
-    const radiusBase = 110 + (i % 3) * 55;
+  const states: State[] = cards.map((el, i) => {
+    const delay = parseFloat(el.dataset.delay ?? '0');
+    const tier = Math.floor(i / 3);
+    const base = 100 + tier * 60 + (i % 3) * 20;
     return {
-      el,
-      a: radiusBase + Math.random() * 30,
-      b: (radiusBase + Math.random() * 30) * (0.45 + Math.random() * 0.35),
-      tilt: (i * 0.42) + Math.random() * 0.3,
-      speed: (0.004 + Math.random() * 0.003) * (i % 2 === 0 ? 1 : -1),
+      el, delay,
+      a: base,
+      b: base * (0.38 + (i % 3) * 0.12),
+      tilt: i * 0.52 + 0.2,
+      speed: (0.0035 + (i % 3) * 0.001) * (i % 2 === 0 ? 1 : -1),
       t: (i / cards.length) * Math.PI * 2,
-      x: cx, y: cy,
       vx: 0, vy: 0,
       visible: false,
-      revealDelay: delay,
     };
   });
 
-  let mouseX = cx;
-  let mouseY = cy;
-  const startTime = performance.now();
+  let mouseX = cx, mouseY = cy;
 
-  document.addEventListener('mousemove', (e) => {
+  window.addEventListener('mousemove', (e) => {
     const rect = container.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
@@ -162,66 +164,54 @@ const tags = [
   function tick() {
     const elapsed = (performance.now() - startTime) / 1000;
 
-    states.forEach(s => {
-      // Reveal with delay
-      if (!s.visible && elapsed > s.revealDelay) {
+    for (const s of states) {
+      if (!s.visible) {
+        if (elapsed < s.delay) continue;
         s.visible = true;
-        s.el.style.opacity = '0';
-        s.el.style.transition = 'opacity 0.8s ease';
+        s.el.style.transition = 'opacity 0.9s ease';
         requestAnimationFrame(() => { s.el.style.opacity = '1'; });
       }
-      if (!s.visible) return;
 
-      // Advance orbital angle
       s.t += s.speed;
 
-      // Elliptical orbit with tilt
       const ox = s.a * Math.cos(s.t);
       const oy = s.b * Math.sin(s.t);
       const tx = cx + ox * Math.cos(s.tilt) - oy * Math.sin(s.tilt);
       const ty = cy + ox * Math.sin(s.tilt) + oy * Math.cos(s.tilt);
 
-      // Mouse gravity/escape
       const dx = mouseX - tx;
       const dy = mouseY - ty;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const gravRadius = 130;
-      const escapeRadius = 60;
 
       let fx = 0, fy = 0;
-      if (dist < gravRadius && dist > escapeRadius) {
-        // Gravity pull (gentle)
-        const strength = (1 - dist / gravRadius) * 0.4;
-        fx = (dx / dist) * strength;
-        fy = (dy / dist) * strength;
-      } else if (dist < escapeRadius) {
-        // Escape — card accelerates away
-        const strength = (1 - dist / escapeRadius) * 2.5;
-        fx = -(dx / dist) * strength;
-        fy = -(dy / dist) * strength;
+      if (dist < 150 && dist > 55) {
+        // Gravity pull
+        const str = (1 - dist / 150) * 0.35;
+        fx = (dx / dist) * str;
+        fy = (dy / dist) * str;
+        s.el.classList.remove('escaping');
+      } else if (dist <= 55) {
+        // Escape
+        const str = (1 - dist / 55) * 2.8;
+        fx = -(dx / dist) * str;
+        fy = -(dy / dist) * str;
+        s.el.classList.add('escaping');
+      } else {
+        s.el.classList.remove('escaping');
       }
 
-      s.vx = s.vx * 0.85 + fx;
-      s.vy = s.vy * 0.85 + fy;
+      s.vx = s.vx * 0.82 + fx;
+      s.vy = s.vy * 0.82 + fy;
 
-      const finalX = tx + s.vx * 8;
-      const finalY = ty + s.vy * 8;
-
-      s.x = finalX;
-      s.y = finalY;
-
+      const finalX = tx + s.vx * 7;
+      const finalY = ty + s.vy * 7;
       const w = s.el.offsetWidth;
       const h = s.el.offsetHeight;
       s.el.style.transform = `translate(${finalX - w / 2}px, ${finalY - h / 2}px)`;
-    });
+    }
 
     requestAnimationFrame(tick);
   }
-
-  // Set initial position before first render
-  states.forEach(s => {
-    s.el.style.transform = `translate(${cx}px, ${cy}px)`;
-  });
 
   requestAnimationFrame(tick);
 </script>
