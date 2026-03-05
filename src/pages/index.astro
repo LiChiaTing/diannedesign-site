@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import HeroOrbit from '../components/home/HeroOrbit.astro';
+import NowSection from '../components/home/NowSection.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+const featured = allWork.filter(p => p.data.featured);
+---
+
+<BaseLayout title="Dianne Ting — Product Designer">
+  <Header />
+
+  <main>
+
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="min-h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-32 pb-12" id="hero">
+      <div class="max-w-5xl">
+
+        <!-- AI collaboration badge -->
+        <div class="inline-flex items-center gap-2 mb-8 reveal">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-breathe"></span>
+          <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT">
+            <span class="en-text">Designs in Figma. Builds with Claude.</span>
+            <span class="zh-text">在 Figma 設計。和 Claude 一起建造。</span>
+          </span>
+        </div>
+
+        <!-- Main headline -->
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay: 0.1s">
+          <span class="en-text">Product<br />Designer.</span>
+          <span class="zh-text">產品<br />設計師。</span>
+        </h1>
+
+        <p class="text-base md:text-lg text-gray-DEFAULT max-w-md leading-relaxed reveal" style="transition-delay: 0.2s">
+          <span class="en-text">
+            Dianne turns complex ideas into clear, intuitive experiences.
+            Based in Seattle. Originally from Taipei.
+          </span>
+          <span class="zh-text">
+            把複雜的想法，轉化成清晰、直覺的體驗。
+            在西雅圖，來自台北。
+          </span>
+        </p>
+
+        <div class="flex items-center gap-6 mt-10 reveal" style="transition-delay: 0.3s">
+          <a href="/work" class="text-sm font-medium underline underline-offset-4 hover:text-accent transition-colors" data-hover>
+            <span class="en-text">See my work →</span>
+            <span class="zh-text">看我的作品 →</span>
+          </a>
+          <a href="/about" class="text-sm text-gray-DEFAULT hover:text-black transition-colors" data-hover>
+            <span class="en-text">About me</span>
+            <span class="zh-text">關於我</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Orbital cards -->
+      <div class="absolute right-0 top-0 w-full md:w-1/2 h-full hidden md:block pointer-events-none">
+        <HeroOrbit />
+      </div>
+    </section>
+
+    <!-- ─── NOW ──────────────────────────────────────────────────── -->
+    <NowSection />
+
+    <!-- ─── SELECTED WORK ─────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <div class="flex items-end justify-between mb-12">
+        <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT">
+          <span class="en-text">Selected Work</span>
+          <span class="zh-text">精選作品</span>
+        </span>
+        <a href="/work" class="text-sm hover:text-accent transition-colors reveal" data-hover>
+          <span class="en-text">View all →</span>
+          <span class="zh-text">全部作品 →</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {featured.map((project, i) => (
+          <a
+            href={`/work/${project.slug}`}
+            class="group block border border-gray-border rounded-2xl overflow-hidden hover:border-black transition-all duration-300 reveal"
+            style={`transition-delay: ${i * 0.1}s`}
+            data-hover
+          >
+            <!-- Cover placeholder (swap with real image) -->
+            <div class="aspect-video bg-gray-light flex items-center justify-center overflow-hidden">
+              {project.data.cover ? (
+                <img
+                  src={project.data.cover}
+                  alt={project.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <span class="text-xs text-gray-DEFAULT font-medium tracking-widest uppercase">
+                  {project.data.title}
+                </span>
+              )}
+            </div>
+
+            <!-- Meta -->
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2 mb-3">
+                {project.data.tags.map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+                {project.data.aiBuilt && (
+                  <span class="tag-accent">AI Built ✦</span>
+                )}
+              </div>
+              <h3 class="text-base font-medium mb-1">{project.data.title}</h3>
+              <p class="text-sm text-gray-DEFAULT">{project.data.tagline}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── CREATIVE STRIP ────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <div class="flex items-end justify-between mb-12">
+        <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT">
+          <span class="en-text">Creative</span>
+          <span class="zh-text">創作</span>
+        </span>
+        <a href="/creative" class="text-sm hover:text-accent transition-colors" data-hover>
+          <span class="en-text">View all →</span>
+          <span class="zh-text">全部 →</span>
+        </a>
+      </div>
+
+      <!-- Placeholder strip — fill with real photos -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[1,2,3,4].map(i => (
+          <div
+            class="aspect-square bg-gray-light rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer reveal"
+            style={`transition-delay: ${i * 0.05}s`}
+          >
+            <div class="w-full h-full flex items-center justify-center">
+              <span class="text-xs text-gray-DEFAULT tracking-widest">PHOTO</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Hero orbital cards positioned absolutely within section */
+  #hero {
+    position: relative;
+  }
+</style>

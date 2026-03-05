@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={`${entry.data.title} — Dianne Ting`}>
+  <Header />
+  <main class="pt-32">
+    <section class="section max-w-3xl">
+      <!-- Breadcrumb -->
+      <a href="/work" class="text-sm text-gray-DEFAULT hover:text-black mb-8 block">
+        <span class="en-text">← All Work</span>
+        <span class="zh-text">← 所有作品</span>
+      </a>
+
+      <!-- Header -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        {entry.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        {entry.data.aiBuilt && <span class="tag-accent">AI Built ✦</span>}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-light leading-tight mb-4">{entry.data.title}</h1>
+      <p class="text-lg text-gray-DEFAULT mb-12">{entry.data.tagline}</p>
+
+      <!-- Metrics -->
+      {entry.data.metrics && entry.data.metrics.length > 0 && (
+        <div class="flex gap-12 pb-12 border-b border-gray-border mb-12">
+          {entry.data.metrics.map(m => (
+            <div>
+              <p class="text-3xl font-light">{m.value}</p>
+              <p class="text-xs text-gray-DEFAULT mt-1">{m.label}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="prose prose-sm max-w-none text-gray-DEFAULT leading-relaxed">
+        <Content />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

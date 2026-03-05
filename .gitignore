@@ -3,3 +3,8 @@ Thumbs.db
 *.log
 node_modules/
 .env
+dist/
+.astro/
+
+# Internal docs (Claude memory, wireframes — not for public)
+_docs/

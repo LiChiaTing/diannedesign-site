@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "creative": "Creative",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Dianne",
+    "tagline": "Product Designer based in Seattle.",
+    "sub": "I turn complex ideas into clear, intuitive experiences.",
+    "badge": "Designs in Figma. Builds with Claude.",
+    "cta": "See my work"
+  },
+  "tags": {
+    "ux": "#UX Designer",
+    "taipei_seattle": "#Taipei → Seattle",
+    "figma_claude": "#Figma & Claude",
+    "dancer": "#Former Dance Teacher",
+    "pets": "#2 Cats 1 Dog",
+    "no_driving": "#Doesn't Drive",
+    "film": "#Film Background",
+    "photographer": "#Photographer"
+  },
+  "now": {
+    "title": "Right now",
+    "project": "Working on",
+    "thinking": "Thinking about",
+    "music": "Listening to",
+    "weather": "Seattle weather"
+  },
+  "work": {
+    "title": "Selected Work",
+    "viewAll": "View all projects →",
+    "locked": "Password protected",
+    "aiBuilt": "AI Built ✦"
+  },
+  "about": {
+    "title": "About Dianne",
+    "chapters": {
+      "taiwan": "Growing Up in Taiwan",
+      "dance": "The Dance Studio Years",
+      "film": "Film & Design",
+      "ux": "UX → Seattle"
+    },
+    "philosophy": "For me, design isn't just about interfaces. It's about removing friction, creating clarity, and sparking delight.",
+    "howIWork": "How I Work",
+    "workflow": "Figma → Claude → Live"
+  },
+  "contact": {
+    "title": "Let's work together",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "built": "Designed by Dianne. Built with Claude.",
+    "year": "2025"
+  }
+}

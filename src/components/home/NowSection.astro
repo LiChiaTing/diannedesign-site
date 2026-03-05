@@ -1,0 +1,168 @@
+---
+// Reads from public/data/now.json at build time
+let nowData: any = null;
+try {
+  const res = await fetch(new URL('/data/now.json', Astro.url));
+  nowData = await res.json();
+} catch {
+  // Fallback if fetch fails at build time
+  nowData = {
+    status: 'Creating',
+    status_zh: '正在建造',
+    project: 'diannedesign.me',
+    project_zh: 'diannedesign.me',
+    thinking: '–',
+    thinking_zh: '–',
+    music: { title: '–', artist: '–', note: '', note_zh: '' },
+    updated: new Date().toISOString().split('T')[0],
+  };
+}
+---
+
+<section class="section border-t border-gray-border" id="now">
+  <div class="mb-12">
+    <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT">
+      <span class="en-text">Right Now</span>
+      <span class="zh-text">現在進行中</span>
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <!-- Status widget -->
+    <div class="now-widget reveal">
+      <div class="widget-label">
+        <span class="en-text">Status</span>
+        <span class="zh-text">狀態</span>
+      </div>
+      <div class="widget-dot"></div>
+      <p class="widget-value">
+        <span class="en-text">{nowData.status}</span>
+        <span class="zh-text">{nowData.status_zh || nowData.status}</span>
+      </p>
+      <p class="widget-sub">
+        <span class="en-text">{nowData.project}</span>
+        <span class="zh-text">{nowData.project_zh || nowData.project}</span>
+      </p>
+    </div>
+
+    <!-- Thinking widget -->
+    <div class="now-widget reveal" style="animation-delay: 0.1s">
+      <div class="widget-label">
+        <span class="en-text">Thinking about</span>
+        <span class="zh-text">最近在想</span>
+      </div>
+      <p class="widget-value text-sm leading-snug">
+        <span class="en-text">{nowData.thinking}</span>
+        <span class="zh-text">{nowData.thinking_zh || nowData.thinking}</span>
+      </p>
+    </div>
+
+    <!-- Music widget -->
+    <div class="now-widget reveal" style="animation-delay: 0.2s">
+      <div class="widget-label">
+        <span class="en-text">Listening to</span>
+        <span class="zh-text">正在聽</span>
+      </div>
+      <p class="widget-value">{nowData.music?.title}</p>
+      <p class="widget-sub">{nowData.music?.artist}</p>
+      {nowData.music?.note && (
+        <p class="widget-note mt-2">
+          <span class="en-text">{nowData.music.note}</span>
+          <span class="zh-text">{nowData.music.note_zh || nowData.music.note}</span>
+        </p>
+      )}
+    </div>
+
+    <!-- Weather widget (Seattle — fetched client-side) -->
+    <div class="now-widget reveal" style="animation-delay: 0.3s" id="weather-widget">
+      <div class="widget-label">
+        <span class="en-text">Seattle</span>
+        <span class="zh-text">西雅圖</span>
+      </div>
+      <p class="widget-value" id="weather-temp">–</p>
+      <p class="widget-sub" id="weather-desc">–</p>
+    </div>
+
+  </div>
+
+  <p class="mt-8 text-xs text-gray-DEFAULT">
+    <span class="en-text">Updated {nowData.updated}</span>
+    <span class="zh-text">更新於 {nowData.updated}</span>
+  </p>
+</section>
+
+<style>
+  .now-widget {
+    @apply border border-gray-border rounded-2xl p-6 flex flex-col gap-2 hover:border-black transition-colors duration-300;
+    min-height: 140px;
+  }
+  .widget-label {
+    @apply text-xs font-medium tracking-wider uppercase;
+    color: var(--gray);
+  }
+  .widget-dot {
+    @apply w-2 h-2 rounded-full;
+    background: var(--accent);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  .widget-value {
+    @apply text-base font-medium;
+    color: var(--black);
+  }
+  .widget-sub {
+    @apply text-sm;
+    color: var(--gray);
+  }
+  .widget-note {
+    @apply text-xs italic;
+    color: var(--gray);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+</style>
+
+<script>
+  // Fetch Seattle weather from Open-Meteo (no API key needed)
+  async function getWeather() {
+    try {
+      const res = await fetch(
+        'https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current_weather=true&temperature_unit=celsius'
+      );
+      const data = await res.json();
+      const temp = Math.round(data.current_weather.temperature);
+      const code = data.current_weather.weathercode;
+
+      const descriptions: Record<number, [string, string]> = {
+        0: ['Clear sky', '晴天'],
+        1: ['Mainly clear', '大致晴朗'],
+        2: ['Partly cloudy', '局部多雲'],
+        3: ['Overcast', '陰天'],
+        45: ['Fog', '霧'],
+        48: ['Fog', '霧'],
+        51: ['Light drizzle', '細雨'],
+        61: ['Light rain', '小雨'],
+        63: ['Moderate rain', '中雨'],
+        71: ['Light snow', '小雪'],
+        80: ['Showers', '陣雨'],
+        95: ['Thunderstorm', '雷暴'],
+      };
+
+      const [descEn, descZh] = descriptions[code] || ['–', '–'];
+      const tempEl = document.getElementById('weather-temp');
+      const descEl = document.getElementById('weather-desc');
+
+      if (tempEl) tempEl.textContent = `${temp}°C`;
+      if (descEl) {
+        const lang = document.getElementById('html-root')?.getAttribute('data-lang') || 'en';
+        descEl.textContent = lang === 'zh' ? descZh : descEn;
+      }
+    } catch {
+      // Fail silently — widget shows '–'
+    }
+  }
+
+  getWeather();
+</script>

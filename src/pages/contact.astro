@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+<BaseLayout title="Contact — Dianne Ting">
+  <Header />
+  <main class="pt-32">
+    <section class="section">
+      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-8">
+        <span class="en-text">Contact</span>
+        <span class="zh-text">聯絡</span>
+      </span>
+      <h1 class="text-4xl md:text-5xl font-light mb-12">
+        <span class="en-text">Let's work together.</span>
+        <span class="zh-text">一起合作吧。</span>
+      </h1>
+
+      <div class="flex flex-col gap-6 max-w-sm">
+        <a href="mailto:hello@diannedesign.me" class="flex items-center justify-between border border-gray-border rounded-2xl px-6 py-5 hover:border-black transition-colors group" data-hover>
+          <span class="text-sm font-medium">Email</span>
+          <span class="text-sm text-gray-DEFAULT group-hover:text-black transition-colors">hello@diannedesign.me</span>
+        </a>
+        <a href="https://www.linkedin.com/in/dianneting" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between border border-gray-border rounded-2xl px-6 py-5 hover:border-black transition-colors group" data-hover>
+          <span class="text-sm font-medium">LinkedIn</span>
+          <span class="text-sm text-gray-DEFAULT group-hover:text-black transition-colors">dianneting →</span>
+        </a>
+        <a href="https://github.com/LiChiaTing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between border border-gray-border rounded-2xl px-6 py-5 hover:border-black transition-colors group" data-hover>
+          <span class="text-sm font-medium">GitHub</span>
+          <span class="text-sm text-gray-DEFAULT group-hover:text-black transition-colors">LiChiaTing →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

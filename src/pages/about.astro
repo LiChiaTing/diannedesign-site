@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const chapters = [
+  {
+    id: 'taiwan',
+    en: 'Growing Up in Taiwan',
+    zh: '在台灣長大',
+    body_en: `Dianne grew up in Taiwan, surrounded by a culture that valued both discipline and creativity. She studied Film and Graphic Design — learning early that storytelling is everything, and that the gap between a good idea and a great one is almost always visual.`,
+    body_zh: `Dianne 在台灣長大，在一個既重視紀律也珍視創意的文化中成長。她攻讀電影與平面設計，很早就明白：說故事是一切的核心，而好作品與偉大作品之間的距離，幾乎永遠是視覺。`,
+  },
+  {
+    id: 'dance',
+    en: 'The Dance Studio Years',
+    zh: '舞蹈教室的那些年',
+    body_en: `For three years, Dianne co-founded and ran a swing dance studio in Taiwan. She taught classes, ran campaigns that grew enrollment by 150%, and managed a small creative team — all while learning that community is a design problem too.`,
+    body_zh: `三年間，Dianne 在台灣共同創立並經營一間搖擺舞蹈工作室。她教授課程、策劃讓學生人數成長 150% 的行銷活動，管理小型創意團隊——同時學到，社群本身也是一個設計問題。`,
+  },
+  {
+    id: 'film',
+    en: 'Film & Design',
+    zh: '電影與設計',
+    body_en: `The film background never left. It shapes how Dianne approaches pacing in user flows, visual hierarchy in layouts, and the kind of emotional arc a good onboarding should have. Design is storytelling — just with fewer jump cuts.`,
+    body_zh: `電影背景從未離開她。它影響著 Dianne 看待使用者流程節奏的方式、版面視覺層次的直覺，以及好的 onboarding 應有的情感弧線。設計就是說故事——只是少了幾個跳接鏡頭。`,
+  },
+  {
+    id: 'ux',
+    en: 'UX → Seattle',
+    zh: 'UX → 西雅圖',
+    body_en: `A Master's in User Experience brought Dianne to the Pacific Northwest. She now designs for AI-powered products, works across research, interaction, and visual design — and builds her portfolio alongside Claude.`,
+    body_zh: `使用者體驗碩士學位把 Dianne 帶到了太平洋西北岸。她現在為 AI 驅動的產品做設計，跨足研究、互動與視覺設計——並且和 Claude 一起建造她的作品集。`,
+  },
+];
+
+const experience = [
+  {
+    period: 'Jun–Nov 2025',
+    role_en: 'Product Designer',
+    role_zh: '產品設計師',
+    company: 'Arxtect',
+    desc_en: 'Led product design and brand strategy for an AI-powered LaTeX editor.',
+    desc_zh: '主導 AI LaTeX 編輯器的產品設計與品牌策略。',
+  },
+  {
+    period: 'Aug–Sep 2025',
+    role_en: 'Product Designer (Contract)',
+    role_zh: '產品設計師（合約）',
+    company: 'Miirr.ai',
+    desc_en: 'Led UX design and prototype development from concept to investor-ready demo.',
+    desc_zh: '主導從概念到投資人 demo 的 UX 設計與原型開發。',
+  },
+  {
+    period: 'Jun 2024–Jul 2025',
+    role_en: 'UX Researcher & Designer',
+    role_zh: 'UX 研究員 & 設計師',
+    company: 'Extralit Labs',
+    desc_en: 'Redesigned an open-source research platform through user research and iterative design.',
+    desc_zh: '透過使用者研究與迭代設計，重新設計開源研究平台。',
+  },
+  {
+    period: 'Jul–Aug 2023',
+    role_en: 'UX Design Intern',
+    role_zh: 'UX 設計實習生',
+    company: 'Appy.yo',
+    desc_en: 'Contributed to the design of a gig work-matching app.',
+    desc_zh: '參與零工媒合 App 的設計與研究。',
+  },
+  {
+    period: 'Mar 2017–Feb 2020',
+    role_en: 'Marketing Director',
+    role_zh: '行銷總監',
+    company: 'Lindy Island Swing Dance Studio',
+    desc_en: 'Led brand, digital marketing, and events — grew enrollment 150%.',
+    desc_zh: '主導品牌、數位行銷與活動策劃，學生人數成長 150%。',
+  },
+];
+---
+
+<BaseLayout title="About — Dianne Ting">
+  <Header />
+
+  <main class="pt-32">
+
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="section pb-0">
+      <div class="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
+
+        <!-- Photo -->
+        <div class="about-photo-wrap reveal shrink-0">
+          <div class="about-photo-inner">
+            <!-- Replace src with real photo -->
+            <div class="w-full h-full bg-gray-light flex items-center justify-center rounded-2xl">
+              <span class="text-xs text-gray-DEFAULT tracking-widest">PHOTO</span>
+            </div>
+            <div class="about-caption">
+              <p class="text-xs font-medium">
+                <span class="en-text">Dianne Ting</span>
+                <span class="zh-text">丁曉琳</span>
+              </p>
+              <p class="text-xs text-gray-DEFAULT">
+                <span class="en-text">Product Designer · Seattle</span>
+                <span class="zh-text">產品設計師 · 西雅圖</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intro text -->
+        <div class="reveal" style="transition-delay: 0.15s">
+          <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-6">
+            <span class="en-text">About</span>
+            <span class="zh-text">關於</span>
+          </span>
+          <h1 class="text-4xl md:text-5xl font-light leading-tight mb-8">
+            <span class="en-text">Designer. Storyteller.<br />Cat person.</span>
+            <span class="zh-text">設計師。說故事的人。<br />貓奴。</span>
+          </h1>
+          <p class="text-base text-gray-DEFAULT max-w-lg leading-relaxed">
+            <span class="en-text">
+              Dianne is a multidisciplinary designer with roots in film, a detour through dance,
+              and a deep belief that the best design feels obvious — after the fact.
+            </span>
+            <span class="zh-text">
+              Dianne 是一位跨領域設計師，根植於電影，繞道過舞蹈，深信最好的設計在事後看來顯而易見。
+            </span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── CHAPTERS ─────────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
+        <span class="en-text">The Story</span>
+        <span class="zh-text">故事</span>
+      </span>
+
+      <!-- Tab nav -->
+      <div class="flex flex-wrap gap-4 mb-12" id="chapter-tabs">
+        {chapters.map((ch, i) => (
+          <button
+            class={`chapter-tab text-sm pb-2 border-b-2 transition-all duration-200 ${i === 0 ? 'border-black font-medium' : 'border-transparent text-gray-DEFAULT'}`}
+            data-chapter={ch.id}
+            data-hover
+          >
+            <span class="en-text">{ch.en}</span>
+            <span class="zh-text">{ch.zh}</span>
+          </button>
+        ))}
+      </div>
+
+      <!-- Chapter bodies -->
+      {chapters.map((ch, i) => (
+        <div
+          class={`chapter-body max-w-2xl leading-relaxed text-base ${i === 0 ? '' : 'hidden'}`}
+          data-chapter={ch.id}
+        >
+          <p class="en-text text-gray-DEFAULT">{ch.body_en}</p>
+          <p class="zh-text text-gray-DEFAULT">{ch.body_zh}</p>
+        </div>
+      ))}
+    </section>
+
+    <!-- ─── PHILOSOPHY ────────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <div class="max-w-3xl" id="philosophy-wrap">
+        <p class="text-2xl md:text-3xl font-light leading-snug text-black/20" id="philosophy-text">
+          <span class="en-text">
+            For me, design isn't just about interfaces. It's about removing friction, creating clarity, and sparking delight. I love when something I create helps people get from <em class="text-black not-italic">"this is complicated"</em> to <em class="text-black not-italic">"oh, that was easy."</em>
+          </span>
+          <span class="zh-text">
+            對我來說，設計不只是介面。而是消除摩擦、創造清晰，以及帶來那一瞬間的驚喜。我最喜歡的，就是讓人從<em class="text-black not-italic">「這好複雜」</em>走到<em class="text-black not-italic">「原來這麼簡單」</em>。
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ────────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
+        <span class="en-text">Experience</span>
+        <span class="zh-text">工作經歷</span>
+      </span>
+
+      <div class="divide-y divide-gray-border max-w-3xl" id="experience-list">
+        {experience.map((job, i) => (
+          <div class="experience-item py-6 cursor-pointer" data-index={i} data-hover>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-medium">
+                  <span class="en-text">{job.role_en}</span>
+                  <span class="zh-text">{job.role_zh}</span>
+                  <span class="text-gray-DEFAULT font-normal"> — {job.company}</span>
+                </p>
+                <p class="text-xs text-gray-DEFAULT mt-1">{job.period}</p>
+              </div>
+              <span class="experience-arrow text-gray-DEFAULT text-sm transition-transform duration-200">+</span>
+            </div>
+            <div class="experience-desc max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <p class="pt-4 text-sm text-gray-DEFAULT leading-relaxed">
+                <span class="en-text">{job.desc_en}</span>
+                <span class="zh-text">{job.desc_zh}</span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── HOW I WORK ─────────────────────────────────────────────── -->
+    <section class="section border-t border-gray-border">
+      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
+        <span class="en-text">How I Work</span>
+        <span class="zh-text">我的工作方式</span>
+      </span>
+
+      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12 max-w-xl">
+        {['Figma', '→', 'Claude', '→', 'Live'].map((item) => (
+          <div class="flex items-center gap-6">
+            {item === '→' ? (
+              <span class="text-gray-DEFAULT text-lg">→</span>
+            ) : (
+              <div class="workflow-step">
+                <span class="text-sm font-medium">{item}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-8 text-sm text-gray-DEFAULT max-w-md leading-relaxed reveal">
+        <span class="en-text">
+          Dianne designs in Figma and builds with Claude — combining design craft with AI collaboration to ship faster without sacrificing quality.
+        </span>
+        <span class="zh-text">
+          Dianne 在 Figma 設計，和 Claude 一起建造——結合設計工藝與 AI 協作，在不犧牲品質的前提下更快交付。
+        </span>
+      </p>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about-photo-wrap {
+    width: 260px;
+    flex-shrink: 0;
+  }
+  .about-photo-inner {
+    position: relative;
+    width: 260px;
+    height: 320px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .about-photo-inner > div:first-child {
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+  }
+  .about-photo-inner:hover > div:first-child {
+    filter: grayscale(0%);
+  }
+  .about-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .about-photo-inner:hover .about-caption {
+    transform: translateY(0);
+  }
+
+  .workflow-step {
+    @apply border border-gray-border rounded-xl px-6 py-3 text-center;
+    animation: breathe 3s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224,79,114,0); }
+    50% { box-shadow: 0 0 0 6px rgba(224,79,114,0.08); }
+  }
+</style>
+
+<script>
+  // Chapter tabs
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.chapter-tab');
+  const bodies = document.querySelectorAll<HTMLElement>('.chapter-body');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.chapter;
+      tabs.forEach(t => {
+        t.classList.toggle('border-black', t.dataset.chapter === id);
+        t.classList.toggle('font-medium', t.dataset.chapter === id);
+        t.classList.toggle('border-transparent', t.dataset.chapter !== id);
+        t.classList.toggle('text-gray-DEFAULT', t.dataset.chapter !== id);
+      });
+      bodies.forEach(b => {
+        b.classList.toggle('hidden', b.dataset.chapter !== id);
+      });
+    });
+  });
+
+  // Experience accordion
+  const items = document.querySelectorAll<HTMLElement>('.experience-item');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const desc = item.querySelector<HTMLElement>('.experience-desc');
+      const arrow = item.querySelector<HTMLElement>('.experience-arrow');
+      const isOpen = desc?.style.maxHeight && desc.style.maxHeight !== '0px';
+
+      // Close all
+      items.forEach(i => {
+        const d = i.querySelector<HTMLElement>('.experience-desc');
+        const a = i.querySelector<HTMLElement>('.experience-arrow');
+        if (d) d.style.maxHeight = '0px';
+        if (a) a.textContent = '+';
+      });
+
+      // Open clicked (if wasn't open)
+      if (!isOpen && desc && arrow) {
+        desc.style.maxHeight = desc.scrollHeight + 'px';
+        arrow.textContent = '−';
+      }
+    });
+  });
+
+  // Philosophy word-by-word reveal
+  const philosWrap = document.getElementById('philosophy-wrap');
+  if (philosWrap) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        philosWrap.style.transition = 'opacity 1.2s ease';
+        philosWrap.style.opacity = '1';
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    philosWrap.style.opacity = '0';
+    observer.observe(philosWrap);
+  }
+</script>

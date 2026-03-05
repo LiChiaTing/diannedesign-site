@@ -1,0 +1,34 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="px-8 md:px-16 lg:px-24 py-12 mt-32 border-t border-gray-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+  <div>
+    <p class="text-sm text-gray-DEFAULT">
+      <span class="en-text">Designed by Dianne. Built with Claude. © {year}</span>
+      <span class="zh-text">由 Dianne 設計。和 Claude 一起建造。© {year}</span>
+    </p>
+  </div>
+
+  <div class="flex items-center gap-6">
+    <a
+      href="https://www.linkedin.com/in/dianneting"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-gray-DEFAULT hover:text-black transition-colors"
+      data-hover
+    >LinkedIn</a>
+    <a
+      href="https://github.com/LiChiaTing"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-gray-DEFAULT hover:text-black transition-colors"
+      data-hover
+    >GitHub</a>
+    <a
+      href="mailto:hello@diannedesign.me"
+      class="text-sm text-gray-DEFAULT hover:text-black transition-colors"
+      data-hover
+    >Email</a>
+  </div>
+</footer>

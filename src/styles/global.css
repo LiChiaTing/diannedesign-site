@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --accent: #E04F72;
+    --black: #111111;
+    --white: #ffffff;
+    --gray: #999999;
+    --border: rgba(0, 0, 0, 0.08);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--black);
+    background: var(--white);
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Hide default cursor sitewide — replaced by custom cursor */
+  * { cursor: none !important; }
+
+  a, button { color: inherit; }
+
+  ::selection {
+    background: var(--accent);
+    color: white;
+  }
+}
+
+@layer components {
+  /* Custom cursor */
+  .cursor-dot {
+    @apply fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] transition-transform duration-100;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-ring {
+    @apply fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[9998];
+    border-color: var(--accent);
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    opacity: 0.5;
+  }
+
+  .cursor-ring.hovered {
+    @apply w-12 h-12;
+    opacity: 0.8;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply px-8 md:px-16 lg:px-24 py-20 md:py-32;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tag pill */
+  .tag {
+    @apply inline-flex items-center gap-1 px-3 py-1 text-xs font-medium rounded-full border;
+    border-color: var(--border);
+    color: var(--gray);
+  }
+
+  .tag-accent {
+    @apply tag;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
