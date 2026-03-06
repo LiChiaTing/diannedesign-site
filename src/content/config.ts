@@ -15,6 +15,7 @@ const work = defineCollection({
       label: z.string(),
     })).optional(),
     aiBuilt: z.boolean().default(false),
+    hidden: z.boolean().default(false),
   }),
 });
 

@@ -7,6 +7,7 @@ cover: "/images/projects/bpcr-cover.jpg"
 featured: false
 locked: false
 aiBuilt: false
+hidden: true
 metrics: []
 ---
 

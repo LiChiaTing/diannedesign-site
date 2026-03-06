@@ -5,7 +5,9 @@ import Footer from '../../components/layout/Footer.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
-const sorted = allWork.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const sorted = allWork
+  .filter(p => !p.data.hidden)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BaseLayout title="Work — Dianne Ting">

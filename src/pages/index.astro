@@ -7,7 +7,10 @@ import NowSection from '../components/home/NowSection.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
-const featured = allWork.filter(p => p.data.featured);
+const featured = allWork
+  .filter(p => !p.data.hidden)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 4);
 ---
 
 <BaseLayout title="Dianne Ting — Product Designer">
@@ -141,16 +144,27 @@ const featured = allWork.filter(p => p.data.featured);
         </a>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[1,2,3,4].map(i => (
-          <div
-            class="aspect-square rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 reveal"
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {[
+          { src: '/images/creative/seattle-alley-night.jpg', alt: 'Seattle alley at night' },
+          { src: '/images/creative/post-alley.jpg',          alt: 'Post Alley' },
+          { src: '/images/creative/seattle-windows.jpg',     alt: 'Seattle windows' },
+          { src: '/images/creative/street-art.jpg',          alt: 'Street art' },
+          { src: '/images/creative/seattle-crosswalk.jpg',   alt: 'Seattle crosswalk' },
+        ].map((photo, i) => (
+          <a
+            href="/creative"
+            class="aspect-square rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 reveal block"
             style={`background:#f5f5f5; transition-delay:${i * 0.05}s`}
+            data-hover
           >
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="text-xs tracking-widest uppercase" style="color:#ccc;">PHOTO</span>
-            </div>
-          </div>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </a>
         ))}
       </div>
     </section>

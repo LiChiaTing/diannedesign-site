@@ -62,6 +62,30 @@ const photos = [
       </p>
     </section>
 
+    <!-- SVG water filter — hidden, shared across all images -->
+    <svg id="water-svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+      <defs>
+        <filter id="water-filter" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+          <feTurbulence
+            id="water-turb"
+            type="turbulence"
+            baseFrequency="0.018 0.032"
+            numOctaves="3"
+            seed="8"
+            result="noise"
+          />
+          <feDisplacementMap
+            id="water-disp"
+            in="SourceGraphic"
+            in2="noise"
+            scale="0"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+    </svg>
+
     <!-- Masonry Grid -->
     <section class="px-8 md:px-16 lg:px-24">
       <div class="photo-grid">
@@ -77,6 +101,7 @@ const photos = [
                 alt={photo.alt}
                 loading="lazy"
                 decoding="async"
+                class="water-img"
               />
               <div class="photo-overlay">
                 <span class="photo-caption-en en-text">{photo.caption.en}</span>
@@ -144,9 +169,13 @@ const photos = [
   .photo-wrapper img {
     width: 100%;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
+    /* water filter applied via JS on hover */
   }
-  .photo-wrapper:hover img { transform: scale(1.04); }
+  .photo-wrapper:hover img { transform: scale(1.03); }
+  .photo-wrapper img.water-active {
+    filter: url(#water-filter);
+  }
 
   /* ── Overlay caption ──────────────────────────────────────────── */
   .photo-overlay {
@@ -237,47 +266,121 @@ const photos = [
 </style>
 
 <script>
-  const photos = [
+  // ─── Lightbox ────────────────────────────────────────────────────
+  const photoSrcs = [
     '/images/creative/seattle-alley-night.jpg',
     '/images/creative/seattle-crosswalk.jpg',
     '/images/creative/seattle-windows.jpg',
     '/images/creative/post-alley.jpg',
     '/images/creative/street-art.jpg',
   ];
-
   let current = 0;
   const lb = document.getElementById('lightbox')!;
   const lbImg = document.getElementById('lb-img') as HTMLImageElement;
 
   function openLightbox(index: number) {
     current = index;
-    lbImg.src = photos[current];
+    lbImg.src = photoSrcs[current];
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-
   function closeLightbox() {
     lb.classList.remove('active');
     document.body.style.overflow = '';
   }
-
-  function showNext() { current = (current + 1) % photos.length; lbImg.src = photos[current]; }
-  function showPrev() { current = (current - 1 + photos.length) % photos.length; lbImg.src = photos[current]; }
+  function showNext() { current = (current + 1) % photoSrcs.length; lbImg.src = photoSrcs[current]; }
+  function showPrev() { current = (current - 1 + photoSrcs.length) % photoSrcs.length; lbImg.src = photoSrcs[current]; }
 
   document.querySelectorAll('[data-lightbox]').forEach((el, i) => {
     (el as HTMLElement).addEventListener('click', () => openLightbox(i));
   });
-
   document.getElementById('lb-close')?.addEventListener('click', closeLightbox);
   document.getElementById('lb-next')?.addEventListener('click', showNext);
   document.getElementById('lb-prev')?.addEventListener('click', showPrev);
-
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
-
   document.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
   });
+
+  // ─── Water Ripple Effect ─────────────────────────────────────────
+  // SVG feTurbulence creates organic liquid displacement.
+  // On hover: scale eases up + turbulence baseFrequency drifts over time
+  // (simulating slow water current). On leave: scale eases back to 0.
+  const turb = document.getElementById('water-turb') as Element;
+  const disp = document.getElementById('water-disp') as Element;
+
+  // Per-image state: each wrapper gets its own animation instance
+  const wrappers = document.querySelectorAll<HTMLElement>('.photo-wrapper');
+
+  // Global clock — shared turbulence motion (like one tray of liquid)
+  let globalTime = 0;
+  let globalRaf: number | null = null;
+
+  // Track which wrappers are currently hovered + their scale values
+  const state = new Map<HTMLElement, { scale: number; target: number; img: HTMLImageElement }>();
+
+  wrappers.forEach(wrapper => {
+    const img = wrapper.querySelector('img')!;
+    state.set(wrapper, { scale: 0, target: 0, img });
+
+    wrapper.addEventListener('mouseenter', () => {
+      state.get(wrapper)!.target = 22;
+      img.classList.add('water-active');
+      startLoop();
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      state.get(wrapper)!.target = 0;
+    });
+  });
+
+  function startLoop() {
+    if (globalRaf !== null) return; // already running
+    tick();
+  }
+
+  function tick() {
+    globalTime += 0.0035;
+
+    // Drift turbulence baseFrequency gently — feels like slow current
+    const f1 = (0.016 + Math.sin(globalTime * 0.9)  * 0.005).toFixed(4);
+    const f2 = (0.030 + Math.cos(globalTime * 1.15) * 0.006).toFixed(4);
+    turb.setAttribute('baseFrequency', `${f1} ${f2}`);
+
+    // Find the actively hovered wrapper (highest target scale)
+    let bestWrapper: HTMLElement | null = null;
+    let bestScale = 0;
+    let anyActive = false;
+
+    state.forEach((s, wrapper) => {
+      // Ease scale toward target
+      s.scale += (s.target - s.scale) * 0.065;
+
+      if (s.scale > 0.15) {
+        anyActive = true;
+        if (s.scale > bestScale) {
+          bestScale = s.scale;
+          bestWrapper = wrapper;
+        }
+      } else if (s.target === 0 && s.scale < 0.15) {
+        // Fully settled — remove filter class
+        s.scale = 0;
+        s.img.classList.remove('water-active');
+      }
+    });
+
+    // Apply displacement to the dominant hovered image
+    disp.setAttribute('scale', bestScale.toFixed(2));
+
+    if (anyActive) {
+      globalRaf = requestAnimationFrame(tick);
+    } else {
+      // Nothing active — stop loop, reset filter
+      disp.setAttribute('scale', '0');
+      globalRaf = null;
+    }
+  }
 </script>
