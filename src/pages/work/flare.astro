@@ -1,0 +1,782 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<BaseLayout title="FLARE — Dianne Ting">
+  <Header />
+
+  <!-- ─── PASSWORD GATE ───────────────────────────────────────────── -->
+  <div id="lock-screen" class="lock-screen">
+    <div class="lock-inner reveal">
+      <div class="lock-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <p class="lock-label">This case study is password protected.</p>
+      <form id="lock-form" class="lock-form" autocomplete="off">
+        <input
+          id="lock-input"
+          type="password"
+          placeholder="Enter password"
+          class="lock-input"
+          autocomplete="new-password"
+        />
+        <button type="submit" class="lock-btn">
+          <span class="en-text">Unlock →</span>
+          <span class="zh-text">解鎖 →</span>
+        </button>
+      </form>
+      <p id="lock-error" class="lock-error" style="opacity:0;">Incorrect password.</p>
+    </div>
+  </div>
+
+  <!-- ─── CASE STUDY CONTENT ─────────────────────────────────────── -->
+  <main id="case-content" style="display:none;">
+
+    <!-- ─── BACK NAV ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pt-32 pb-0">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← <span class="en-text">All Work</span><span class="zh-text">全部作品</span>
+      </a>
+    </div>
+
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-12 pb-20 md:pb-28">
+      <div class="max-w-4xl">
+
+        <div class="flex flex-wrap items-center gap-2 mb-6 reveal">
+          <span class="tag">Product Design</span>
+          <span class="tag">Civic Tech</span>
+          <span class="tag">PWA</span>
+          <span class="tag">AI Collaboration</span>
+          <span class="tag-accent">AI Built ✦</span>
+          <span class="tag-warn">
+            <span class="en-text">In Progress</span>
+            <span class="zh-text">進行中</span>
+          </span>
+        </div>
+
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay:0.1s">FLARE</h1>
+
+        <p class="text-xl md:text-2xl font-light leading-relaxed max-w-2xl reveal" style="color:#555; transition-delay:0.2s">
+          <span class="en-text">A community safety PWA that delivers real-time ICE enforcement alerts to protect immigrant communities — built as a web app so no government can remove it from an app store.</span>
+          <span class="zh-text">一款社區安全漸進式網頁應用程式，即時傳遞移民執法警報，保護移民社群 — 以網頁形式建造，確保任何政府無法將其從應用程式商店下架。</span>
+        </p>
+
+        <div class="flex flex-wrap gap-10 mt-12 reveal" style="transition-delay:0.3s">
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Role</span><span class="zh-text">角色</span>
+            </div>
+            <div class="text-sm font-medium">
+              <span class="en-text">Solo Designer & Product Director</span>
+              <span class="zh-text">獨立設計師與產品總監</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Built With</span><span class="zh-text">建造工具</span>
+            </div>
+            <div class="text-sm font-medium">Cursor AI (Claude)</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Timeline</span><span class="zh-text">時間</span>
+            </div>
+            <div class="text-sm font-medium">Feb 16 – Mar 2026</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Stack</div>
+            <div class="text-sm font-medium">Next.js · TypeScript · Tailwind v4 · Leaflet.js · PWA</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── SOCIAL PURPOSE ───────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent" style="background:#E8621A;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Why This Exists</span>
+            <span class="zh-text">為什麼要做這個</span>
+          </span>
+        </div>
+
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid #E8621A; padding-left:1.5rem;">
+          <span class="en-text">"For many immigrant communities in the US, knowing where ICE is active isn't paranoia — it's survival. I wanted to build the tool I'd want my family to have."</span>
+          <span class="zh-text">「對於美國許多移民社群來說，了解移民執法局的活動位置不是偏執 — 而是生存之道。我想建造一個我希望自己家人能擁有的工具。」</span>
+        </blockquote>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style="transition-delay:0.2s">
+          <div class="purpose-card">
+            <div class="purpose-icon">📡</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Real-time awareness</span>
+              <span class="zh-text">即時感知</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Live map aggregating alerts from ICEout.org, StopICE.net, and community reports — filtered to the user's location.</span>
+              <span class="zh-text">即時地圖整合來自 ICEout.org、StopICE.net 及社群通報的警報 — 依用戶位置篩選。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="purpose-icon">🛡️</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Know your rights, fast</span>
+              <span class="zh-text">快速了解你的權利</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Emergency-first legal guide in 6 languages. When approached by ICE, the first screen shows exactly what to say and do.</span>
+              <span class="zh-text">6 種語言的緊急優先法律指南。被移民執法局接觸時，第一個畫面直接顯示該說什麼、該做什麼。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="purpose-icon">🔒</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Privacy by design</span>
+              <span class="zh-text">設計即隱私</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Anonymous mode is always on — no accounts, no user data stored. A PWA that can't be pulled from any app store.</span>
+              <span class="zh-text">匿名模式永遠開啟 — 無需帳號，不儲存用戶資料。無法被任何應用程式商店下架的網頁應用程式。</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(232,98,26,0.06); border:1px solid rgba(232,98,26,0.15); transition-delay:0.3s;">
+          <p class="text-sm leading-relaxed" style="color:#555;">
+            <span class="status-dot" style="background:#E8621A;"></span>
+            <strong class="en-text">Status: In progress.</strong>
+            <strong class="zh-text">狀態：進行中。</strong>
+            <span class="en-text"> Final QA and language polish underway. Next step: outreach to civil organizations — ICEout.org, Stop ICE network, immigrant rights coalitions — to explore data partnership and distribution.</span>
+            <span class="zh-text"> 最終品質檢測與語言潤飾進行中。下一步：聯繫公民組織 — ICEout.org、Stop ICE network、移民權利聯盟 — 探討資料夥伴關係與推廣合作。</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── SCREENSHOTS ──────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="flex items-center justify-between mb-12">
+        <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+          <span class="en-text">The App</span>
+          <span class="zh-text">應用程式</span>
+        </span>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 reveal">
+        <div class="screenshot-frame">
+          <img src="/images/projects/flare/flare-radar.png" alt="FLARE Radar map view with ICE activity alerts" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Radar — live map</span>
+            <span class="zh-text">雷達 — 即時地圖</span>
+          </div>
+        </div>
+        <div class="screenshot-frame" style="transition-delay:0.1s">
+          <img src="/images/projects/flare/flare-feed.png" alt="FLARE news feed with live ICE alerts" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Feed — news & alerts</span>
+            <span class="zh-text">動態 — 新聞與警報</span>
+          </div>
+        </div>
+        <div class="screenshot-frame" style="transition-delay:0.2s">
+          <img src="/images/projects/flare/flare-settings.png" alt="FLARE settings with dark mode and 6 languages" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Settings — 6 languages</span>
+            <span class="zh-text">設定 — 6 種語言</span>
+          </div>
+        </div>
+        <div class="screenshot-frame" style="transition-delay:0.3s">
+          <img src="/images/projects/flare/flare-seattle.png" alt="FLARE Seattle view with Safe status" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Seattle — safe status</span>
+            <span class="zh-text">西雅圖 — 安全狀態</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── HOW IT WAS BUILT ─────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">How It Was Built</span>
+            <span class="zh-text">建造過程</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">FLARE was built entirely by one designer — no engineers. Using Cursor AI (powered by Claude), I directed every technical decision through natural-language prompts, over 22+ AI sessions spanning 3 weeks. I had the product vision; Cursor had the code.</span>
+          <span class="zh-text">FLARE 完全由一位設計師建造 — 沒有工程師。透過 Cursor AI（由 Claude 驅動），我在 3 週內透過超過 22 個 AI 工作階段，以自然語言指引每一個技術決策。我有產品願景；Cursor 負責程式碼。</span>
+        </p>
+
+        <!-- Timeline phases -->
+        <div class="phases-list reveal" style="transition-delay:0.2s">
+
+          <div class="phase-item">
+            <div class="phase-num">01</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Bootstrap & Vision</span>
+                <span class="zh-text">啟動與願景</span>
+              </div>
+              <div class="phase-date">Feb 16–18</div>
+              <p class="phase-desc">
+                <span class="en-text">Initial Next.js scaffolding, first components, SSR fix for react-leaflet ("window is not defined"). Defined the 9-point product vision: alert levels, multi-language, PWA-first, government-proof.</span>
+                <span class="zh-text">初始 Next.js 架構搭建、第一批元件、修復 react-leaflet 的 SSR 問題（「window is not defined」）。定義 9 點產品願景：警報等級、多語言、PWA 優先、防政府干預。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">02</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Major Redesign</span>
+                <span class="zh-text">大型重設計</span>
+              </div>
+              <div class="phase-date">Feb 19</div>
+              <p class="phase-desc">
+                <span class="en-text">Full UI overhaul in one day. Defined the "Tactical HUD" design language: 5-level alert system, 4-tab nav → 3-tab nav, dark/light modes, React Context state management. Created a full HTML prototype with 4 screens and tab switching.</span>
+                <span class="zh-text">一天完成全面 UI 改版。定義「戰術抬頭顯示器」設計語言：5 級警報系統、4 個頁籤 → 3 個頁籤、深/淺色模式、React Context 狀態管理。建立含 4 個畫面與頁籤切換的完整 HTML 原型。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">03–04</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">UX Refinement & Privacy Audit</span>
+                <span class="zh-text">UX 精煉與隱私審查</span>
+              </div>
+              <div class="phase-date">Feb 19–20</div>
+              <p class="phase-desc">
+                <span class="en-text">13 CSS tweaks synced from browser to code. Navigation restructured (Settings → hamburger menu). City-name search via Nominatim API. Privacy audit found git commit history contained real name — added .gitignore rules, deleted exposed history files.</span>
+                <span class="zh-text">13 個從瀏覽器同步至程式碼的 CSS 調整。導航結構重組（設定 → 漢堡選單）。透過 Nominatim API 支援城市名稱搜尋。隱私審查發現 git 提交紀錄包含真實姓名 — 新增 .gitignore 規則，刪除已暴露的歷史檔案。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">05–06</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Core Features & Design System</span>
+                <span class="zh-text">核心功能與設計系統</span>
+              </div>
+              <div class="phase-date">Feb 20–24</div>
+              <p class="phase-desc">
+                <span class="en-text">Custom SVG map markers colored by alert level. Push notifications via service worker. Know Your Rights redesigned for emergency use — English script always visible regardless of language setting. Fonts locked: DM Sans + IBM Plex Mono. Alert names changed from tactical jargon to plain language (Safe / Caution / Warning / Danger).</span>
+                <span class="zh-text">依警報等級上色的自訂 SVG 地圖標記。透過 service worker 推送通知。「了解你的權利」針對緊急情境重新設計 — 無論語言設定，英文腳本始終可見。字型確定：DM Sans + IBM Plex Mono。警報名稱從戰術術語改為日常語言（安全／注意／警告／危險）。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">07–08</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Map UX & Architecture Pivot</span>
+                <span class="zh-text">地圖 UX 與架構轉型</span>
+              </div>
+              <div class="phase-date">Feb 25–26</div>
+              <p class="phase-desc">
+                <span class="en-text">Fully collapsible BottomSheet with drag gestures. Map default: NYC → Seattle. v.2 pivot: FLARE became a read-only aggregator (removed Signal tab) pulling from external ICE alert systems — more trustworthy data, less infrastructure risk.</span>
+                <span class="zh-text">帶拖曳手勢的全可收合底部卡片。地圖預設：紐約 → 西雅圖。v.2 轉型：FLARE 成為唯讀聚合器（移除 Signal 頁籤），從外部移民執法警報系統拉取資料 — 更可信的數據，更低的基礎設施風險。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">09–10</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Live Data & Final Polish</span>
+                <span class="zh-text">即時資料與最終打磨</span>
+              </div>
+              <div class="phase-date">Feb 26–Mar 2026</div>
+              <p class="phase-desc">
+                <span class="en-text">Connected 3 live sources: ICEout.org (REST API), StopICE.net (XML scraping), Google News RSS. Zero mock data policy — if the API is down, the app shows an empty state. HTTPS for mobile development via mkcert. 6-language QA across all components.</span>
+                <span class="zh-text">連接 3 個即時資料來源：ICEout.org（REST API）、StopICE.net（XML 爬取）、Google News RSS。零假資料政策 — 若 API 中斷，應用程式顯示空狀態。透過 mkcert 為行動裝置開發設置 HTTPS。所有元件的 6 語言品質檢測。</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── KEY DECISIONS ────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Key Design Decisions</span>
+            <span class="zh-text">關鍵設計決策</span>
+          </span>
+        </div>
+
+        <div class="decisions-grid reveal" style="transition-delay:0.1s">
+
+          <div class="decision-row">
+            <div class="decision-prompt">
+              <span class="en-text">"use the flag of Taiwan"</span>
+              <span class="zh-text">「使用台灣的旗子」</span>
+            </div>
+            <div class="decision-result">
+              <span class="en-text">Traditional Chinese 🇹🇼, not Simplified 🇨🇳 — a precision call that matters to the community this app serves.</span>
+              <span class="zh-text">繁體中文 🇹🇼，而非簡體中文 🇨🇳 — 對這款應用程式服務的社群而言，這是一個至關重要的精準選擇。</span>
+            </div>
+          </div>
+
+          <div class="decision-row">
+            <div class="decision-prompt">
+              <span class="en-text">"so government can't force it down"</span>
+              <span class="zh-text">「這樣政府就無法強制下架」</span>
+            </div>
+            <div class="decision-result">
+              <span class="en-text">PWA over native app. No App Store, no Play Store, no single point of removal. Installable directly from the browser.</span>
+              <span class="zh-text">選擇 PWA 而非原生應用程式。不依賴 App Store 或 Play Store，消除單一下架風險。可直接從瀏覽器安裝。</span>
+            </div>
+          </div>
+
+          <div class="decision-row">
+            <div class="decision-prompt">
+              <span class="en-text">"user might click in emergency"</span>
+              <span class="zh-text">「用戶可能在緊急情況下點擊」</span>
+            </div>
+            <div class="decision-result">
+              <span class="en-text">Know Your Rights redesigned for trauma situations: first screen shows 5 bullets, then English script phrases for communicating with ICE agents even if English isn't your first language.</span>
+              <span class="zh-text">「了解你的權利」針對創傷情境重新設計：第一個畫面顯示 5 個要點，接著是與移民執法人員溝通的英文腳本，即使英文不是你的母語也能使用。</span>
+            </div>
+          </div>
+
+          <div class="decision-row">
+            <div class="decision-prompt">
+              <span class="en-text">"never use fake information"</span>
+              <span class="zh-text">「永遠不要使用假資訊」</span>
+            </div>
+            <div class="decision-result">
+              <span class="en-text">Zero mock data policy across the entire app. Every alert shown is from a live source. Empty state over false reassurance.</span>
+              <span class="zh-text">全應用程式零假資料政策。每一個顯示的警報都來自即時資料來源。寧可顯示空狀態，也不給予虛假安慰。</span>
+            </div>
+          </div>
+
+          <div class="decision-row">
+            <div class="decision-prompt">
+              <span class="en-text">"把發送訊號功能先拿掉"</span>
+              <span class="zh-text">「把發送訊號功能先拿掉」</span>
+            </div>
+            <div class="decision-result">
+              <span class="en-text">v.2 pivot to read-only aggregator. Removed user reporting — pulled only from verified external organizations. Simpler trust model, lower legal exposure.</span>
+              <span class="zh-text">v.2 轉型為唯讀聚合器。移除用戶通報功能 — 僅從經驗證的外部組織拉取資料。更簡單的信任模型，更低的法律風險。</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── METRICS ──────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+        <div class="metric-card">
+          <div class="metric-value">3 wks</div>
+          <div class="metric-label">
+            <span class="en-text">Build time</span>
+            <span class="zh-text">建造時間</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">6</div>
+          <div class="metric-label">
+            <span class="en-text">Languages supported</span>
+            <span class="zh-text">支援語言</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">3</div>
+          <div class="metric-label">
+            <span class="en-text">Live data sources</span>
+            <span class="zh-text">即時資料來源</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">22+</div>
+          <div class="metric-label">
+            <span class="en-text">AI sessions</span>
+            <span class="zh-text">AI 工作階段</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── NEXT STEPS ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">What's Next</span>
+            <span class="zh-text">接下來</span>
+          </span>
+        </div>
+
+        <div class="next-steps reveal" style="transition-delay:0.1s">
+          <div class="next-item">
+            <div class="next-dot active"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">Final QA & language polish</span>
+                <span class="zh-text">最終品質檢測與語言潤飾</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Completing edge case testing across 6 languages and all alert states.</span>
+                <span class="zh-text">完成 6 種語言和所有警報狀態的邊界情況測試。</span>
+              </p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">Civil organization outreach</span>
+                <span class="zh-text">聯繫公民組織</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Reaching out to ICEout.org, Stop ICE network, and local immigrant rights coalitions for partnership and distribution support.</span>
+                <span class="zh-text">聯繫 ICEout.org、Stop ICE network 及當地移民權利聯盟，尋求夥伴關係與推廣支持。</span>
+              </p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">User testing with community organizations</span>
+                <span class="zh-text">與社區組織進行用戶測試</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Testing with communities most affected — to ensure the app works under stress, in multiple languages, on older devices.</span>
+                <span class="zh-text">與受影響最深的社群進行測試 — 確保應用程式在壓力下、多語言環境、舊設備上都能正常運作。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER DIVIDER ───────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <Footer />
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Lock Screen ────────────────────────────────────────────────── */
+  .lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    transition: opacity 0.5s ease;
+  }
+  .lock-inner {
+    text-align: center;
+    max-width: 340px;
+    width: 100%;
+    padding: 0 2rem;
+  }
+  .lock-icon {
+    width: 52px; height: 52px;
+    margin: 0 auto 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #555;
+  }
+  .lock-label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  .lock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lock-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fff;
+    letter-spacing: 0.1em;
+  }
+  .lock-input:focus { border-color: #111; }
+  .lock-input.error { border-color: #E04F72; }
+  .lock-btn {
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background: #111;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .lock-btn:hover { opacity: 0.75; }
+  .lock-error {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: #E04F72;
+    transition: opacity 0.3s;
+  }
+
+  /* ── Tags ───────────────────────────────────────────────────────── */
+  .tag-warn {
+    display: inline-flex; align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: rgba(232,98,26,0.1);
+    color: #E8621A;
+    border: 1px solid rgba(232,98,26,0.2);
+  }
+
+  /* ── Purpose Cards ──────────────────────────────────────────────── */
+  .purpose-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .purpose-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+  /* ── Status dot ─────────────────────────────────────────────────── */
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    animation: breathe-dot 2.5s ease-in-out infinite;
+  }
+
+  /* ── Screenshots ────────────────────────────────────────────────── */
+  .screenshot-frame {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #f5f5f5;
+    transition: transform 0.3s ease;
+  }
+  .screenshot-frame:hover { transform: translateY(-3px); }
+  .screenshot-frame img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .screenshot-label {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.68rem;
+    color: #999;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Phase Timeline ─────────────────────────────────────────────── */
+  .phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .phase-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .phase-item:last-child { border-bottom: none; }
+  .phase-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+    width: 2.5rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .phase-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .phase-date {
+    font-size: 0.72rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+  }
+  .phase-desc {
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: #555;
+  }
+
+  /* ── Decisions ──────────────────────────────────────────────────── */
+  .decisions-grid { display: flex; flex-direction: column; }
+  .decision-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    align-items: start;
+  }
+  .decision-row:last-child { border-bottom: none; }
+  .decision-prompt {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .decision-result {
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: #333;
+  }
+  @media (max-width: 640px) {
+    .decision-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  /* ── Metrics ────────────────────────────────────────────────────── */
+  .metric-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .metric-value {
+    font-size: 2.2rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Next Steps ─────────────────────────────────────────────────── */
+  .next-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+  .next-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .next-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .next-dot.active {
+    background: #E8621A;
+    animation: breathe-dot 2.5s ease-in-out infinite;
+  }
+  .next-dot.pending {
+    background: transparent;
+    border: 1.5px solid rgba(0,0,0,0.2);
+  }
+</style>
+
+<script>
+  // ── Password Gate ──────────────────────────────────────────────────
+  // SHA-256 hash of the password "flare2026"
+  // To change: replace HASH_HEX with sha256sum of your new password
+  const HASH_HEX = 'cc736916705565ac7dbbe04d2b69687c96ae6ae6390d5e80296968ef1cb593cd';
+  const SESSION_KEY = 'flare_unlocked';
+
+  async function hashPassword(pw: string): Promise<string> {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  function unlock() {
+    const lock = document.getElementById('lock-screen') as HTMLElement;
+    const content = document.getElementById('case-content') as HTMLElement;
+    lock.style.opacity = '0';
+    setTimeout(() => { lock.style.display = 'none'; }, 500);
+    content.style.display = 'block';
+    sessionStorage.setItem(SESSION_KEY, '1');
+  }
+
+  // Check session storage first
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    unlock();
+  }
+
+  const form = document.getElementById('lock-form') as HTMLFormElement;
+  const input = document.getElementById('lock-input') as HTMLInputElement;
+  const errEl = document.getElementById('lock-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const hash = await hashPassword(input.value.trim());
+    if (hash === HASH_HEX) {
+      unlock();
+    } else {
+      input.classList.add('error');
+      errEl.style.opacity = '1';
+      input.value = '';
+      setTimeout(() => {
+        input.classList.remove('error');
+        errEl.style.opacity = '0';
+      }, 2000);
+    }
+  });
+</script>

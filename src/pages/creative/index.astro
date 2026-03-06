@@ -2,24 +2,282 @@
 import BaseLayout from '../../components/layout/BaseLayout.astro';
 import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
+
+const photos = [
+  {
+    src: '/images/creative/seattle-alley-night.jpg',
+    alt: 'Pioneer Square alley at night with string lights and brick buildings, Seattle',
+    caption: { en: 'Pioneer Square', zh: '先鋒廣場' },
+    location: 'Seattle, WA',
+    orientation: 'portrait',
+  },
+  {
+    src: '/images/creative/seattle-crosswalk.jpg',
+    alt: 'People crossing a downtown Seattle intersection in black and white',
+    caption: { en: 'Downtown crossing', zh: '市區路口' },
+    location: 'Seattle, WA',
+    orientation: 'landscape',
+  },
+  {
+    src: '/images/creative/seattle-windows.jpg',
+    alt: 'Grid windows on a building facade in black and white',
+    caption: { en: 'Facade', zh: '建築立面' },
+    location: 'Seattle, WA',
+    orientation: 'landscape',
+  },
+  {
+    src: '/images/creative/post-alley.jpg',
+    alt: 'Two people under the Post Alley sign at Pike Place Market',
+    caption: { en: 'Post Alley', zh: '郵局巷' },
+    location: 'Pike Place Market, Seattle',
+    orientation: 'portrait',
+  },
+  {
+    src: '/images/creative/street-art.jpg',
+    alt: 'Street art graffiti character with glasses and a hat',
+    caption: { en: 'Hello', zh: '你好' },
+    location: 'Seattle, WA',
+    orientation: 'portrait',
+  },
+];
 ---
+
 <BaseLayout title="Creative — Dianne Ting">
   <Header />
-  <main class="pt-32">
-    <section class="section">
-      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-4">
+  <main class="pt-32 pb-32">
+
+    <!-- Header -->
+    <section class="px-8 md:px-16 lg:px-24 mb-16">
+      <span class="text-xs font-medium tracking-widest uppercase block mb-4 reveal" style="color:#999;">
         <span class="en-text">Creative</span>
         <span class="zh-text">創作</span>
       </span>
-      <h1 class="text-4xl font-light mb-12">
-        <span class="en-text">Photography & Art</span>
-        <span class="zh-text">攝影與藝術</span>
+      <h1 class="text-5xl md:text-6xl font-light leading-tight mb-6 reveal" style="transition-delay:0.1s">
+        <span class="en-text">Photography</span>
+        <span class="zh-text">攝影</span>
       </h1>
-      <p class="text-gray-DEFAULT">
-        <span class="en-text">Coming soon — photos and creative work will be added here.</span>
-        <span class="zh-text">即將推出——攝影與創作作品將陸續加入。</span>
+      <p class="text-base leading-relaxed max-w-md reveal" style="color:#666; transition-delay:0.2s">
+        <span class="en-text">Street photography from Seattle — light, geometry, and people in motion.</span>
+        <span class="zh-text">西雅圖街頭攝影 — 光線、幾何，與流動中的人。</span>
       </p>
     </section>
+
+    <!-- Masonry Grid -->
+    <section class="px-8 md:px-16 lg:px-24">
+      <div class="photo-grid">
+        {photos.map((photo, i) => (
+          <div
+            class={`photo-item reveal ${photo.orientation}`}
+            style={`transition-delay:${i * 0.08}s`}
+            data-index={i}
+          >
+            <div class="photo-wrapper" data-lightbox={photo.src}>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="photo-overlay">
+                <span class="photo-caption-en en-text">{photo.caption.en}</span>
+                <span class="photo-caption-zh zh-text">{photo.caption.zh}</span>
+                <span class="photo-location">{photo.location}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button id="lb-close" class="lb-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <button id="lb-prev" class="lb-nav lb-prev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button id="lb-next" class="lb-nav lb-next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+    </div>
+
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  /* ── Grid ─────────────────────────────────────────────────────── */
+  .photo-grid {
+    columns: 2;
+    column-gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .photo-grid { columns: 3; column-gap: 1.25rem; }
+  }
+
+  .photo-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .photo-item { margin-bottom: 1.25rem; }
+  }
+
+  /* ── Photo wrapper ────────────────────────────────────────────── */
+  .photo-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    background: #f0f0f0;
+  }
+  .photo-wrapper img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .photo-wrapper:hover img { transform: scale(1.04); }
+
+  /* ── Overlay caption ──────────────────────────────────────────── */
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem 0.875rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .photo-wrapper:hover .photo-overlay { opacity: 1; }
+
+  .photo-caption-en,
+  .photo-caption-zh {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+  .photo-location {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Lightbox ─────────────────────────────────────────────────── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0,0,0,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+
+  .lb-img-wrap {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lb-img-wrap img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 1.5rem; right: 1.5rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    z-index: 9001;
+  }
+  .lb-close:hover { border-color: rgba(255,255,255,0.6); }
+
+  .lb-nav {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    z-index: 9001;
+  }
+  .lb-nav:hover { border-color: rgba(255,255,255,0.6); }
+  .lb-prev { left: 1.5rem; }
+  .lb-next { right: 1.5rem; }
+</style>
+
+<script>
+  const photos = [
+    '/images/creative/seattle-alley-night.jpg',
+    '/images/creative/seattle-crosswalk.jpg',
+    '/images/creative/seattle-windows.jpg',
+    '/images/creative/post-alley.jpg',
+    '/images/creative/street-art.jpg',
+  ];
+
+  let current = 0;
+  const lb = document.getElementById('lightbox')!;
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+
+  function openLightbox(index: number) {
+    current = index;
+    lbImg.src = photos[current];
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function showNext() { current = (current + 1) % photos.length; lbImg.src = photos[current]; }
+  function showPrev() { current = (current - 1 + photos.length) % photos.length; lbImg.src = photos[current]; }
+
+  document.querySelectorAll('[data-lightbox]').forEach((el, i) => {
+    (el as HTMLElement).addEventListener('click', () => openLightbox(i));
+  });
+
+  document.getElementById('lb-close')?.addEventListener('click', closeLightbox);
+  document.getElementById('lb-next')?.addEventListener('click', showNext);
+  document.getElementById('lb-prev')?.addEventListener('click', showPrev);
+
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+</script>

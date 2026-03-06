@@ -1,0 +1,409 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import HeroOrbit from '../../components/home/HeroOrbit.astro';
+import NowSection from '../../components/home/NowSection.astro';
+
+const features = [
+  { name: 'Astro architecture + Vercel deployment',  pct: 90,  next: false },
+  { name: 'Homepage — orbital hero, NOW section',    pct: 65,  next: false },
+  { name: 'About page',                              pct: 50,  next: false },
+  { name: 'Work page',                               pct: 30,  next: false },
+  { name: 'Contact page',                            pct: 80,  next: false },
+  { name: 'EN / ZH language toggle',                pct: 40,  next: false },
+  { name: 'Creative — photography + art',           pct: 5,   next: false },
+  { name: 'Cat easter eggs — Luna & Sol',            pct: null, next: true },
+  { name: 'Admin CMS at /admin',                    pct: null, next: true },
+  { name: 'Password-protected portfolio versions',  pct: null, next: true },
+  { name: 'Agent case study system',                pct: null, next: true },
+  { name: 'Live music + calendar integrations',     pct: null, next: true },
+];
+
+const conversations = [
+  {
+    id: 'hero',
+    label: 'On the hero section',
+    exchange: [
+      { who: 'D', text: 'I want the hero to feel alive — not a static headline. Cards orbiting something. But not in perfect circles, more like planets.' },
+      { who: 'C', text: 'Elliptical orbits with different inclinations and speeds — the further out, the slower. Mouse creates gravitational pull nearby, escape velocity if too close?' },
+      { who: 'D', text: 'Yes. And the tags should come in slowly — professional ones first, personality ones drift in later.' },
+    ],
+  },
+  {
+    id: 'cats',
+    label: 'On the cats',
+    exchange: [
+      { who: 'D', text: 'My cat sits between my desk and the window and stares at me. Sometimes knocks things over. I want that on my homepage.' },
+      { who: 'C', text: 'Two SVG line-art cats that walk out from the navbar. Time-based states — wild at 8pm and midnight, sleeping otherwise. They chase the orbital cards when active.' },
+      { who: 'D', text: 'Yes. Sleeping unless the mouse wakes them up. I want it to feel like a discovery, not a feature.' },
+    ],
+  },
+  {
+    id: 'agent',
+    label: 'On the maintenance system',
+    exchange: [
+      { who: 'D', text: 'My biggest fear is building this and then never updating it. I want you to maintain it for me.' },
+      { who: 'C', text: 'CLAUDE-INSTRUCTIONS.md in the repo — a brief that tells any future session who you are, what to update where, how to write about you. After each project I ask what to log, and draft the case study from the notes.' },
+      { who: 'D', text: "That solves the problem I've had for five years." },
+    ],
+  },
+];
+---
+
+<BaseLayout title="diannedesign.me — Dianne Ting">
+  <Header />
+
+  <main class="pt-32">
+
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-16 pb-24">
+
+      <!-- Breadcrumb -->
+      <a href="/work" class="inline-flex items-center gap-2 text-xs tracking-widest uppercase mb-16 hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← Work
+      </a>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="tag">AI Collaboration</span>
+        <span class="tag">Web Development</span>
+        <span class="tag">System Design</span>
+        <span class="tag-accent">AI Built ✦</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-5xl md:text-7xl font-light leading-none tracking-tight mb-6 reveal">
+        diannedesign.me
+      </h1>
+
+      <p class="text-lg max-w-xl leading-relaxed reveal" style="color:#999; transition-delay:.1s">
+        What happens when a designer and an AI build something together — from scratch.
+      </p>
+
+      <!-- Metrics -->
+      <div class="flex gap-12 mt-14 pt-14 reveal" style="border-top:1px solid rgba(0,0,0,0.07); transition-delay:.2s">
+        <div>
+          <p class="text-3xl font-light">1+1</p>
+          <p class="text-xs mt-1 tracking-wide" style="color:#999;">Designer + AI</p>
+        </div>
+        <div>
+          <p class="text-3xl font-light">0</p>
+          <p class="text-xs mt-1 tracking-wide" style="color:#999;">Engineers</p>
+        </div>
+        <div>
+          <p class="text-3xl font-light">∞</p>
+          <p class="text-xs mt-1 tracking-wide" style="color:#999;">Iterations / hr</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Cover — live HeroOrbit demo -->
+    <div class="mb-32 reveal">
+      <div class="demo-frame" data-label="Live component — Hero Orbital Cards">
+        <div style="height: 480px; position: relative; overflow: hidden; background: #fff;">
+          <HeroOrbit />
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ─── 01 THE PROBLEM ────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">01</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-6 reveal">The Problem</h2>
+          <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:.05s">
+            Most designers avoid their portfolio until they need it. The issue isn't effort — it's architecture. A static site can't represent someone who's always moving.
+          </p>
+          <p class="text-base leading-relaxed mt-4 reveal" style="color:#555; transition-delay:.1s">
+            This site is designed to update itself: a NOW section that reflects today, case studies that draft from session notes, a system that Claude maintains between projects.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── 02 THE APPROACH ───────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">02</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-6 reveal">The Approach</h2>
+          <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:.05s">
+            Not "generate me a homepage." More like: here's my aesthetic, here's five years of work, here's what I hate about most portfolios — let's build something neither of us would make alone.
+          </p>
+
+          <!-- Two columns -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 reveal" style="transition-delay:.1s">
+            <div class="rounded-2xl p-6" style="border:1px solid rgba(0,0,0,0.07);">
+              <p class="text-xs tracking-widest uppercase mb-4" style="color:#999;">Dianne</p>
+              <ul class="space-y-2 text-sm" style="color:#555;">
+                <li>Creative direction + final judgment</li>
+                <li>Five years of work and content</li>
+                <li>Real-time design critique</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl p-6" style="border:1px solid rgba(0,0,0,0.07);">
+              <p class="text-xs tracking-widest uppercase mb-4" style="color:#999;">Claude</p>
+              <ul class="space-y-2 text-sm" style="color:#555;">
+                <li>Architecture + implementation</li>
+                <li>Writing in Dianne's voice</li>
+                <li>Ongoing maintenance system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- NOW section demo -->
+    <div class="px-8 md:px-16 lg:px-24 mb-32 reveal">
+      <div class="demo-frame" data-label="Live component — NOW Section">
+        <NowSection />
+      </div>
+    </div>
+
+    <!-- ─── 03 THE WORKFLOW ───────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">03</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-8 reveal">The Workflow</h2>
+
+          <!-- Flow diagram -->
+          <div class="space-y-0 mb-10 reveal" style="transition-delay:.05s">
+            {[
+              'Describe direction in natural language',
+              'Claude implements + explains tradeoffs',
+              'Review in browser',
+              'One sentence of feedback',
+              'Adjusted in under 2 minutes',
+            ].map((step, i) => (
+              <div class="flex items-start gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium shrink-0 mt-0.5" style="background:#f5f5f5; color:#999;">
+                    {i + 1}
+                  </div>
+                  {i < 4 && <div class="w-px h-6" style="background:rgba(0,0,0,0.08);"></div>}
+                </div>
+                <p class="text-sm pb-6" style="color:#555;">{step}</p>
+              </div>
+            ))}
+            <div class="flex items-center gap-4 pl-10">
+              <p class="text-xs tracking-widest uppercase" style="color:#bbb;">Repeat →</p>
+            </div>
+          </div>
+
+          <p class="text-sm leading-relaxed reveal" style="color:#999; transition-delay:.1s">
+            The iteration speed changes what's possible. The constraint shifts from <em style="color:#555; font-style:normal;">"is this feasible?"</em> to <em style="color:#555; font-style:normal;">"is this right?"</em>
+          </p>
+
+          <!-- Expandable conversations -->
+          <div class="mt-12 space-y-3 reveal" style="transition-delay:.15s">
+            <p class="text-xs tracking-widest uppercase mb-6" style="color:#bbb;">Real conversations → design decisions</p>
+
+            {conversations.map(conv => (
+              <div class="conversation-item rounded-2xl overflow-hidden" style="border:1px solid rgba(0,0,0,0.07);">
+                <button
+                  class="conversation-toggle w-full flex items-center justify-between px-5 py-4 text-left"
+                  data-id={conv.id}
+                  data-hover
+                >
+                  <span class="text-sm font-medium">{conv.label}</span>
+                  <span class="conversation-arrow text-xs transition-transform duration-200" style="color:#999;">↓</span>
+                </button>
+                <div class="conversation-body" style="max-height:0; overflow:hidden; transition:max-height 0.35s ease;">
+                  <div class="px-5 pb-5 space-y-3" style="border-top:1px solid rgba(0,0,0,0.06);">
+                    <div class="pt-4"></div>
+                    {conv.exchange.map(line => (
+                      <div class={`flex gap-3 ${line.who === 'C' ? 'flex-row-reverse' : ''}`}>
+                        <span class="text-xs font-semibold shrink-0 pt-1 w-4" style={line.who === 'D' ? 'color:#999;' : 'color:#E04F72;'}>
+                          {line.who}
+                        </span>
+                        <p
+                          class="text-sm leading-relaxed rounded-xl px-4 py-3 max-w-sm"
+                          style={line.who === 'D'
+                            ? 'background:#f5f5f5; color:#333;'
+                            : 'background:#fff3f6; color:#333; border:1px solid rgba(224,79,114,0.15);'}
+                        >
+                          {line.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── 04 WHERE WE ARE ───────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">04</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-2 reveal">Where We Are</h2>
+          <p class="text-sm mb-10 reveal" style="color:#999; transition-delay:.05s">
+            Structure before content. The right foundation first.
+          </p>
+
+          <div class="space-y-4 reveal" style="transition-delay:.1s">
+            {features.map(f => (
+              <div class="flex items-center gap-4 py-3" style="border-bottom:1px solid rgba(0,0,0,0.05);">
+                <p class="text-sm flex-1" style="color:#333;">{f.name}</p>
+                {f.next ? (
+                  <span class="text-xs font-medium px-3 py-1 rounded-full shrink-0" style="background:#f5f5f5; color:#999; border:1px solid rgba(0,0,0,0.07);">
+                    Next
+                  </span>
+                ) : (
+                  <div class="flex items-center gap-3 shrink-0">
+                    <div class="w-24 h-1 rounded-full overflow-hidden" style="background:rgba(0,0,0,0.07);">
+                      <div
+                        class="h-full rounded-full progress-bar"
+                        data-pct={f.pct}
+                        style={`width:0%; background:${(f.pct ?? 0) >= 80 ? '#111' : (f.pct ?? 0) >= 50 ? '#555' : '#bbb'};`}
+                      ></div>
+                    </div>
+                    <span class="text-xs w-8 text-right" style="color:#999;">{f.pct}%</span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <p class="text-sm mt-10 leading-relaxed reveal" style="color:#999; transition-delay:.15s">
+            An incomplete site with the right foundation is more valuable than a complete one built on the wrong one.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── 05 THE AGENT SYSTEM ───────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">05</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-6 reveal">The Agent System</h2>
+
+          <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:.05s">
+            <code class="text-sm px-2 py-0.5 rounded" style="background:#f5f5f5; color:#E04F72;">CLAUDE-INSTRUCTIONS.md</code> lives in the repo — a creative brief that tells any future session who Dianne is, what the design system is, which file to edit.
+          </p>
+          <p class="text-base leading-relaxed mt-4 reveal" style="color:#555; transition-delay:.1s">
+            After each project: Claude asks what was worked on, logs notes, drafts the case study. The portfolio writes itself, a little at a time.
+          </p>
+
+          <!-- File preview card -->
+          <div class="mt-10 rounded-2xl overflow-hidden reveal" style="border:1px solid rgba(0,0,0,0.08); transition-delay:.15s">
+            <div class="flex items-center gap-3 px-5 py-3" style="border-bottom:1px solid rgba(0,0,0,0.06); background:#fafafa;">
+              <span class="w-2.5 h-2.5 rounded-full" style="background:#E04F72;"></span>
+              <span class="text-xs font-mono" style="color:#999;">CLAUDE-INSTRUCTIONS.md</span>
+            </div>
+            <div class="px-5 py-5 space-y-3 font-mono text-xs leading-relaxed" style="color:#555;">
+              <p><span style="color:#bbb;"># Your role</span></p>
+              <p>You are Dianne's site agent. When writing about Dianne, use third person, warm and direct tone.</p>
+              <p class="mt-3"><span style="color:#bbb;"># To update the NOW section</span></p>
+              <p>Edit <span style="color:#E04F72;">public/data/now.json</span> — no rebuild needed.</p>
+              <p class="mt-3"><span style="color:#bbb;"># Design system</span></p>
+              <p>Accent: <span style="color:#E04F72;">#E04F72</span> · Font: Inter · Generous whitespace · Mobile-first.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Homepage iframe preview -->
+    <div class="px-8 md:px-16 lg:px-24 mb-32 reveal">
+      <div class="demo-frame" data-label="Live site — diannedesign.me homepage">
+        <div style="position:relative; width:100%; height:560px; overflow:hidden; border-radius:0 0 16px 16px;">
+          <iframe
+            src="/"
+            title="diannedesign.me homepage preview"
+            style="width:100%; height:100%; border:none; transform-origin:top left;"
+            loading="lazy"
+          ></iframe>
+          <!-- Overlay to prevent nested nav issues -->
+          <div style="position:absolute; inset:0;" class="iframe-overlay"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── CLOSING ───────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-20 pb-32" style="border-top:1px solid rgba(0,0,0,0.07);">
+      <div class="max-w-2xl">
+        <p class="text-3xl md:text-4xl font-light leading-snug mb-8 reveal" style="color:#bbb;">
+          Live. Architecturally sound. About 10% of the content filled in.
+          <br/><span style="color:#111;">That's the right order.</span>
+        </p>
+        <p class="text-sm reveal" style="color:#999; transition-delay:.1s">
+          Designs in Figma. Builds with Claude. — <em style="font-style:normal; color:#555;">This is what that looks like.</em>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+
+<script>
+  // Conversation expand/collapse
+  document.querySelectorAll<HTMLButtonElement>('.conversation-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const arrow = btn.querySelector<HTMLElement>('.conversation-arrow');
+      const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+
+      // Close all
+      document.querySelectorAll<HTMLElement>('.conversation-body').forEach(b => {
+        b.style.maxHeight = '0px';
+      });
+      document.querySelectorAll<HTMLElement>('.conversation-arrow').forEach(a => {
+        a.style.transform = 'rotate(0deg)';
+      });
+
+      // Open clicked (if was closed)
+      if (!isOpen) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Animate progress bars when visible
+  const bars = document.querySelectorAll<HTMLElement>('.progress-bar');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bar = entry.target as HTMLElement;
+        const pct = bar.dataset.pct ?? '0';
+        setTimeout(() => {
+          bar.style.transition = 'width 1s cubic-bezier(0.22,1,0.36,1)';
+          bar.style.width = pct + '%';
+        }, 100);
+        barObserver.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bars.forEach(bar => barObserver.observe(bar));
+</script>
