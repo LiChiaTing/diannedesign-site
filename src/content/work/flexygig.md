@@ -5,6 +5,7 @@ date: "2023-08-01"
 tags: ["UX Design", "Research", "Mobile"]
 cover: "/images/projects/flexygig-cover.jpg"
 featured: false
+hidden: true
 locked: false
 aiBuilt: false
 metrics: []

@@ -84,31 +84,11 @@ const experience = [
   <main class="pt-32">
 
     <!-- ─── HERO ─────────────────────────────────────────────────── -->
-    <section class="section pb-0">
+    <section class="section">
       <div class="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
 
-        <!-- Photo -->
-        <div class="about-photo-wrap reveal shrink-0">
-          <div class="about-photo-inner">
-            <!-- Replace src with real photo -->
-            <div class="w-full h-full bg-gray-light flex items-center justify-center rounded-2xl">
-              <span class="text-xs text-gray-DEFAULT tracking-widest">PHOTO</span>
-            </div>
-            <div class="about-caption">
-              <p class="text-xs font-medium">
-                <span class="en-text">Dianne Ting</span>
-                <span class="zh-text">丁立佳</span>
-              </p>
-              <p class="text-xs text-gray-DEFAULT">
-                <span class="en-text">Product Designer · Seattle</span>
-                <span class="zh-text">產品設計師 · 西雅圖</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
         <!-- Intro text -->
-        <div class="reveal" style="transition-delay: 0.15s">
+        <div class="reveal">
           <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-6">
             <span class="en-text">About</span>
             <span class="zh-text">關於</span>
@@ -247,39 +227,6 @@ const experience = [
 </BaseLayout>
 
 <style>
-  .about-photo-wrap {
-    width: 260px;
-    flex-shrink: 0;
-  }
-  .about-photo-inner {
-    position: relative;
-    width: 260px;
-    height: 320px;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-  .about-photo-inner > div:first-child {
-    filter: grayscale(100%);
-    transition: filter 0.4s ease;
-  }
-  .about-photo-inner:hover > div:first-child {
-    filter: grayscale(0%);
-  }
-  .about-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 12px 16px;
-    background: white;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-  }
-  .about-photo-inner:hover .about-caption {
-    transform: translateY(0);
-  }
-
   .workflow-step {
     @apply border border-gray-border rounded-xl px-6 py-3 text-center;
     animation: breathe 3s ease-in-out infinite;

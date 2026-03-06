@@ -12,51 +12,169 @@ const sorted = allWork
 
 <BaseLayout title="Work — Dianne Ting">
   <Header />
-  <main class="pt-32">
-    <section class="section">
-      <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-12">
+  <main class="pt-32 pb-28">
+    <section class="px-8 md:px-16 lg:px-24">
+
+      <span class="text-xs font-medium tracking-widest uppercase block mb-16 reveal" style="color:#999;">
         <span class="en-text">All Work</span>
         <span class="zh-text">所有作品</span>
       </span>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {sorted.map(project => (
-          <a href={`/work/${project.slug}`} class="group block border border-gray-border rounded-2xl overflow-hidden hover:border-black transition-all duration-300 reveal" data-hover>
-            <div class="aspect-video bg-gray-light overflow-hidden relative">
-              {project.data.cover ? (
-                <img
-                  src={project.data.cover}
-                  alt={project.data.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              ) : (
-                <div class="w-full h-full flex items-center justify-center">
-                  <span class="text-xs text-gray-DEFAULT tracking-widest uppercase">{project.data.title}</span>
-                </div>
-              )}
-              {project.data.locked && (
-                <div class="absolute top-3 right-3 w-7 h-7 rounded-full bg-white bg-opacity-90 flex items-center justify-center" style="border:1px solid rgba(0,0,0,0.1);">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                </div>
-              )}
-            </div>
-            <div class="p-6">
-              <div class="flex flex-wrap gap-2 mb-3">
-                {project.data.tags.map(tag => (
-                  <span class="tag">{tag}</span>
-                ))}
-                {project.data.aiBuilt && <span class="tag-accent">AI Built ✦</span>}
-              </div>
-              <h3 class="text-base font-medium mb-1">{project.data.title}</h3>
-              <p class="text-sm text-gray-DEFAULT">{project.data.tagline}</p>
-            </div>
-          </a>
-        ))}
-      </div>
+      <!-- Top border -->
+      <div style="height:1px; background:rgba(0,0,0,0.08);"></div>
+
+      {sorted.map((project, i) => (
+        <a
+          href={`/work/${project.slug}`}
+          class="project-row reveal group"
+          data-hover
+          style={`transition-delay:${i * 0.05}s`}
+        >
+          <!-- Number -->
+          <span class="row-num">0{i + 1}</span>
+
+          <!-- Title + tagline -->
+          <div class="row-title-block">
+            <span class="row-title">{project.data.title}</span>
+            <span class="row-tagline">{project.data.tagline}</span>
+          </div>
+
+          <!-- Tags -->
+          <div class="row-tags">
+            {project.data.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+            {project.data.aiBuilt && <span class="tag-accent">AI Built ✦</span>}
+          </div>
+
+          <!-- Year -->
+          <span class="row-year">{new Date(project.data.date).getFullYear()}</span>
+
+          <!-- Arrow or lock -->
+          <span class="row-arrow">
+            {project.data.locked
+              ? <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              : '→'
+            }
+          </span>
+
+          <!-- Bottom border -->
+          <div class="row-divider"></div>
+        </a>
+      ))}
+
     </section>
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .project-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto auto 2rem;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+  }
+
+  /* Hover: subtle left accent bar */
+  .project-row::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #E04F72;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s ease;
+  }
+  .project-row:hover::before { transform: scaleY(1); }
+  .project-row:hover .row-title { color: #E04F72; }
+  .project-row:hover .row-arrow { color: #E04F72; transform: translateX(4px); }
+
+  .row-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    grid-column: 1 / -1;
+  }
+
+  .row-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .row-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .row-title {
+    font-size: 1.35rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: #111;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-tagline {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: flex-end;
+  }
+
+  .row-year {
+    font-size: 0.72rem;
+    color: #bbb;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .row-arrow {
+    font-size: 0.9rem;
+    color: #ccc;
+    flex-shrink: 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Mobile: hide tags + year, stack title/tagline */
+  @media (max-width: 640px) {
+    .project-row {
+      grid-template-columns: 2rem 1fr 1.5rem;
+      gap: 0.75rem;
+    }
+    .row-tags,
+    .row-year { display: none; }
+    .row-title { font-size: 1.1rem; }
+  }
+</style>

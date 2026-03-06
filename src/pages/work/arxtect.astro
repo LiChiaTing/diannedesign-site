@@ -1,0 +1,381 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<BaseLayout title="arXtect — Dianne Ting">
+  <Header />
+
+  <main>
+
+    <!-- ─── BACK NAV ──────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pt-32 pb-0">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← <span class="en-text">All Work</span><span class="zh-text">全部作品</span>
+      </a>
+    </div>
+
+    <!-- ─── HERO ──────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-12 pb-20 md:pb-28">
+      <div class="max-w-4xl">
+
+        <div class="flex flex-wrap items-center gap-2 mb-6 reveal">
+          <span class="tag">Product Design</span>
+          <span class="tag">Brand</span>
+          <span class="tag">Frontend</span>
+          <span class="tag">AI</span>
+        </div>
+
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay:0.1s">arXtect</h1>
+
+        <p class="text-xl md:text-2xl font-light leading-relaxed max-w-2xl reveal" style="color:#555; transition-delay:0.2s">
+          A design-to-code renovation — bridging brand identity and frontend delivery for an AI-powered LaTeX editor built for researchers.
+        </p>
+
+        <div class="flex flex-wrap gap-10 mt-12 reveal" style="transition-delay:0.3s">
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Role</div>
+            <div class="text-sm font-medium">Brand Designer & Frontend Contributor</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Tools</div>
+            <div class="text-sm font-medium">Figma · Base44 · GitHub</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Industry</div>
+            <div class="text-sm font-medium">Academic Tech · Developer Tools</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── METRICS ──────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-16">
+      <div class="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-xl reveal">
+        <div class="metric-card">
+          <div class="metric-value">0</div>
+          <div class="metric-label">Friction in handoff</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">↑</div>
+          <div class="metric-label">Visual clarity</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">✦</div>
+          <div class="metric-label">Unified identity</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── OVERVIEW ─────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Overview</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6 reveal" style="color:#555; transition-delay:0.1s">
+          arXtect is a next-generation LaTeX editor powered by AI and WebAssembly, built to solve the slow compilation speeds of tools like Overleaf. The technology was compelling — but the branding wasn't keeping up. Dense, technical, and hard to approach, the product's initial identity failed to communicate its core value: simplicity and speed for researchers.
+        </p>
+        <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:0.2s">
+          Dianne stepped in to bridge a gap the core engineering team didn't have bandwidth to cross. Rather than producing static mockups and handing off redlines, she adopted a "Design-as-Code" workflow — architecting the responsive landing page in Base44 and committing production-ready code directly to the team's GitHub repository. One designer. Zero translation layer. Clean launch.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── THE PROBLEM ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Problem</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6 reveal" style="color:#555; transition-delay:0.1s">
+          LaTeX is notorious for its learning curve. arXtect's strength was removing that friction — but its branding told a different story. The existing site leaned into syntax-heavy aesthetics typical of academic tools: dense layouts, abstract diagrams, and feature-first copy that buried the actual benefit.
+        </p>
+        <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:0.2s">
+          At the same time, the engineering team was deep in optimising the real-time compilation engine. They needed a polished frontend — but they didn't have cycles to build one.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 01 BRIDGING DESIGN & ENGINEERING ─────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">01</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Bridging Design & Engineering</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Traditional design handoffs — redlines, spec sheets, translation meetings — cost time teams don't have. Dianne bypassed the standard process entirely.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          She architected the responsive landing page logic directly in Base44, then committed production-ready frontend code to the team's GitHub repository. The engineering team's role was simple: pull and build. No reinterpretation. No implementation gaps. 100% design fidelity with zero engineering overhead on their side.
+        </p>
+      </div>
+
+      <!-- Before / After -->
+      <div class="before-after-grid reveal" style="transition-delay:0.15s">
+        <figure class="before-after-figure">
+          <div class="img-frame before-after-frame">
+            <img src="/images/projects/arxtect/Old%20Landing%20Page%20V1.png" alt="Old arXtect landing page — V1" loading="lazy" />
+          </div>
+          <figcaption>Before — original landing page V1</figcaption>
+        </figure>
+        <figure class="before-after-figure">
+          <div class="img-frame before-after-frame">
+            <img src="/images/projects/arxtect/New%20Landing%20Page.png" alt="New arXtect landing page" loading="lazy" />
+          </div>
+          <figcaption>After — redesigned landing page delivered via GitHub</figcaption>
+        </figure>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.25s">
+        <figure>
+          <div class="img-frame">
+            <img src="/images/projects/arxtect/Github%20repo.png" alt="arXtect GitHub repository with Dianne's commits" loading="lazy" />
+          </div>
+          <figcaption>Production code committed directly to the team's GitHub repo — seamless integration, no handoff friction</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 02 VISUAL DE-NOISING ──────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">02</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Visual De-Noising for Complex Tools</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          LaTeX is powerful but intimidating. The design strategy was "visual de-noising" — stripping away the noise that made the product feel harder than it was.
+        </p>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Dianne moved the brand away from the code-heavy academic aesthetic and toward a clean, modern product identity. The goal wasn't to hide the complexity — it was to reframe arXtect not as a coding environment, but as an intelligent writing assistant that gets out of the researcher's way.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          A robust component library in Figma mirrored Base44's logic exactly, enabling rapid iteration between static concepts and live, interactive states — closing the gap between "how it looks" and "how it works."
+        </p>
+      </div>
+
+      <div class="before-after-grid reveal" style="transition-delay:0.15s">
+        <figure class="before-after-figure">
+          <div class="img-frame before-after-frame before-after-padded">
+            <img src="/images/projects/arxtect/arxtect%20logo.png" alt="arXtect logo" loading="lazy" />
+          </div>
+          <figcaption>Refined logo mark — precision + momentum</figcaption>
+        </figure>
+        <figure class="before-after-figure">
+          <div class="img-frame before-after-frame">
+            <img src="/images/projects/arxtect/Cover1.png" alt="arXtect interface design" loading="lazy" />
+          </div>
+          <figcaption>Interface design — clean grid, focused layout, distraction-free</figcaption>
+        </figure>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.25s">
+        <a href="https://youtu.be/_JULJ74SjBA?list=TLGG0xESCXh45BkwNjAzMjAyNg" target="_blank" rel="noopener" class="text-link" data-hover>
+          Watch the prototype walkthrough →
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 03 STRATEGIC CONTENT REFRAMING ───────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">03</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Strategic Content Reframing</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The original site buried the product's value under technical specifications. Dianne led a content audit to flip the hierarchy — from features to workflow, from backend capabilities to researcher outcomes.
+        </p>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The revised copy centred on three tangible benefits: <strong>2× Faster Compilation</strong>, <strong>Zero Config Setup</strong>, and <strong>Context-Aware AI Assistance</strong>. Each spoke directly to the friction researchers experience with legacy tools like Overleaf — and positioned arXtect as the obvious next step.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Distracting gradients and abstract diagrams were replaced with a clean grid system and data-driven benefit statements. The result: visitors understand <em>why they should switch</em> within the first scroll — not after reading a whitepaper.
+        </p>
+      </div>
+
+      <figure class="reveal" style="transition-delay:0.15s">
+        <div class="img-frame">
+          <img src="/images/projects/arxtect/New%20Landing%20Page.png" alt="arXtect new landing page — benefit-led content strategy" loading="lazy" />
+        </div>
+        <figcaption>New landing page — outcome-led copy, clean visual hierarchy, no technical noise</figcaption>
+      </figure>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── OUTCOME ───────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Outcome</span>
+        </div>
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          arXtect launched with a cohesive brand identity — from logo to software interface — and a production-ready marketing site that communicates its value proposition without asking engineers to context-switch. The Design-as-Code workflow eliminated the translation gap entirely: what Dianne designed was exactly what shipped. The design system built during the sprint gives the team a foundation to build on as the product matures.
+        </p>
+        <div class="reveal" style="transition-delay:0.2s">
+          <a href="https://www.arxtect.cn" target="_blank" rel="noopener" class="text-link" data-hover>
+            Visit the live product → arxtect.cn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <Footer />
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Callouts ───────────────────────────────────────────────────── */
+  .callout {
+    display: block;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.625rem;
+    background: rgba(224, 79, 114, 0.07);
+    border-left: 3px solid #E04F72;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .callout-strong {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    background: #E04F72;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+  .callout-strong:hover { opacity: 0.85; }
+
+  /* Highlighter / text-selection style link */
+  .text-link {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    background: #E04F72;
+    padding: 2px 7px 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: opacity 0.2s ease;
+  }
+  .text-link:hover { opacity: 0.8; }
+
+  /* ── Section number ─────────────────────────────────────────────── */
+  .section-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Images ─────────────────────────────────────────────────────── */
+  .img-frame {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #f5f5f5;
+  }
+  .img-frame img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .img-frame:hover img { transform: scale(1.01); }
+
+  /* ── Before / After grid ────────────────────────────────────────── */
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  @media (max-width: 768px) {
+    .before-after-grid { grid-template-columns: 1fr; }
+  }
+  .before-after-figure {
+    display: flex;
+    flex-direction: column;
+  }
+  .before-after-frame {
+    flex: 1;
+    min-height: 0;
+  }
+  .before-after-frame img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .before-after-padded {
+    background: #fff;
+    padding: 2rem;
+  }
+  .before-after-padded img {
+    object-fit: contain;
+  }
+
+  figure { margin: 0; }
+  figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Metrics ────────────────────────────────────────────────────── */
+  .metric-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-size: 0.72rem;
+    color: #999;
+    letter-spacing: 0.02em;
+  }
+</style>
