@@ -123,4 +123,21 @@
     border-color: var(--accent);
     color: var(--accent);
   }
+
+  /* Highlighted text link — 重要連結或需要 highlight 的地方 */
+  .text-link {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--accent);
+    padding: 2px 7px 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: opacity 0.2s ease;
+  }
+  .text-link:hover { opacity: 0.8; }
 }
