@@ -1,22 +1,5 @@
 ---
-// Reads from public/data/now.json at build time
-let nowData: any = null;
-try {
-  const res = await fetch(new URL('/data/now.json', Astro.url));
-  nowData = await res.json();
-} catch {
-  // Fallback if fetch fails at build time
-  nowData = {
-    status: 'Creating',
-    status_zh: '正在建造',
-    project: 'diannedesign.me',
-    project_zh: 'diannedesign.me',
-    thinking: '–',
-    thinking_zh: '–',
-    music: { title: '–', artist: '–', note: '', note_zh: '' },
-    updated: new Date().toISOString().split('T')[0],
-  };
-}
+import nowData from '../../public/data/now.json';
 ---
 
 <section class="section border-t border-gray-border" id="now">
