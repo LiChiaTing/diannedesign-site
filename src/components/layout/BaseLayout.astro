@@ -4,12 +4,17 @@ import '../../styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
   title = 'Dianne Ting — Product Designer',
   description = 'Product Designer based in Seattle. Designs in Figma. Builds with Claude.',
+  ogImage = '/og-image.png',
 } = Astro.props;
+
+const canonicalUrl = Astro.url.href;
+const ogImageUrl = new URL(ogImage, Astro.site ?? Astro.url).href;
 ---
 
 <!DOCTYPE html>
@@ -19,6 +24,18 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <title>{title}</title>
+
+  <!-- Open Graph (LinkedIn, Facebook, Slack, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Dianne Ting — Product Designer" />
+
+  <link rel="canonical" href={canonicalUrl} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -31,37 +48,52 @@ const {
   <slot />
 
   <script>
-    // Custom cursor
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
+    const isTouch = navigator.maxTouchPoints > 0 || ('ontouchstart' in window);
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (dot) {
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
-      }
-    });
+    if (isTouch) {
+      // ── Touch ripple (mobile) ──
+      document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        const ripple = document.createElement('div');
+        ripple.className = 'touch-ripple';
+        ripple.style.left = touch.clientX + 'px';
+        ripple.style.top = touch.clientY + 'px';
+        document.body.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      }, { passive: true });
+    } else {
+      // ── Custom cursor (desktop) ──
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
 
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      if (ring) {
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (dot) {
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        }
+      });
+
+      function animateRing() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        if (ring) {
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+        }
+        requestAnimationFrame(animateRing);
       }
-      requestAnimationFrame(animateRing);
+      animateRing();
+
+      // Hover expand
+      document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+        el.addEventListener('mouseenter', () => ring?.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => ring?.classList.remove('hovered'));
+      });
     }
-    animateRing();
-
-    // Hover expand
-    document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-      el.addEventListener('mouseenter', () => ring?.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => ring?.classList.remove('hovered'));
-    });
 
     // Language toggle
     const saved = localStorage.getItem('lang') || 'en';
