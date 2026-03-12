@@ -9,7 +9,6 @@ const tags = [
   { en: '#Photographer',        zh: '#攝影師',        delay: 3.4  },
   { en: '#Former Dance Teacher',zh: '#前舞蹈老師',    delay: 5.0  },
   { en: '#2 Cats 1 Dog',        zh: '#兩貓一狗',      delay: 6.8  },
-  { en: "#Doesn't Drive",       zh: '#不喜歡開車',    delay: 8.5  },
 ];
 ---
 
@@ -20,17 +19,17 @@ const tags = [
     <svg class="reticle" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Corner brackets -->
       <!-- Top-left -->
-      <line x1="8"  y1="22" x2="8"  y2="8"  stroke="#111" stroke-width="1.2"/>
-      <line x1="8"  y1="8"  x2="22" y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="8"  y1="22" x2="8"  y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="8"  y1="8"  x2="22" y2="8"  stroke="#111" stroke-width="1.2"/>
       <!-- Top-right -->
-      <line x1="112" y1="22" x2="112" y2="8"  stroke="#111" stroke-width="1.2"/>
-      <line x1="112" y1="8"  x2="98"  y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="112" y1="22" x2="112" y2="8"  stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="112" y1="8"  x2="98"  y2="8"  stroke="#111" stroke-width="1.2"/>
       <!-- Bottom-left -->
-      <line x1="8"  y1="98"  x2="8"  y2="112" stroke="#111" stroke-width="1.2"/>
-      <line x1="8"  y1="112" x2="22" y2="112" stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="8"  y1="98"  x2="8"  y2="112" stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="8"  y1="112" x2="22" y2="112" stroke="#111" stroke-width="1.2"/>
       <!-- Bottom-right -->
-      <line x1="112" y1="98"  x2="112" y2="112" stroke="#111" stroke-width="1.2"/>
-      <line x1="112" y1="112" x2="98"  y2="112" stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="112" y1="98"  x2="112" y2="112" stroke="#111" stroke-width="1.2"/>
+      <line class="corner" x1="112" y1="112" x2="98"  y2="112" stroke="#111" stroke-width="1.2"/>
 
       <!-- Center crosshair -->
       <line x1="52" y1="60" x2="68" y2="60" stroke="#E04F72" stroke-width="1"/>
@@ -39,8 +38,8 @@ const tags = [
       <!-- Center dot -->
       <circle cx="60" cy="60" r="2.5" fill="#E04F72"/>
 
-      <!-- Inner focus ring (dashed) -->
-      <circle cx="60" cy="60" r="18" stroke="#111" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.25"/>
+      <!-- Inner focus ring (dashed, slowly rotates) -->
+      <circle class="scan-ring" cx="60" cy="60" r="18" stroke="#111" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.3"/>
     </svg>
   </div>
 
@@ -81,20 +80,58 @@ const tags = [
     height: 100%;
   }
 
-  @keyframes reticle-breathe {
-    0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 1;   }
-    50%       { transform: translate(-50%, -50%) scale(1.06); opacity: 0.7; }
-  }
-
-  /* Focus-in on load */
+  /* ── Autofocus: hunt (oscillate) → snap lock ── */
   .reticle-wrap {
-    animation: reticle-focus 0.8s cubic-bezier(0.22,1,0.36,1) forwards,
-               reticle-breathe 4s ease-in-out 0.8s infinite;
+    animation:
+      reticle-autofocus 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+      reticle-relock 9s ease-in-out 1.4s infinite;
   }
 
-  @keyframes reticle-focus {
-    from { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
-    to   { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+  /* On load: zoom in from far, oscillate, then snap to locked */
+  @keyframes reticle-autofocus {
+    0%   { transform: translate(-50%,-50%) scale(1.55); opacity: 0; }
+    25%  { transform: translate(-50%,-50%) scale(1.12); opacity: 1; }
+    42%  { transform: translate(-50%,-50%) scale(1.19); }
+    58%  { transform: translate(-50%,-50%) scale(1.05); }
+    72%  { transform: translate(-50%,-50%) scale(1.11); }
+    84%  { transform: translate(-50%,-50%) scale(1.02); }
+    93%  { transform: translate(-50%,-50%) scale(1.05); }
+    100% { transform: translate(-50%,-50%) scale(1);    opacity: 1; }
+  }
+
+  /* Periodic re-lock: briefly hunts again, then snaps */
+  @keyframes reticle-relock {
+    0%   { transform: translate(-50%,-50%) scale(1); }
+    3%   { transform: translate(-50%,-50%) scale(1.1); }
+    7%   { transform: translate(-50%,-50%) scale(1.03); }
+    11%  { transform: translate(-50%,-50%) scale(1.08); }
+    15%  { transform: translate(-50%,-50%) scale(1.01); }
+    18%  { transform: translate(-50%,-50%) scale(1.04); }
+    21%  { transform: translate(-50%,-50%) scale(1); }
+    100% { transform: translate(-50%,-50%) scale(1); }
+  }
+
+  /* Corner brackets flash accent on each lock */
+  .reticle .corner {
+    animation: corner-flash 9s ease-in-out 1.4s infinite;
+  }
+
+  @keyframes corner-flash {
+    0%, 20%, 100% { stroke: #111; }
+    21%  { stroke: #E04F72; stroke-width: 1.8; }
+    23%  { stroke: #E04F72; }
+    26%  { stroke: #111; stroke-width: 1.2; }
+  }
+
+  /* Scan ring slowly rotates — like AF scanning */
+  .reticle .scan-ring {
+    transform-origin: 60px 60px;
+    animation: scan-spin 14s linear infinite;
+  }
+
+  @keyframes scan-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
   .orbit-card {
@@ -124,10 +161,13 @@ const tags = [
   const cards = Array.from(container.querySelectorAll<HTMLElement>('.orbit-card'));
   const startTime = performance.now();
 
-  const W = container.offsetWidth || 500;
-  const H = container.offsetHeight || 520;
-  const cx = W / 2;
-  const cy = H / 2;
+  let cx = (container.offsetWidth || 500) / 2;
+  let cy = (container.offsetHeight || 520) / 2;
+
+  new ResizeObserver(() => {
+    cx = container.offsetWidth / 2;
+    cy = container.offsetHeight / 2;
+  }).observe(container);
 
   interface State {
     el: HTMLElement;
