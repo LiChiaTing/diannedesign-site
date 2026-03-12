@@ -5,6 +5,7 @@ node_modules/
 .env
 dist/
 .astro/
+.vercel/
 
 # Internal docs (Claude memory, wireframes — not for public)
 _docs/
