@@ -1,7 +1,7 @@
 ---
 title: "Redefining Research Tools"
 tagline: "Design-to-Code Renovation for an AI LaTeX Editor"
-date: "2025-11-01"
+date: "2026-03-15"
 tags: ["Product Design", "Design System", "Web"]
 cover: "/images/projects/arxtect/New Landing Page.png"
 featured: true

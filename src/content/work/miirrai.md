@@ -1,7 +1,7 @@
 ---
 title: "Designing miirr.ai's AI-Powered Fashion Platform"
 tagline: "From concept to investor-ready demo in 4 weeks"
-date: "2025-09-01"
+date: "2026-04-01"
 tags: ["Product Design", "UX", "Prototype", "AI"]
 cover: "/images/projects/miirrai/product-ui.jpg"
 featured: true

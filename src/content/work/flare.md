@@ -1,7 +1,7 @@
 ---
 title: "FLARE"
 tagline: "A community safety app for real-time ICE activity alerts"
-date: "2026-02-01"
+date: "2026-03-10"
 tags: ["Product Design", "Civic Tech", "PWA", "AI Collaboration"]
 cover: "/images/projects/flare/flare-radar.png"
 featured: true
