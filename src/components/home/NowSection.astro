@@ -12,24 +12,28 @@ import nowData from '../../data/now.json';
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-    <!-- Status widget -->
-    <div class="now-widget reveal">
+    <!-- Status widget (fetched client-side from /api/status) -->
+    <div class="now-widget reveal" id="status-widget">
       <div class="widget-label">
         <span class="en-text">Status</span>
         <span class="zh-text">狀態</span>
       </div>
       <div class="widget-dot"></div>
-      <p class="widget-value">
+      <p class="widget-value" id="status-value">
         <span class="en-text">{nowData.status}</span>
         <span class="zh-text">{nowData.status_zh || nowData.status}</span>
       </p>
-      <p class="widget-sub">
+      <p class="widget-sub" id="status-sub">
         <span class="en-text">{nowData.project}</span>
         <span class="zh-text">{nowData.project_zh || nowData.project}</span>
       </p>
+      <p class="widget-note" id="status-task" style="display:none">
+        <span class="en-text" id="status-task-en"></span>
+        <span class="zh-text" id="status-task-zh"></span>
+      </p>
     </div>
 
-    <!-- Thinking widget -->
+    <!-- Thinking widget (static from now.json, updated Friday via GitHub Action) -->
     <div class="now-widget reveal" style="animation-delay: 0.1s">
       <div class="widget-label">
         <span class="en-text">Thinking about</span>
@@ -41,20 +45,15 @@ import nowData from '../../data/now.json';
       </p>
     </div>
 
-    <!-- Music widget -->
+    <!-- Music widget (fetched client-side from /api/now-playing) -->
     <div class="now-widget reveal" style="animation-delay: 0.2s">
       <div class="widget-label">
         <span class="en-text">Listening to</span>
         <span class="zh-text">正在聽</span>
       </div>
-      <p class="widget-value">{nowData.music?.title}</p>
-      <p class="widget-sub">{nowData.music?.artist}</p>
-      {nowData.music?.note && (
-        <p class="widget-note mt-2">
-          <span class="en-text">{nowData.music.note}</span>
-          <span class="zh-text">{nowData.music.note_zh || nowData.music.note}</span>
-        </p>
-      )}
+      <p class="widget-value" id="music-title">{nowData.music?.title}</p>
+      <p class="widget-sub" id="music-artist">{nowData.music?.artist}</p>
+      <p class="widget-note" id="music-status" style="display:none"></p>
     </div>
 
     <!-- Weather widget (Seattle — fetched client-side) -->
@@ -108,8 +107,69 @@ import nowData from '../../data/now.json';
 </style>
 
 <script>
-  // Fetch Seattle weather from Open-Meteo (no API key needed)
-  async function getWeather() {
+  const lang = () =>
+    (document.getElementById('html-root')?.getAttribute('data-lang') || 'en') as 'en' | 'zh';
+
+  // --- Status widget ---
+  async function loadStatus() {
+    try {
+      const res = await fetch('/api/status');
+      if (!res.ok) return;
+      const data = await res.json();
+
+      const valueEl = document.getElementById('status-value');
+      const subEl = document.getElementById('status-sub');
+      const taskEl = document.getElementById('status-task');
+      const taskEnEl = document.getElementById('status-task-en');
+      const taskZhEl = document.getElementById('status-task-zh');
+
+      if (!valueEl || !subEl) return;
+
+      if (data.type === 'event') {
+        // Active calendar event — replace all content
+        valueEl.innerHTML = `<span class="en-text">${data.value}</span><span class="zh-text">${data.value}</span>`;
+        subEl.innerHTML = `<span class="en-text">Calendar event</span><span class="zh-text">行事曆事項</span>`;
+        if (taskEl) taskEl.style.display = 'none';
+      } else {
+        // Project mode
+        valueEl.innerHTML = `<span class="en-text">${data.project}</span><span class="zh-text">${data.project_zh || data.project}</span>`;
+        subEl.innerHTML = `<span class="en-text">${data.value}</span><span class="zh-text">${data.status_zh || data.value}</span>`;
+        if (data.task && taskEl && taskEnEl && taskZhEl) {
+          taskEnEl.textContent = data.task;
+          taskZhEl.textContent = data.task_zh || data.task;
+          taskEl.style.display = '';
+        }
+      }
+    } catch {
+      // Fail silently — SSR fallback content remains
+    }
+  }
+
+  // --- Music widget (Spotify) ---
+  async function loadMusic() {
+    try {
+      const res = await fetch('/api/now-playing');
+      if (!res.ok || res.status === 204) return;
+      const data = await res.json();
+      if (!data.title) return;
+
+      const titleEl = document.getElementById('music-title');
+      const artistEl = document.getElementById('music-artist');
+      const statusEl = document.getElementById('music-status');
+
+      if (titleEl) titleEl.textContent = data.title;
+      if (artistEl) artistEl.textContent = data.artist;
+      if (statusEl) {
+        statusEl.textContent = data.isPlaying ? '▶ Now playing' : 'Recently played';
+        statusEl.style.display = '';
+      }
+    } catch {
+      // Fail silently — SSR fallback content remains
+    }
+  }
+
+  // --- Weather (Open-Meteo) ---
+  async function loadWeather() {
     try {
       const res = await fetch(
         'https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current_weather=true&temperature_unit=celsius'
@@ -139,13 +199,14 @@ import nowData from '../../data/now.json';
 
       if (tempEl) tempEl.textContent = `${temp}°C`;
       if (descEl) {
-        const lang = document.getElementById('html-root')?.getAttribute('data-lang') || 'en';
-        descEl.textContent = lang === 'zh' ? descZh : descEn;
+        descEl.textContent = lang() === 'zh' ? descZh : descEn;
       }
     } catch {
-      // Fail silently — widget shows '–'
+      // Fail silently
     }
   }
 
-  getWeather();
+  loadStatus();
+  loadMusic();
+  loadWeather();
 </script>

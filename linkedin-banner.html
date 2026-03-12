@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .banner {
+    width: 1584px;
+    height: 396px;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  /* ── Dot grid background ── */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #d0d0d0 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+  }
+
+  /* ── Pink accent line — top ── */
+  .accent-line-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #E04F72;
+  }
+
+  /* ── Left block: branding ── */
+  .left-block {
+    position: absolute;
+    left: 72px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #111111;
+  }
+
+  .brand-name span {
+    color: #E04F72;
+  }
+
+  .divider-h {
+    width: 40px;
+    height: 1.5px;
+    background: #E04F72;
+  }
+
+  .location {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #999999;
+  }
+
+  /* ── Center: main headline box ── */
+  .center-block {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .headline {
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: #111111;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: #E04F72;
+  }
+
+  .tagline-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tagline-item {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .dot-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #E04F72;
+    flex-shrink: 0;
+  }
+
+  /* ── AI badge ── */
+  .ai-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(224, 79, 114, 0.35);
+    border-radius: 100px;
+    padding: 7px 18px;
+    background: rgba(224, 79, 114, 0.04);
+  }
+
+  .ai-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #E04F72;
+  }
+
+  .ai-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #E04F72;
+  }
+
+  /* ── Right block: pink border box ── */
+  .right-block {
+    position: absolute;
+    right: 72px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1.5px solid #E04F72;
+    padding: 22px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.85);
+  }
+
+  /* Corner accent */
+  .right-block::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 10px;
+    height: 10px;
+    background: #E04F72;
+  }
+
+  .right-block::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    background: #E04F72;
+  }
+
+  .figma-claude {
+    font-size: 13px;
+    font-weight: 300;
+    color: #111111;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .figma-claude strong {
+    font-weight: 600;
+  }
+
+  .workflow-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .workflow-chip {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111111;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  .workflow-arrow {
+    font-size: 11px;
+    color: #E04F72;
+  }
+
+  .open-to {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999999;
+    margin-top: 4px;
+  }
+
+  /* ── Vertical accent line ── */
+  .vert-line-left {
+    position: absolute;
+    left: 44px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #E04F72 30%, #E04F72 70%, transparent);
+    opacity: 0.4;
+  }
+
+  .vert-line-right {
+    position: absolute;
+    right: 44px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #E04F72 30%, #E04F72 70%, transparent);
+    opacity: 0.4;
+  }
+
+</style>
+</head>
+<body>
+<div class="banner">
+
+  <div class="grid-bg"></div>
+  <div class="accent-line-top"></div>
+  <div class="vert-line-left"></div>
+  <div class="vert-line-right"></div>
+
+  <!-- Left -->
+  <div class="left-block">
+    <div class="brand-name">DIANNE <span>DESIGN</span> WORKS</div>
+    <div class="divider-h"></div>
+    <div class="location">Seattle · Originally Taipei</div>
+  </div>
+
+  <!-- Center -->
+  <div class="center-block">
+    <div class="headline">Turning Ideas Into <em>Impact.</em></div>
+    <div class="tagline-row">
+      <span class="tagline-item">Product Design</span>
+      <span class="dot-sep"></span>
+      <span class="tagline-item">AI Web Development</span>
+      <span class="dot-sep"></span>
+      <span class="tagline-item">Startup Strategy</span>
+    </div>
+    <div class="ai-badge">
+      <div class="ai-dot"></div>
+      <span class="ai-text">Designs in Figma · Builds with Claude</span>
+    </div>
+  </div>
+
+  <!-- Right -->
+  <div class="right-block">
+    <div class="figma-claude">Design → <strong>Code</strong> → Live</div>
+    <div class="workflow-line">
+      <span class="workflow-chip">Figma</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-chip">Claude</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-chip">Prod</span>
+    </div>
+    <div class="open-to">Open to Contract</div>
+  </div>
+
+</div>
+</body>
+</html>

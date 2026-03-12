@@ -3,6 +3,8 @@
   "status_zh": "正在和 Claude 一起建造這個作品集",
   "project": "diannedesign.me",
   "project_zh": "diannedesign.me",
+  "task": "Automating the Right Now section",
+  "task_zh": "自動化「現在進行中」區塊",
   "thinking": "How to make a portfolio feel alive",
   "thinking_zh": "怎麼讓作品集有生命感",
   "music": {
@@ -13,5 +15,5 @@
     "note_zh": "這週一直在聽"
   },
   "reading": null,
-  "updated": "2026-03-07"
+  "updated": "2026-03-12"
 }

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&amp;display=swap');
+      text { font-family: 'Inter', Arial, sans-serif; }
+    </style>
+    <!-- Dot grid pattern -->
+    <pattern id="dotgrid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1" fill="#cccccc" opacity="0.6"/>
+    </pattern>
+    <!-- Gradient for vertical lines -->
+    <linearGradient id="vertGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E04F72" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#E04F72" stop-opacity="0.35"/>
+      <stop offset="70%" stop-color="#E04F72" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#E04F72" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1584" height="396" fill="#ffffff"/>
+
+  <!-- Dot grid -->
+  <rect width="1584" height="396" fill="url(#dotgrid)"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1584" height="3" fill="#E04F72"/>
+
+  <!-- Vertical accent lines -->
+  <rect x="44" y="0" width="1" height="396" fill="url(#vertGrad)"/>
+  <rect x="1539" y="0" width="1" height="396" fill="url(#vertGrad)"/>
+
+  <!-- ── LEFT BLOCK ── -->
+  <!-- Brand name -->
+  <text x="72" y="172" font-size="13" font-weight="700" fill="#111111" letter-spacing="3">DIANNE </text>
+  <text x="164" y="172" font-size="13" font-weight="700" fill="#E04F72" letter-spacing="3">DESIGN</text>
+  <text x="248" y="172" font-size="13" font-weight="700" fill="#111111" letter-spacing="3"> WORKS</text>
+  <!-- Divider -->
+  <rect x="72" y="185" width="40" height="1.5" fill="#E04F72"/>
+  <!-- Location -->
+  <text x="72" y="210" font-size="11" font-weight="400" fill="#999999" letter-spacing="2">SEATTLE · ORIGINALLY TAIPEI</text>
+
+  <!-- ── CENTER BLOCK ── -->
+  <!-- Main headline -->
+  <text x="792" y="168" font-size="48" font-weight="300" fill="#111111" text-anchor="middle" font-style="italic" letter-spacing="-1">Turning Ideas Into </text>
+  <text x="1008" y="168" font-size="48" font-weight="300" fill="#E04F72" text-anchor="middle" font-style="italic" letter-spacing="-1">Impact.</text>
+
+  <!-- Tagline row -->
+  <text x="602" y="208" font-size="11" font-weight="400" fill="#999999" letter-spacing="2" text-anchor="middle">PRODUCT DESIGN</text>
+  <circle cx="672" cy="204" r="2.5" fill="#E04F72"/>
+  <text x="752" y="208" font-size="11" font-weight="400" fill="#999999" letter-spacing="2" text-anchor="middle">AI WEB DEVELOPMENT</text>
+  <circle cx="840" cy="204" r="2.5" fill="#E04F72"/>
+  <text x="930" y="208" font-size="11" font-weight="400" fill="#999999" letter-spacing="2" text-anchor="middle">STARTUP STRATEGY</text>
+
+  <!-- AI Badge pill -->
+  <rect x="657" y="224" width="270" height="32" rx="16" fill="rgba(224,79,114,0.05)" stroke="#E04F72" stroke-width="1" stroke-opacity="0.4"/>
+  <circle cx="678" cy="240" r="4" fill="#E04F72"/>
+  <text x="692" y="245" font-size="11" font-weight="500" fill="#E04F72" letter-spacing="1.2">DESIGNS IN FIGMA · BUILDS WITH CLAUDE</text>
+
+  <!-- ── RIGHT BLOCK: pink border box ── -->
+  <rect x="1280" y="148" width="232" height="100" fill="rgba(255,255,255,0.85)" stroke="#E04F72" stroke-width="1.5"/>
+  <!-- Corner dots -->
+  <rect x="1276" y="144" width="10" height="10" fill="#E04F72"/>
+  <rect x="1502" y="234" width="10" height="10" fill="#E04F72"/>
+
+  <!-- Workflow text -->
+  <text x="1292" y="178" font-size="13" font-weight="300" fill="#111111" letter-spacing="0.3">Design → <tspan font-weight="600">Code</tspan> → Live</text>
+
+  <!-- Chips row -->
+  <!-- Figma chip -->
+  <rect x="1292" y="188" width="52" height="22" rx="4" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+  <text x="1318" y="204" font-size="10" font-weight="500" fill="#111111" letter-spacing="1.5" text-anchor="middle">FIGMA</text>
+  <!-- Arrow -->
+  <text x="1351" y="204" font-size="11" fill="#E04F72">→</text>
+  <!-- Claude chip -->
+  <rect x="1364" y="188" width="58" height="22" rx="4" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+  <text x="1393" y="204" font-size="10" font-weight="500" fill="#111111" letter-spacing="1.5" text-anchor="middle">CLAUDE</text>
+  <!-- Arrow -->
+  <text x="1429" y="204" font-size="11" fill="#E04F72">→</text>
+  <!-- Prod chip -->
+  <rect x="1442" y="188" width="46" height="22" rx="4" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+  <text x="1465" y="204" font-size="10" font-weight="500" fill="#111111" letter-spacing="1.5" text-anchor="middle">PROD</text>
+
+  <!-- Open to contract -->
+  <text x="1292" y="236" font-size="10" font-weight="400" fill="#999999" letter-spacing="2">OPEN TO CONTRACT</text>
+
+</svg>

@@ -32,8 +32,17 @@
     overflow-x: hidden;
   }
 
-  /* Hide default cursor sitewide — replaced by custom cursor */
+  /* Hide default cursor sitewide — replaced by custom cursor (desktop only) */
   * { cursor: none !important; }
+
+  /* ── Touch / mobile: restore system cursor, hide custom cursor ── */
+  @media (pointer: coarse) {
+    body { cursor: auto; }
+    * { cursor: auto !important; }
+    input, textarea, select { cursor: text !important; }
+    a, button { cursor: pointer !important; }
+    .cursor-dot, .cursor-ring { display: none !important; }
+  }
 
   a, button { color: inherit; }
 
@@ -140,4 +149,23 @@
     transition: opacity 0.2s ease;
   }
   .text-link:hover { opacity: 0.8; }
+
+  /* ── Touch ripple (mobile only) ── */
+  .touch-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(0);
+    animation: touch-ripple-anim 0.5s ease-out forwards;
+  }
+
+  @keyframes touch-ripple-anim {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.3; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+  }
 }

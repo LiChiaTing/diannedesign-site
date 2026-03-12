@@ -1,0 +1,96 @@
+name: Update "Thinking About" (Every Friday)
+
+on:
+  schedule:
+    # Friday 9am PST = 17:00 UTC
+    - cron: '0 17 * * 5'
+  # Allow manual trigger from GitHub Actions tab for testing
+  workflow_dispatch:
+
+jobs:
+  update-thinking:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+          fetch-depth: 0
+
+      - name: Get recent git commits (last 7 days)
+        id: commits
+        run: |
+          COMMITS=$(git log --oneline --since="7 days ago" --no-merges | head -20)
+          if [ -z "$COMMITS" ]; then
+            COMMITS=$(git log --oneline -10 --no-merges)
+          fi
+          echo "COMMITS<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMITS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Generate "Thinking About" with Claude
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          COMMITS="${{ steps.commits.outputs.COMMITS }}"
+
+          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d "{
+              \"model\": \"claude-haiku-4-5-20251001\",
+              \"max_tokens\": 100,
+              \"messages\": [{
+                \"role\": \"user\",
+                \"content\": \"Based on these recent git commits from a designer's portfolio site, write ONE short phrase (under 10 words) describing what she's currently thinking about or exploring — in the style of a personal 'now page'. Focus on themes and design thinking over technical details. Tone: thoughtful and personal.\n\nCommits:\n${COMMITS}\n\nReply format (two lines only, nothing else):\n[English phrase]\n[Traditional Chinese translation]\"
+              }]
+            }")
+
+          THINKING_EN=$(echo "$RESPONSE" | python3 -c "import sys,json; text=json.load(sys.stdin)['content'][0]['text'].strip(); lines=text.split('\n'); print(lines[0].strip())" 2>/dev/null)
+          THINKING_ZH=$(echo "$RESPONSE" | python3 -c "import sys,json; text=json.load(sys.stdin)['content'][0]['text'].strip(); lines=text.split('\n'); print(lines[1].strip() if len(lines)>1 else lines[0].strip())" 2>/dev/null)
+
+          echo "THINKING_EN=$THINKING_EN" >> $GITHUB_OUTPUT
+          echo "THINKING_ZH=$THINKING_ZH" >> $GITHUB_OUTPUT
+
+      - name: Update now.json
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          THINKING_EN="${{ steps.generate.outputs.THINKING_EN }}"
+          THINKING_ZH="${{ steps.generate.outputs.THINKING_ZH }}"
+
+          if [ -z "$THINKING_EN" ]; then
+            echo "No thinking generated, skipping update"
+            exit 0
+          fi
+
+          python3 - <<PYEOF
+          import json
+
+          with open('src/data/now.json', 'r') as f:
+              data = json.load(f)
+
+          data['thinking'] = "$THINKING_EN"
+          data['thinking_zh'] = "$THINKING_ZH"
+          data['updated'] = "$TODAY"
+
+          with open('src/data/now.json', 'w') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+              f.write('\n')
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/now.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "update: thinking about (weekly auto-update)"
+            git push
+          fi
