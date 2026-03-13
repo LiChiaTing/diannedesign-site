@@ -15,10 +15,9 @@ import nowData from '../../data/now.json';
     <!-- Status widget (fetched client-side from /api/status) -->
     <div class="now-widget reveal" id="status-widget">
       <div class="widget-label">
-        <span class="en-text">Status</span>
-        <span class="zh-text">狀態</span>
+        <span class="en-text">Working on</span>
+        <span class="zh-text">正在做</span>
       </div>
-      <div class="widget-dot"></div>
       <p class="widget-value" id="status-value">
         <span class="en-text">{nowData.status}</span>
         <span class="zh-text">{nowData.status_zh || nowData.status}</span>
@@ -82,11 +81,6 @@ import nowData from '../../data/now.json';
   .widget-label {
     @apply text-xs font-medium tracking-wider uppercase;
     color: var(--gray);
-  }
-  .widget-dot {
-    @apply w-2 h-2 rounded-full;
-    background: var(--accent);
-    animation: pulse 2.5s ease-in-out infinite;
   }
   .widget-value {
     @apply text-base font-medium;
