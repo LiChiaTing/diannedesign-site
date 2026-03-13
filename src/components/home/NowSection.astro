@@ -63,6 +63,7 @@ import nowData from '../../data/now.json';
       </div>
       <p class="widget-value" id="weather-temp">–</p>
       <p class="widget-sub" id="weather-desc">–</p>
+      <p class="widget-vibe" id="weather-vibe"></p>
     </div>
 
   </div>
@@ -93,6 +94,11 @@ import nowData from '../../data/now.json';
   .widget-note {
     @apply text-xs italic;
     color: var(--gray);
+  }
+  .widget-vibe {
+    @apply text-xs italic mt-auto;
+    color: var(--gray);
+    opacity: 0.75;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -187,13 +193,144 @@ import nowData from '../../data/now.json';
         95: ['Thunderstorm', '雷暴'],
       };
 
+      type VibeEntry = { q: string; by: string };
+      const vibes: Record<number, { en: VibeEntry[]; zh: VibeEntry[] }> = {
+        0: {
+          en: [
+            { q: 'To see a world in a grain of sand, and a heaven in a wild flower.', by: 'William Blake' },
+            { q: 'Nothing gold can stay.', by: 'Robert Frost' },
+          ],
+          zh: [
+            { q: '兩個黃鸝鳴翠柳，一行白鷺上青天。', by: '杜甫' },
+            { q: '日出江花紅勝火，春來江水綠如藍。', by: '白居易' },
+            { q: '天朗氣清，惠風和暢。', by: '王羲之' },
+          ],
+        },
+        1: {
+          en: [
+            { q: 'Keep your face always toward the sunshine—and shadows will fall behind you.', by: 'Walt Whitman' },
+            { q: 'Nothing gold can stay.', by: 'Robert Frost' },
+          ],
+          zh: [
+            { q: '行到水窮處，坐看雲起時。', by: '王維' },
+            { q: '日出江花紅勝火，春來江水綠如藍。', by: '白居易' },
+          ],
+        },
+        2: {
+          en: [
+            { q: 'I wandered lonely as a cloud.', by: 'William Wordsworth' },
+            { q: 'Clouds come floating into my life, to add color to my sunset sky.', by: 'Rabindranath Tagore' },
+          ],
+          zh: [
+            { q: '行到水窮處，坐看雲起時。', by: '王維' },
+            { q: '白雲回望合，青靄入看無。', by: '王維' },
+          ],
+        },
+        3: {
+          en: [
+            { q: 'The yellow fog that rubs its back upon the window-panes.', by: 'T.S. Eliot' },
+            { q: 'There is a pleasure in the pathless woods, there is a rapture on the lonely shore.', by: 'Lord Byron' },
+          ],
+          zh: [
+            { q: '薄霧濃雲愁永晝，瑞腦消金獸。', by: '李清照' },
+            { q: '黑雲壓城城欲摧，甲光向日金鱗開。', by: '李賀' },
+          ],
+        },
+        45: {
+          en: [
+            { q: 'The fog comes on little cat feet.', by: 'Carl Sandburg' },
+            { q: 'The yellow fog that rubs its back upon the window-panes.', by: 'T.S. Eliot' },
+          ],
+          zh: [
+            { q: '霧失樓臺，月迷津渡，桃源望斷無尋處。', by: '秦觀' },
+          ],
+        },
+        48: {
+          en: [
+            { q: 'The fog comes on little cat feet.', by: 'Carl Sandburg' },
+          ],
+          zh: [
+            { q: '霧失樓臺，月迷津渡，桃源望斷無尋處。', by: '秦觀' },
+          ],
+        },
+        51: {
+          en: [
+            { q: 'Into each life some rain must fall.', by: 'Henry Wadsworth Longfellow' },
+            { q: 'Clouds come floating into my life, to add color to my sunset sky.', by: 'Rabindranath Tagore' },
+          ],
+          zh: [
+            { q: '沾衣欲濕杏花雨，吹面不寒楊柳風。', by: '志南' },
+            { q: '小樓一夜聽春雨，深巷明朝賣杏花。', by: '陸游' },
+          ],
+        },
+        61: {
+          en: [
+            { q: 'Let the rain kiss you. Let the rain beat upon your head with silver liquid drops.', by: 'Langston Hughes' },
+            { q: 'Into each life some rain must fall.', by: 'Henry Wadsworth Longfellow' },
+          ],
+          zh: [
+            { q: '君問歸期未有期，巴山夜雨漲秋池。', by: '李商隱' },
+            { q: '少年聽雨歌樓上，紅燭昏羅帳。', by: '蔣捷' },
+            { q: '渭城朝雨浥輕塵，客舍青青柳色新。', by: '王維' },
+          ],
+        },
+        63: {
+          en: [
+            { q: 'Let the rain kiss you. Let the rain beat upon your head with silver liquid drops.', by: 'Langston Hughes' },
+          ],
+          zh: [
+            { q: '青箬笠，綠蓑衣，斜風細雨不須歸。', by: '張志和' },
+            { q: '夜來風雨聲，花落知多少。', by: '孟浩然' },
+          ],
+        },
+        71: {
+          en: [
+            { q: "Whose woods these are I think I know.", by: 'Robert Frost' },
+            { q: "The snow doesn't give a soft white damn whom it touches.", by: 'e.e. cummings' },
+          ],
+          zh: [
+            { q: '忽如一夜春風來，千樹萬樹梨花開。', by: '岑參' },
+            { q: '千山鳥飛絕，萬徑人蹤滅。孤舟蓑笠翁，獨釣寒江雪。', by: '柳宗元' },
+            { q: '梅須遜雪三分白，雪卻輸梅一段香。', by: '盧梅坡' },
+          ],
+        },
+        80: {
+          en: [
+            { q: 'Into each life some rain must fall.', by: 'Henry Wadsworth Longfellow' },
+            { q: 'Rain is grace; rain is the sky descending to the earth.', by: 'John Updike' },
+          ],
+          zh: [
+            { q: '天街小雨潤如酥，草色遙看近卻無。', by: '韓愈' },
+            { q: '黑雲翻墨未遮山，白雨跳珠亂入船。', by: '蘇軾' },
+          ],
+        },
+        95: {
+          en: [
+            { q: 'There is a pleasure in the pathless woods, there is a rapture on the lonely shore.', by: 'Lord Byron' },
+          ],
+          zh: [
+            { q: '黑雲翻墨未遮山，白雨跳珠亂入船。', by: '蘇軾' },
+            { q: '東風夜放花千樹，更吹落，星如雨。', by: '辛棄疾' },
+          ],
+        },
+      };
+
       const [descEn, descZh] = descriptions[code] || ['–', '–'];
       const tempEl = document.getElementById('weather-temp');
       const descEl = document.getElementById('weather-desc');
+      const vibeEl = document.getElementById('weather-vibe');
 
       if (tempEl) tempEl.textContent = `${temp}°C`;
       if (descEl) {
         descEl.textContent = lang() === 'zh' ? descZh : descEn;
+      }
+      if (vibeEl) {
+        const l = lang();
+        const pool = vibes[code]?.[l === 'zh' ? 'zh' : 'en'];
+        if (pool && pool.length > 0) {
+          const { q, by } = pool[Math.floor(Math.random() * pool.length)];
+          vibeEl.textContent = l === 'zh' ? `${q} ——${by}` : `"${q}" — ${by}`;
+        }
       }
     } catch {
       // Fail silently
