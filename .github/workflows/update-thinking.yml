@@ -57,7 +57,7 @@ jobs:
           [Traditional Chinese translation]"""
 
           payload = json.dumps({
-              "model": "claude-haiku-4-5-20251001",
+              "model": "claude-3-5-haiku-20241022",
               "max_tokens": 100,
               "messages": [{"role": "user", "content": prompt}]
           }).encode()
@@ -84,6 +84,10 @@ jobs:
                   f.write(f"THINKING_EN={en}\n")
                   f.write(f"THINKING_ZH={zh}\n")
               print(f"Generated: {en} / {zh}")
+          except urllib.error.HTTPError as e:
+              body = e.read().decode()
+              print(f"API call failed: {e} — {body}")
+              exit(1)
           except Exception as e:
               print(f"API call failed: {e}")
               exit(1)
