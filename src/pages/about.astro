@@ -189,28 +189,53 @@ const experience = [
         <span class="zh-text">我的工作方式</span>
       </span>
 
-      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12 max-w-xl">
-        {['Figma', '→', 'Claude', '→', 'Live'].map((item) => (
-          <div class="flex items-center gap-6">
-            {item === '→' ? (
-              <span class="text-gray-DEFAULT text-lg">→</span>
-            ) : (
-              <div class="workflow-step">
-                <span class="text-sm font-medium">{item}</span>
-              </div>
-            )}
-          </div>
-        ))}
+      <!-- Workflow strip -->
+      <div class="flex items-center gap-3 mb-10">
+        <div class="workflow-step">
+          <span class="text-sm font-medium">Figma</span>
+        </div>
+        <span class="text-gray-DEFAULT text-xs">›</span>
+        <div class="workflow-step">
+          <span class="text-sm font-medium">Cursor</span>
+        </div>
+        <span class="text-gray-DEFAULT text-xs">›</span>
+        <div class="workflow-step">
+          <span class="text-sm font-medium">Vercel</span>
+        </div>
+        <span class="text-gray-DEFAULT text-xs">›</span>
+        <div class="flex items-center gap-2 workflow-step workflow-step--live">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation: live-blink 1.2s ease-in-out infinite;"></span>
+          <span class="text-sm font-medium" style="color: var(--accent);">
+            <span class="en-text">Live</span>
+            <span class="zh-text">上線</span>
+          </span>
+        </div>
       </div>
 
-      <p class="mt-8 text-sm text-gray-DEFAULT max-w-md leading-relaxed reveal">
-        <span class="en-text">
-          Dianne designs in Figma and builds with Claude — combining design craft with AI collaboration to ship faster without sacrificing quality.
-        </span>
-        <span class="zh-text">
-          Dianne 在 Figma 設計，和 Claude 一起建造——結合設計工藝與 AI 協作，在不犧牲品質的前提下更快交付。
-        </span>
-      </p>
+      <!-- Expanded explanation -->
+      <div class="grid md:grid-cols-3 gap-8 max-w-3xl">
+        <div class="workflow-detail reveal">
+          <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Figma</p>
+          <p class="text-sm text-gray-DEFAULT leading-relaxed">
+            <span class="en-text">Figma is where research becomes design. I use it across the full UX process — mapping user flows, building wireframes, and creating components. It's where I think out loud before anything gets built.</span>
+            <span class="zh-text">Figma 是我把研究轉化為設計的地方。我在整個 UX 流程中使用它——繪製使用者流程、建立線框、製作元件。這是動手做之前，我思考的舞台。</span>
+          </p>
+        </div>
+        <div class="workflow-detail reveal" style="transition-delay: 0.08s">
+          <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Cursor</p>
+          <p class="text-sm text-gray-DEFAULT leading-relaxed">
+            <span class="en-text">I build in Cursor with Claude Code as my engineering team. Claude Code reviews my logic, catches edge cases, and helps me ship features I couldn't build alone — without losing design intent in handoff. I'm the designer and product lead; Claude Code is the teammate that makes it real.</span>
+            <span class="zh-text">我在 Cursor 裡建造，Claude Code 是我的工程團隊。它幫我 review 邏輯、找出邊界案例，讓我能實現原本一個人做不到的功能——同時不在交接中流失設計意圖。我是設計師與產品主導者；Claude Code 是讓它成真的夥伴。</span>
+          </p>
+        </div>
+        <div class="workflow-detail reveal" style="transition-delay: 0.16s">
+          <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Vercel</p>
+          <p class="text-sm text-gray-DEFAULT leading-relaxed">
+            <span class="en-text">Vercel handles deployment so I can focus on craft. Every push is a preview, every merge is live. Real projects, real users — not just mockups in a portfolio.</span>
+            <span class="zh-text">Vercel 負責部署，讓我專注在設計品質本身。每次 push 都有預覽，每次 merge 就上線。真實的產品、真實的使用者——不只是作品集裡的 mockup。</span>
+          </p>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -220,13 +245,27 @@ const experience = [
 
 <style>
   .workflow-step {
-    @apply border border-gray-border rounded-xl px-6 py-3 text-center;
+    @apply border border-gray-border rounded-xl px-5 py-2.5 text-center;
     animation: breathe 3s ease-in-out infinite;
+  }
+
+  .workflow-step--live {
+    border-color: rgba(224,79,114,0.3);
   }
 
   @keyframes breathe {
     0%, 100% { box-shadow: 0 0 0 0 rgba(224,79,114,0); }
     50% { box-shadow: 0 0 0 6px rgba(224,79,114,0.08); }
+  }
+
+  @keyframes live-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.1; }
+  }
+
+  .workflow-detail {
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0,0,0,0.08);
   }
 </style>
 
