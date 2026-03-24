@@ -6,7 +6,15 @@ const CLIENT_ID = import.meta.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
 const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
+// Cache the access token in module scope — reuse until 5 min before expiry
+let cachedToken: string | null = null;
+let tokenExpiresAt = 0;
+
 async function getAccessToken(): Promise<string> {
+  const now = Date.now();
+  if (cachedToken && now < tokenExpiresAt) {
+    return cachedToken;
+  }
   const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
   const res = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
@@ -20,7 +28,10 @@ async function getAccessToken(): Promise<string> {
     }),
   });
   const data = await res.json();
-  return data.access_token;
+  cachedToken = data.access_token;
+  // Spotify tokens are valid for 3600s; refresh 5 min early to be safe
+  tokenExpiresAt = now + (data.expires_in - 300) * 1000;
+  return cachedToken as string;
 }
 
 export const GET: APIRoute = async () => {
@@ -49,7 +60,7 @@ export const GET: APIRoute = async () => {
             isPlaying: nowData.is_playing,
             albumArt: nowData.item.album.images[2]?.url ?? null,
           }),
-          { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } }
+          { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=30, stale-while-revalidate=60' } }
         );
       }
     }
@@ -70,7 +81,7 @@ export const GET: APIRoute = async () => {
           isPlaying: false,
           albumArt: track.album.images[2]?.url ?? null,
         }),
-        { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } }
+        { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=120' } }
       );
     }
 

@@ -8,7 +8,15 @@ const GOOGLE_CLIENT_SECRET = import.meta.env.GOOGLE_CLIENT_SECRET;
 const GOOGLE_REFRESH_TOKEN = import.meta.env.GOOGLE_REFRESH_TOKEN;
 const GOOGLE_CALENDAR_ID = import.meta.env.GOOGLE_CALENDAR_ID;
 
+// Cache the access token in module scope — reuse until 5 min before expiry
+let cachedGoogleToken: string | null = null;
+let googleTokenExpiresAt = 0;
+
 async function getGoogleAccessToken(): Promise<string> {
+  const now = Date.now();
+  if (cachedGoogleToken && now < googleTokenExpiresAt) {
+    return cachedGoogleToken;
+  }
   const res = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -20,7 +28,10 @@ async function getGoogleAccessToken(): Promise<string> {
     }),
   });
   const data = await res.json();
-  return data.access_token;
+  cachedGoogleToken = data.access_token;
+  // Google tokens are valid for 3600s; refresh 5 min early to be safe
+  googleTokenExpiresAt = now + (data.expires_in - 300) * 1000;
+  return cachedGoogleToken as string;
 }
 
 async function getActiveCalendarEvent(): Promise<string | null> {
@@ -80,6 +91,6 @@ export const GET: APIRoute = async () => {
   }
 
   return new Response(JSON.stringify(result), {
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60, stale-while-revalidate=120' },
   });
 };
