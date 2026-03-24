@@ -168,9 +168,7 @@ import nowData from '../../data/now.json';
   // --- Weather (Open-Meteo) ---
   async function loadWeather() {
     try {
-      const res = await fetch(
-        'https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current_weather=true&temperature_unit=celsius'
-      );
+      const res = await fetch('/api/weather');
       const data = await res.json();
       const temp = Math.round(data.current_weather.temperature);
       const code = data.current_weather.weathercode;
