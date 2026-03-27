@@ -1,0 +1,696 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<BaseLayout title="Loopy — Dianne Ting">
+  <Header />
+
+  <main id="case-content">
+
+    <!-- ─── BACK NAV ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pt-24 md:pt-32 pb-0">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← <span class="en-text">All Work</span><span class="zh-text">全部作品</span>
+      </a>
+    </div>
+
+    <!-- English-only notice (shown in Chinese mode only) -->
+    <div class="zh-text px-8 md:px-16 lg:px-24 mt-4">
+      <span class="text-xs" style="color:#bbb;">本案例研究以英文呈現</span>
+    </div>
+
+    <!-- ─── HERO ─────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-12 pb-20 md:pb-28">
+      <div class="max-w-4xl">
+
+        <div class="flex flex-wrap items-center gap-2 mb-6 reveal">
+          <span class="tag">Personal Project</span>
+          <span class="tag">Mobile App</span>
+          <span class="tag">AI Collaboration</span>
+          <span class="tag-accent">AI Built ✦</span>
+          <span class="tag-warn">
+            <span class="en-text">In Progress</span>
+            <span class="zh-text">製作中</span>
+          </span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay:0.1s">Loopy</h1>
+
+        <p class="text-xl md:text-2xl font-light leading-relaxed max-w-2xl reveal" style="color:#555; transition-delay:0.2s">
+          <span class="en-text">A personal crochet companion app — AI-assisted pattern reading, row-by-row progress tracking, and inspiration collection, all in one place. My first self-built mobile app.</span>
+          <span class="zh-text">一款個人鈎織助理應用程式 — AI 輔助解讀織圖、逐行追蹤進度、收藏靈感，全部整合在一起。我自己做的第一款手機軟體。</span>
+        </p>
+
+        <div class="flex flex-wrap gap-10 mt-12 reveal" style="transition-delay:0.3s">
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Role</span><span class="zh-text">角色</span>
+            </div>
+            <div class="text-sm font-medium">
+              <span class="en-text">Solo Designer & Developer</span>
+              <span class="zh-text">獨立設計師 & 開發者</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Built With</span><span class="zh-text">建造工具</span>
+            </div>
+            <div class="text-sm font-medium">Claude Code (Claude)</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Timeline</span><span class="zh-text">時間</span>
+            </div>
+            <div class="text-sm font-medium">Mar 2026 – ongoing</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Stack</div>
+            <div class="text-sm font-medium">React · Vite · Tailwind v4 · Gemini AI</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">
+              <span class="en-text">Live Demo</span><span class="zh-text">線上預覽</span>
+            </div>
+            <div class="text-sm font-medium">
+              <a href="https://loopy-khaki.vercel.app/" target="_blank" rel="noopener" class="demo-link">loopy-khaki.vercel.app →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── WHY THIS EXISTS ──────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#BE6156;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Why This Exists</span>
+            <span class="zh-text">為什麼要做這個</span>
+          </span>
+        </div>
+
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid #BE6156; padding-left:1.5rem;">
+          <span class="en-text">"I started crocheting as a beginner with no in-person instruction. AI helped me decode patterns — but everything lived in a single chat thread, and I kept losing my place."</span>
+          <span class="zh-text">「我是一個沒有人教的鈎織新手，靠 AI 幫我看懂織圖。但所有資訊都存在同一個對話視窗裡，很容易就找不到之前討論的內容。」</span>
+        </blockquote>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.2s">
+          <span class="en-text">That frustration became the product idea. I needed something that could hold all the pieces of my crochet practice together: a place to save patterns from YouTube or PDFs, a row counter I could actually trust, a space to store inspiration. So I decided to build it myself — without a background in mobile development, using AI as my collaborator throughout the entire process.</span>
+          <span class="zh-text">這個挫折感變成了產品的起點。我需要一個能把鈎織過程所有環節整合在一起的工具：可以儲存 YouTube 或 PDF 來的織圖、一個真正可以信任的計圈器、一個收藏靈感的空間。所以我決定自己來做 — 沒有手機開發背景，整個過程都用 AI 當協作夥伴。</span>
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style="transition-delay:0.3s">
+          <div class="purpose-card">
+            <div class="purpose-icon">🧶</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Pattern reading, assisted</span>
+              <span class="zh-text">AI 輔助解讀織圖</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Upload a YouTube video, screenshots, or PDF — Gemini AI extracts a row-by-row pattern you can actually follow.</span>
+              <span class="zh-text">上傳 YouTube 影片、截圖或 PDF，Gemini AI 自動整理成可以逐行跟著做的織圖。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="purpose-icon">🔢</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Row counter with context</span>
+              <span class="zh-text">有脈絡的計圈器</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Track your current row alongside the actual pattern instructions — no more switching between apps or losing your spot.</span>
+              <span class="zh-text">在顯示織圖說明的同時計算目前的行數，不用再在不同 App 之間切換或忘記做到哪裡。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="purpose-icon">✨</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Inspiration collection</span>
+              <span class="zh-text">靈感收藏夾</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Save links from Instagram, YouTube, and Pinterest with automatic platform detection and preview — all your ideas in one scroll.</span>
+              <span class="zh-text">儲存 Instagram、YouTube、Pinterest 的連結，自動辨識平台並抓取預覽，所有靈感一目了然。</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(190,97,86,0.06); border:1px solid rgba(190,97,86,0.15); transition-delay:0.4s;">
+          <p class="text-sm leading-relaxed" style="color:#555;">
+            <span class="status-dot" style="background:#BE6156;"></span>
+            <strong class="en-text">Status: In progress.</strong>
+            <strong class="zh-text">狀態：製作中。</strong>
+            <span class="en-text"> Core features are built and deployed. User testing and final polish not yet started.</span>
+            <span class="zh-text"> 核心功能已完成並部署，尚未進行使用者測試與最終調整。</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── SCREENSHOTS ──────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="flex items-center justify-between mb-12 reveal">
+        <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+          <span class="en-text">The App</span>
+          <span class="zh-text">應用程式</span>
+        </span>
+        <a href="https://loopy-khaki.vercel.app/" target="_blank" rel="noopener" class="demo-link text-xs">
+          <span class="en-text">Open live demo →</span>
+          <span class="zh-text">開啟線上預覽 →</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 reveal">
+        <div class="screenshot-frame">
+          <img src="/images/projects/loopy/loopy.png" alt="Loopy app overview" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">App overview</span>
+            <span class="zh-text">應用程式總覽</span>
+          </div>
+        </div>
+        <div class="screenshot-frame" style="transition-delay:0.1s">
+          <img src="/images/projects/loopy/loopy-1.png" alt="Loopy pattern and counter view" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Pattern & counter</span>
+            <span class="zh-text">織圖與計圈</span>
+          </div>
+        </div>
+        <div class="screenshot-frame" style="transition-delay:0.2s">
+          <img src="/images/projects/loopy/loopy-2.png" alt="Loopy inspiration and projects" loading="lazy" />
+          <div class="screenshot-label">
+            <span class="en-text">Inspiration & projects</span>
+            <span class="zh-text">靈感與專案管理</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── DESIGN SYSTEM ────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Design System</span>
+            <span class="zh-text">設計系統</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">Loopy's visual language is built around a single metaphor: a handmade sketchbook. Every colour feels like it belongs in a yarn stash. The logo is a script wordmark with a crochet stitch texture fill — the core visual metaphor carried through the entire system.</span>
+          <span class="zh-text">Loopy 的視覺語言建立在一個核心比喻上：手工製作的素描本。每個顏色感覺都像是從毛線盒裡拿出來的。Logo 是一個手寫字體，內部填充鈎針縫紋質感 — 這個視覺隱喻貫穿整個設計系統。</span>
+        </p>
+
+        <!-- Logo + colour identity -->
+        <div class="logo-row reveal" style="transition-delay:0.15s">
+          <img src="/images/projects/loopy/loopylogo.svg" alt="Loopy logo" class="loopy-logo" />
+          <div class="logo-desc">
+            <p class="text-sm leading-relaxed" style="color:#555;">
+              <span class="en-text">The wordmark uses a crochet stitch texture as fill — deep crimson base with terracotta rose stitches and pale cross-stitch marks. Only appears on white or cream backgrounds.</span>
+              <span class="zh-text">字體 Logo 以鈎針縫紋為填充 — 深紅底色、赭紅玫瑰色縫線、淡色交叉縫線點綴，只出現在白色或奶油色背景上。</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Colour palette -->
+        <div class="mt-10 reveal" style="transition-delay:0.2s">
+          <p class="text-xs font-medium tracking-widest uppercase mb-5" style="color:#999;">
+            <span class="en-text">Colour Palette</span>
+            <span class="zh-text">色彩系統</span>
+          </p>
+          <div class="palette-grid">
+            <div class="swatch-group">
+              <p class="swatch-label">
+                <span class="en-text">Background</span><span class="zh-text">背景</span>
+              </p>
+              <div class="swatch-row">
+                <div class="swatch" style="background:#FAF7F2;" title="--cream #FAF7F2"></div>
+                <div class="swatch" style="background:#FFFFFF; border:1px solid #eee;" title="--surface #FFFFFF"></div>
+                <div class="swatch" style="background:#F5F3EF;" title="--surface-muted #F5F3EF"></div>
+              </div>
+              <div class="swatch-hex-row">
+                <span>#FAF7F2</span><span>#FFFFFF</span><span>#F5F3EF</span>
+              </div>
+            </div>
+            <div class="swatch-group">
+              <p class="swatch-label">
+                <span class="en-text">Primary Green — Actions</span><span class="zh-text">主要綠 — 互動</span>
+              </p>
+              <div class="swatch-row">
+                <div class="swatch" style="background:#4A6145;" title="--green-dark"></div>
+                <div class="swatch" style="background:#5E7355;" title="--green (CTA)"></div>
+                <div class="swatch" style="background:#788B6A;" title="--green-mid"></div>
+                <div class="swatch" style="background:#9BAD8E;" title="--green-light"></div>
+                <div class="swatch" style="background:#EEF2EB;" title="--green-subtle"></div>
+              </div>
+              <div class="swatch-hex-row">
+                <span>#4A6145</span><span>#5E7355</span><span>#788B6A</span><span>#9BAD8E</span><span>#EEF2EB</span>
+              </div>
+            </div>
+            <div class="swatch-group">
+              <p class="swatch-label">
+                <span class="en-text">Accent Red — Brand Only</span><span class="zh-text">品牌紅 — 僅用於品牌元素</span>
+              </p>
+              <div class="swatch-row">
+                <div class="swatch" style="background:#940002;" title="--red (logo)"></div>
+                <div class="swatch" style="background:#BE6156;" title="--red-warm"></div>
+                <div class="swatch" style="background:#F9EAEA;" title="--red-subtle"></div>
+              </div>
+              <div class="swatch-hex-row">
+                <span>#940002</span><span>#BE6156</span><span>#F9EAEA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design rules -->
+        <div class="mt-12 reveal" style="transition-delay:0.3s">
+          <p class="text-xs font-medium tracking-widest uppercase mb-5" style="color:#999;">
+            <span class="en-text">Key Rules</span>
+            <span class="zh-text">設計原則</span>
+          </p>
+          <div class="rules-list">
+            <div class="rule-row">
+              <div class="rule-num">01</div>
+              <div class="text-sm" style="color:#555;">
+                <span class="en-text">One primary action colour per screen. Green buttons only — red is reserved for the logo and app title.</span>
+                <span class="zh-text">每個頁面只有一個主要行動色。只用綠色按鈕，紅色保留給 Logo 和應用程式標題。</span>
+              </div>
+            </div>
+            <div class="rule-row">
+              <div class="rule-num">02</div>
+              <div class="text-sm" style="color:#555;">
+                <span class="en-text">No gradients. All fills are flat — depth comes from shadow and border only.</span>
+                <span class="zh-text">不使用漸層。所有填色都是平面的，深度感來自陰影與邊框。</span>
+              </div>
+            </div>
+            <div class="rule-row">
+              <div class="rule-num">03</div>
+              <div class="text-sm" style="color:#555;">
+                <span class="en-text">Page background is always cream (#FAF7F2), never pure white — to keep that handmade, warm feeling.</span>
+                <span class="zh-text">頁面背景永遠是奶油色（#FAF7F2），不用純白，保持手工溫暖的質感。</span>
+              </div>
+            </div>
+            <div class="rule-row">
+              <div class="rule-num">04</div>
+              <div class="text-sm" style="color:#555;">
+                <span class="en-text">Avoid saturated greens — the palette uses earthy, muted tones, never Tailwind green-500 or above.</span>
+                <span class="zh-text">避免飽和度高的綠色，調色板使用大地色系的低飽和色調，不使用 Tailwind green-500 以上的顏色。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── HOW IT WAS BUILT ─────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">How It Was Built</span>
+            <span class="zh-text">建造過程</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">Loopy was built entirely by one designer — no engineers. Using Claude Code, I directed every technical decision from component architecture to Gemini API integration, entirely through conversation. I had the product vision and design system; Claude handled the code.</span>
+          <span class="zh-text">Loopy 完全由一位設計師建造 — 沒有工程師。透過 Claude Code，我透過對話指引每一個技術決策，從元件架構到 Gemini API 整合，全部如此。我有產品願景和設計系統；Claude 負責程式碼。</span>
+        </p>
+
+        <div class="phases-list reveal" style="transition-delay:0.2s">
+
+          <div class="phase-item">
+            <div class="phase-num">01</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Problem → Product idea</span>
+                <span class="zh-text">問題 → 產品想法</span>
+              </div>
+              <p class="phase-desc">
+                <span class="en-text">Identified 4 friction points from my own crochet practice: no single place to save YouTube patterns, row counter apps with no pattern context, inspiration scattered across platforms, and AI conversations I kept losing. Each became a feature.</span>
+                <span class="zh-text">從自己的鈎織經歷中找出 4 個痛點：沒有地方統一儲存 YouTube 織圖、計圈 App 沒有織圖脈絡、靈感散落在各平台、AI 對話常常找不到。每個問題都成為一個功能。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">02</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Design system first</span>
+                <span class="zh-text">先建立設計系統</span>
+              </div>
+              <p class="phase-desc">
+                <span class="en-text">Before writing a line of code, I defined the full visual language in a design style guide: brand identity, colour tokens, component colour map, typography rules, and what to avoid. This became the single source of truth for all subsequent AI collaboration.</span>
+                <span class="zh-text">在寫任何程式碼之前，我先在設計風格指南中定義完整的視覺語言：品牌識別、色彩 token、元件色彩對照表、字體規範，以及應避免的事項。這成為所有後續 AI 協作的唯一標準。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">03</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Single-file prototype → structured app</span>
+                <span class="zh-text">單一檔案原型 → 結構化應用程式</span>
+              </div>
+              <p class="phase-desc">
+                <span class="en-text">Started with a single React file (loopy.jsx) to validate all features quickly — inspiration collection, AI pattern modal, counter, project management, settings with invite gate. Once the logic was stable, migrated to a Vite project with proper component structure.</span>
+                <span class="zh-text">先用單一 React 檔案（loopy.jsx）快速驗證所有功能 — 靈感收藏、AI 織圖 Modal、計圈器、專案管理、有邀請碼機制的設定頁。邏輯穩定後，遷移到有正確元件結構的 Vite 專案。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">04</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Gemini AI integration</span>
+                <span class="zh-text">整合 Gemini AI</span>
+              </div>
+              <p class="phase-desc">
+                <span class="en-text">Integrated Google Gemini 1.5 Flash to process YouTube links, video screenshots, and PDF files — outputting structured row-by-row patterns in two formats (Row-by-Row and Written). Built a mock fallback so the feature works in demo mode without an API key.</span>
+                <span class="zh-text">整合 Google Gemini 1.5 Flash，處理 YouTube 連結、影片截圖和 PDF 檔案，輸出兩種格式的逐行結構化織圖（逐行格式與書寫格式）。建立 mock 備援，讓功能在沒有 API key 的情況下也能以示範模式運作。</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-num">05</div>
+            <div class="phase-body">
+              <div class="phase-title">
+                <span class="en-text">Deployed to Vercel — testing pending</span>
+                <span class="zh-text">部署至 Vercel — 測試尚未開始</span>
+              </div>
+              <p class="phase-desc">
+                <span class="en-text">The app is live at loopy-khaki.vercel.app with a VIP invite-code gate and a black cat easter egg onboarding screen. User testing and final polish have not yet started — this is still a work in progress.</span>
+                <span class="zh-text">App 已上線於 loopy-khaki.vercel.app，有 VIP 邀請碼機制和黑貓彩蛋引導畫面。使用者測試和最終調整尚未開始，目前仍在製作中。</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── WHAT'S NEXT ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">What's Next</span>
+            <span class="zh-text">接下來</span>
+          </span>
+        </div>
+
+        <div class="next-steps reveal" style="transition-delay:0.1s">
+          <div class="next-item">
+            <div class="next-dot active" style="background:#BE6156; animation: breathe-dot 2.5s ease-in-out infinite;"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">User testing — real crochet beginners</span>
+                <span class="zh-text">使用者測試 — 真正的鈎織新手</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Test with people at the same skill level as me: no prior experience, learning from YouTube and social media.</span>
+                <span class="zh-text">找和我一樣程度的人測試：沒有基礎、靠 YouTube 和社群媒體自學的新手。</span>
+              </p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">Polish and bug fixes</span>
+                <span class="zh-text">細節打磨與修正</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Edge case handling, mobile keyboard UX, and final visual polish based on testing feedback.</span>
+                <span class="zh-text">邊緣情況處理、手機鍵盤 UX，以及根據測試回饋進行最終視覺調整。</span>
+              </p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">
+                <span class="en-text">Share with the crochet community</span>
+                <span class="zh-text">分享給鈎織社群</span>
+              </div>
+              <p class="text-xs" style="color:#999;">
+                <span class="en-text">Open the invite gate and share with crochet communities on Instagram and YouTube — the exact platforms the app pulls inspiration from.</span>
+                <span class="zh-text">開放邀請碼，分享給 Instagram 和 YouTube 上的鈎織社群 — 正好就是這個 App 的靈感來源平台。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER DIVIDER ───────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <Footer />
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Tags ───────────────────────────────────────────────────────── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.05);
+    color: #555;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .tag-accent {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: rgba(94,115,85,0.1);
+    color: #5E7355;
+    border: 1px solid rgba(94,115,85,0.2);
+  }
+  .tag-warn {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: rgba(190,97,86,0.1);
+    color: #BE6156;
+    border: 1px solid rgba(190,97,86,0.2);
+  }
+
+  /* ── Demo link ──────────────────────────────────────────────────── */
+  .demo-link {
+    color: #5E7355;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .demo-link:hover { opacity: 0.7; }
+
+  /* ── Purpose Cards ──────────────────────────────────────────────── */
+  .purpose-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .purpose-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+  /* ── Status dot ─────────────────────────────────────────────────── */
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    animation: breathe-dot 2.5s ease-in-out infinite;
+  }
+  @keyframes breathe-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── Screenshots ────────────────────────────────────────────────── */
+  .screenshot-frame {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #FAF7F2;
+    transition: transform 0.3s ease;
+  }
+  .screenshot-frame:hover { transform: translateY(-3px); }
+  .screenshot-frame img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .screenshot-label {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.68rem;
+    color: #999;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Logo row ───────────────────────────────────────────────────── */
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #FAF7F2;
+  }
+  .loopy-logo {
+    width: 120px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 640px) {
+    .logo-row { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── Colour palette ─────────────────────────────────────────────── */
+  .palette-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .swatch-group {}
+  .swatch-label {
+    font-size: 0.72rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .swatch-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+  .swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+  }
+  .swatch-hex-row {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .swatch-hex-row span {
+    font-size: 0.6rem;
+    color: #bbb;
+    width: 2.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
+  /* ── Design rules ───────────────────────────────────────────────── */
+  .rules-list { display: flex; flex-direction: column; }
+  .rule-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    align-items: flex-start;
+  }
+  .rule-row:last-child { border-bottom: none; }
+  .rule-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+    width: 2rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  /* ── Phase Timeline ─────────────────────────────────────────────── */
+  .phases-list { display: flex; flex-direction: column; gap: 0; }
+  .phase-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .phase-item:last-child { border-bottom: none; }
+  .phase-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+    width: 2.5rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .phase-body {}
+  .phase-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .phase-desc {
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: #555;
+  }
+
+  /* ── Next Steps ─────────────────────────────────────────────────── */
+  .next-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+  .next-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .next-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .next-dot.pending {
+    background: transparent;
+    border: 1.5px solid rgba(0,0,0,0.2);
+  }
+</style>
