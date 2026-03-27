@@ -1,12 +1,15 @@
 ---
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh-TW.json';
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="px-8 md:px-16 lg:px-24 py-12 mt-32 border-t border-gray-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
   <div>
     <p class="text-sm text-gray-DEFAULT">
-      <span class="en-text">Designed by Dianne. Built with Claude. © {year}</span>
-      <span class="zh-text">由 Dianne 設計。和 Claude 一起建造。© {year}</span>
+      <span class="en-text">{en.footer.built} © {year}</span>
+      <span class="zh-text">{zh.footer.built} © {year}</span>
     </p>
   </div>
 

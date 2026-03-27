@@ -2,37 +2,10 @@
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import en from '../i18n/en.json';
+import zh from '../i18n/zh-TW.json';
 
-const chapters = [
-  {
-    id: 'taiwan',
-    en: 'Growing Up in Taiwan',
-    zh: '在台灣長大',
-    body_en: `Dianne grew up in Taiwan, surrounded by a culture that valued both discipline and creativity. She studied Film and Graphic Design — learning early that storytelling is everything, and that the gap between a good idea and a great one is almost always visual.`,
-    body_zh: `Dianne 在台灣長大，在一個既重視紀律也珍視創意的文化中成長。她攻讀電影與平面設計，很早就明白：說故事是一切的核心，而好作品與偉大作品之間的距離，幾乎永遠是視覺。`,
-  },
-  {
-    id: 'dance',
-    en: 'The Dance Studio Years',
-    zh: '舞蹈教室的那些年',
-    body_en: `For three years, Dianne co-founded and ran a swing dance studio in Taiwan. She taught classes, ran campaigns that grew enrollment by 150%, and managed a small creative team — all while learning that community is a design problem too.`,
-    body_zh: `三年間，Dianne 在台灣共同創立並經營一間搖擺舞蹈工作室。她教授課程、策劃讓學生人數成長 150% 的行銷活動，管理小型創意團隊——同時學到，社群本身也是一個設計問題。`,
-  },
-  {
-    id: 'film',
-    en: 'Film & Design',
-    zh: '電影與設計',
-    body_en: `The film background never left. It shapes how Dianne approaches pacing in user flows, visual hierarchy in layouts, and the kind of emotional arc a good onboarding should have. Design is storytelling — just with fewer jump cuts.`,
-    body_zh: `電影背景從未離開她。它影響著 Dianne 看待使用者流程節奏的方式、版面視覺層次的直覺，以及好的 onboarding 應有的情感弧線。設計就是說故事——只是少了幾個跳接鏡頭。`,
-  },
-  {
-    id: 'ux',
-    en: 'UX → Seattle',
-    zh: 'UX → 西雅圖',
-    body_en: `A Master's in User Experience brought Dianne to the Pacific Northwest. She now designs for AI-powered products, works across research, interaction, and visual design — and builds her portfolio alongside Claude.`,
-    body_zh: `使用者體驗碩士學位把 Dianne 帶到了太平洋西北岸。她現在為 AI 驅動的產品做設計，跨足研究、互動與視覺設計——並且和 Claude 一起建造她的作品集。`,
-  },
-];
+const chapterIds = ['taiwan', 'dance', 'film', 'ux'] as const;
 
 const experience = [
   {
@@ -82,21 +55,16 @@ const experience = [
         <!-- Intro text -->
         <div class="reveal">
           <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-6">
-            <span class="en-text">About</span>
-            <span class="zh-text">關於</span>
+            <span class="en-text">{en.about.label}</span>
+            <span class="zh-text">{zh.about.label}</span>
           </span>
           <h1 class="text-4xl md:text-5xl font-light leading-tight mb-8">
-            <span class="en-text">Designer. Storyteller.<br />Cat person.</span>
-            <span class="zh-text">設計師。說故事的人。<br />貓奴。</span>
+            <span class="en-text">{en.about.headline_line1}<br />{en.about.headline_line2}</span>
+            <span class="zh-text">{zh.about.headline_line1}<br />{zh.about.headline_line2}</span>
           </h1>
           <p class="text-base text-gray-DEFAULT max-w-lg leading-relaxed">
-            <span class="en-text">
-              Dianne is a multidisciplinary designer with roots in film, a detour through dance,
-              and a deep belief that the best design feels obvious — after the fact.
-            </span>
-            <span class="zh-text">
-              Dianne 是一位跨領域設計師，根植於電影，繞道過舞蹈，深信最好的設計在事後看來顯而易見。
-            </span>
+            <span class="en-text">{en.about.sub}</span>
+            <span class="zh-text">{zh.about.sub}</span>
           </p>
         </div>
 
@@ -106,32 +74,32 @@ const experience = [
     <!-- ─── CHAPTERS ─────────────────────────────────────────────── -->
     <section class="section border-t border-gray-border">
       <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
-        <span class="en-text">The Story</span>
-        <span class="zh-text">故事</span>
+        <span class="en-text">{en.about.storyLabel}</span>
+        <span class="zh-text">{zh.about.storyLabel}</span>
       </span>
 
       <!-- Tab nav -->
       <div class="flex flex-wrap gap-4 mb-12" id="chapter-tabs">
-        {chapters.map((ch, i) => (
+        {chapterIds.map((id, i) => (
           <button
             class={`chapter-tab text-sm pb-2 border-b-2 transition-all duration-200 ${i === 0 ? 'border-black font-medium' : 'border-transparent text-gray-DEFAULT'}`}
-            data-chapter={ch.id}
+            data-chapter={id}
             data-hover
           >
-            <span class="en-text">{ch.en}</span>
-            <span class="zh-text">{ch.zh}</span>
+            <span class="en-text">{en.about.chapters[id].title}</span>
+            <span class="zh-text">{zh.about.chapters[id].title}</span>
           </button>
         ))}
       </div>
 
       <!-- Chapter bodies -->
-      {chapters.map((ch, i) => (
+      {chapterIds.map((id, i) => (
         <div
           class={`chapter-body max-w-2xl leading-relaxed text-base ${i === 0 ? '' : 'hidden'}`}
-          data-chapter={ch.id}
+          data-chapter={id}
         >
-          <p class="en-text text-gray-DEFAULT">{ch.body_en}</p>
-          <p class="zh-text text-gray-DEFAULT">{ch.body_zh}</p>
+          <p class="en-text text-gray-DEFAULT">{en.about.chapters[id].body}</p>
+          <p class="zh-text text-gray-DEFAULT">{zh.about.chapters[id].body}</p>
         </div>
       ))}
     </section>
@@ -141,10 +109,10 @@ const experience = [
       <div class="max-w-3xl" id="philosophy-wrap">
         <p class="text-2xl md:text-3xl font-light leading-snug text-black/20" id="philosophy-text">
           <span class="en-text">
-            For me, design isn't just about interfaces. It's about removing friction, creating clarity, and sparking delight. I love when something I create helps people get from <em class="text-black not-italic">"this is complicated"</em> to <em class="text-black not-italic">"oh, that was easy."</em>
+            {en.about.philosophyPre} <em class="text-black not-italic">"{en.about.philosophyEmphasis1}"</em> {en.about.philosophyMid} <em class="text-black not-italic">"{en.about.philosophyEmphasis2}"</em>
           </span>
           <span class="zh-text">
-            對我來說，設計不只是介面。而是消除摩擦、創造清晰，以及帶來那一瞬間的驚喜。我最喜歡的，就是讓人從<em class="text-black not-italic">「這好複雜」</em>走到<em class="text-black not-italic">「原來這麼簡單」</em>。
+            {zh.about.philosophyPre}<em class="text-black not-italic">「{zh.about.philosophyEmphasis1}」</em>{zh.about.philosophyMid}<em class="text-black not-italic">「{zh.about.philosophyEmphasis2}」</em>
           </span>
         </p>
       </div>
@@ -153,8 +121,8 @@ const experience = [
     <!-- ─── EXPERIENCE ────────────────────────────────────────────── -->
     <section class="section border-t border-gray-border">
       <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
-        <span class="en-text">Experience</span>
-        <span class="zh-text">工作經歷</span>
+        <span class="en-text">{en.about.experienceLabel}</span>
+        <span class="zh-text">{zh.about.experienceLabel}</span>
       </span>
 
       <div class="divide-y divide-gray-border max-w-3xl" id="experience-list">
@@ -185,8 +153,8 @@ const experience = [
     <!-- ─── HOW I WORK ─────────────────────────────────────────────── -->
     <section class="section border-t border-gray-border">
       <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT block mb-10">
-        <span class="en-text">How I Work</span>
-        <span class="zh-text">我的工作方式</span>
+        <span class="en-text">{en.about.howIWorkLabel}</span>
+        <span class="zh-text">{zh.about.howIWorkLabel}</span>
       </span>
 
       <!-- Workflow strip -->
@@ -206,8 +174,8 @@ const experience = [
         <div class="flex items-center gap-2 workflow-step workflow-step--live">
           <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation: live-blink 1.2s ease-in-out infinite;"></span>
           <span class="text-sm font-medium" style="color: var(--accent);">
-            <span class="en-text">Live</span>
-            <span class="zh-text">上線</span>
+            <span class="en-text">{en.about.live}</span>
+            <span class="zh-text">{zh.about.live}</span>
           </span>
         </div>
       </div>
@@ -217,22 +185,22 @@ const experience = [
         <div class="workflow-detail reveal">
           <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Figma</p>
           <p class="text-sm text-gray-DEFAULT leading-relaxed">
-            <span class="en-text">Figma is where research becomes design. I use it across the full UX process — mapping user flows, building wireframes, and creating components. It's where I think out loud before anything gets built.</span>
-            <span class="zh-text">Figma 是我把研究轉化為設計的地方。我在整個 UX 流程中使用它——繪製使用者流程、建立線框、製作元件。這是動手做之前，我思考的舞台。</span>
+            <span class="en-text">{en.about.figmaDesc}</span>
+            <span class="zh-text">{zh.about.figmaDesc}</span>
           </p>
         </div>
         <div class="workflow-detail reveal" style="transition-delay: 0.08s">
           <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Cursor</p>
           <p class="text-sm text-gray-DEFAULT leading-relaxed">
-            <span class="en-text">I build in Cursor with Claude Code as my engineering team. Claude Code reviews my logic, catches edge cases, and helps me ship features I couldn't build alone — without losing design intent in handoff. I'm the designer and product lead; Claude Code is the teammate that makes it real.</span>
-            <span class="zh-text">我在 Cursor 裡建造，Claude Code 是我的工程團隊。它幫我 review 邏輯、找出邊界案例，讓我能實現原本一個人做不到的功能——同時不在交接中流失設計意圖。我是設計師與產品主導者；Claude Code 是讓它成真的夥伴。</span>
+            <span class="en-text">{en.about.cursorDesc}</span>
+            <span class="zh-text">{zh.about.cursorDesc}</span>
           </p>
         </div>
         <div class="workflow-detail reveal" style="transition-delay: 0.16s">
           <p class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT mb-3">Vercel</p>
           <p class="text-sm text-gray-DEFAULT leading-relaxed">
-            <span class="en-text">Vercel handles deployment so I can focus on craft. Every push is a preview, every merge is live. Real projects, real users — not just mockups in a portfolio.</span>
-            <span class="zh-text">Vercel 負責部署，讓我專注在設計品質本身。每次 push 都有預覽，每次 merge 就上線。真實的產品、真實的使用者——不只是作品集裡的 mockup。</span>
+            <span class="en-text">{en.about.vercelDesc}</span>
+            <span class="zh-text">{zh.about.vercelDesc}</span>
           </p>
         </div>
       </div>

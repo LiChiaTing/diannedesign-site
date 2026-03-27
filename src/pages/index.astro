@@ -5,6 +5,8 @@ import Footer from '../components/layout/Footer.astro';
 import HeroOrbit from '../components/home/HeroOrbit.astro';
 import NowSection from '../components/home/NowSection.astro';
 import { getCollection } from 'astro:content';
+import en from '../i18n/en.json';
+import zh from '../i18n/zh-TW.json';
 
 const allWork = await getCollection('work');
 const featured = allWork
@@ -37,35 +39,35 @@ const featured = allWork
         <div class="flex items-center gap-2 mb-8 md:mb-10 reveal">
           <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation: breathe-dot 2.5s ease-in-out infinite;"></span>
           <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
-            <span class="en-text">Designs in Figma. Builds with Claude.</span>
-            <span class="zh-text">在 Figma 設計。和 Claude 一起建造。</span>
+            <span class="en-text">{en.hero.badge}</span>
+            <span class="zh-text">{zh.hero.badge}</span>
           </span>
         </div>
 
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 md:mb-8 reveal" style="transition-delay:0.1s">
-          <span class="en-text">Product<br/>Designer.</span>
-          <span class="zh-text">產品<br/>設計師。</span>
+          <span class="en-text">{en.hero.headline_line1}<br/>{en.hero.headline_line2}</span>
+          <span class="zh-text">{zh.hero.headline_line1}<br/>{zh.hero.headline_line2}</span>
         </h1>
 
         <p class="text-base leading-relaxed max-w-xs reveal" style="color:#999; transition-delay:0.2s">
-          <span class="en-text">Dianne turns complex ideas into clear, intuitive experiences. Based in Seattle. Originally from Taipei.</span>
-          <span class="zh-text">把複雜的想法，轉化成清晰、直覺的體驗。在西雅圖，來自台北。</span>
+          <span class="en-text">{en.hero.sub}</span>
+          <span class="zh-text">{zh.hero.sub}</span>
         </p>
 
         <div class="flex items-center gap-8 mt-10 md:mt-12 reveal" style="transition-delay:0.3s">
           <a href="/work" class="text-sm font-medium hover:text-accent transition-colors duration-200" style="text-decoration:underline; text-underline-offset:4px;" data-hover>
-            <span class="en-text">See my work →</span>
-            <span class="zh-text">看我的作品 →</span>
+            <span class="en-text">{en.hero.cta}</span>
+            <span class="zh-text">{zh.hero.cta}</span>
           </a>
           <a href="/about" class="text-sm transition-colors duration-200 hover:text-black" style="color:#999;" data-hover>
-            <span class="en-text">About me</span>
-            <span class="zh-text">關於我</span>
+            <span class="en-text">{en.hero.ctaAbout}</span>
+            <span class="zh-text">{zh.hero.ctaAbout}</span>
           </a>
         </div>
 
         <!-- Workflow strip -->
         <div class="flex items-center gap-2 mt-8 reveal" style="transition-delay:0.4s">
-          <span class="text-xs tracking-widest uppercase" style="color:#ccc;">How I Work</span>
+          <span class="text-xs tracking-widest uppercase" style="color:#ccc;">{en.hero.workflowLabel}</span>
           <span style="color:#e0e0e0; font-size:10px;">·</span>
           <span class="text-xs" style="color:#bbb;">Figma</span>
           <span class="text-xs" style="color:#ddd;">›</span>
@@ -76,8 +78,8 @@ const featured = allWork
           <span class="flex items-center gap-1.5">
             <span class="w-1 h-1 rounded-full bg-accent" style="animation: live-blink 1.2s ease-in-out infinite;"></span>
             <span class="text-xs font-medium" style="color: var(--accent);">
-              <span class="en-text">Live</span>
-              <span class="zh-text">上線</span>
+              <span class="en-text">{en.hero.live}</span>
+              <span class="zh-text">{zh.hero.live}</span>
             </span>
           </span>
         </div>
@@ -109,12 +111,12 @@ const featured = allWork
 
       <div class="flex items-center justify-between mb-14">
         <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
-          <span class="en-text">Selected Work</span>
-          <span class="zh-text">精選作品</span>
+          <span class="en-text">{en.work.selectedWork}</span>
+          <span class="zh-text">{zh.work.selectedWork}</span>
         </span>
         <a href="/work" class="text-sm hover:text-accent transition-colors reveal" data-hover>
-          <span class="en-text">View all →</span>
-          <span class="zh-text">全部作品 →</span>
+          <span class="en-text">{en.work.viewAll}</span>
+          <span class="zh-text">{zh.work.viewAll}</span>
         </a>
       </div>
 
@@ -164,12 +166,12 @@ const featured = allWork
 
       <div class="flex items-center justify-between mb-14">
         <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
-          <span class="en-text">Creative</span>
-          <span class="zh-text">創作</span>
+          <span class="en-text">{en.creative.title}</span>
+          <span class="zh-text">{zh.creative.title}</span>
         </span>
         <a href="/creative" class="text-sm hover:text-accent transition-colors" data-hover>
-          <span class="en-text">View all →</span>
-          <span class="zh-text">全部 →</span>
+          <span class="en-text">{en.creative.viewAll}</span>
+          <span class="zh-text">{zh.creative.viewAll}</span>
         </a>
       </div>
 

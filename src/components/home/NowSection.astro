@@ -1,12 +1,14 @@
 ---
 import nowData from '../../data/now.json';
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh-TW.json';
 ---
 
 <section class="section border-t border-gray-border" id="now">
   <div class="mb-12">
     <span class="text-xs font-medium tracking-widest uppercase text-gray-DEFAULT">
-      <span class="en-text">Right Now</span>
-      <span class="zh-text">現在進行中</span>
+      <span class="en-text">{en.now.title}</span>
+      <span class="zh-text">{zh.now.title}</span>
     </span>
   </div>
 
@@ -15,8 +17,8 @@ import nowData from '../../data/now.json';
     <!-- Status widget (fetched client-side from /api/status) -->
     <div class="now-widget reveal" id="status-widget">
       <div class="widget-label">
-        <span class="en-text">Working on</span>
-        <span class="zh-text">正在做</span>
+        <span class="en-text">{en.now.workingOn}</span>
+        <span class="zh-text">{zh.now.workingOn}</span>
       </div>
       <p class="widget-value" id="status-value">
         <span class="en-text">{nowData.status}</span>
@@ -35,8 +37,8 @@ import nowData from '../../data/now.json';
     <!-- Thinking widget (static from now.json, updated Friday via GitHub Action) -->
     <div class="now-widget reveal" style="animation-delay: 0.1s">
       <div class="widget-label">
-        <span class="en-text">Thinking about</span>
-        <span class="zh-text">最近在想</span>
+        <span class="en-text">{en.now.thinkingAbout}</span>
+        <span class="zh-text">{zh.now.thinkingAbout}</span>
       </div>
       <p class="widget-value text-sm leading-snug">
         <span class="en-text">{nowData.thinking}</span>
@@ -47,8 +49,8 @@ import nowData from '../../data/now.json';
     <!-- Music widget (fetched client-side from /api/now-playing) -->
     <div class="now-widget reveal" style="animation-delay: 0.2s">
       <div class="widget-label">
-        <span class="en-text">Listening to</span>
-        <span class="zh-text">正在聽</span>
+        <span class="en-text">{en.now.listeningTo}</span>
+        <span class="zh-text">{zh.now.listeningTo}</span>
       </div>
       <p class="widget-value" id="music-title">{nowData.music?.title}</p>
       <p class="widget-sub" id="music-artist">{nowData.music?.artist}</p>
@@ -58,8 +60,8 @@ import nowData from '../../data/now.json';
     <!-- Weather widget (Seattle — fetched client-side) -->
     <div class="now-widget reveal" style="animation-delay: 0.3s" id="weather-widget">
       <div class="widget-label">
-        <span class="en-text">Seattle</span>
-        <span class="zh-text">西雅圖</span>
+        <span class="en-text">{en.now.seattle}</span>
+        <span class="zh-text">{zh.now.seattle}</span>
       </div>
       <p class="widget-value" id="weather-temp">–</p>
       <p class="widget-sub" id="weather-desc">–</p>

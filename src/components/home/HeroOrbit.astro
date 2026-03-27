@@ -1,14 +1,17 @@
 ---
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh-TW.json';
+
 // Orbital tag cards — planetary motion with camera reticle center
 // Tags reveal progressively: professional first → casual last
 const tags = [
-  { en: '#UX Designer',         zh: '#UX 設計師',    delay: 0.2  },
-  { en: '#Taipei → Seattle',    zh: '#台北 → 西雅圖', delay: 0.8  },
-  { en: '#Figma & Claude',      zh: '#Figma & Claude', delay: 1.5 },
-  { en: '#Film Background',     zh: '#電影背景',      delay: 2.4  },
-  { en: '#Photographer',        zh: '#攝影師',        delay: 3.4  },
-  { en: '#Former Dance Teacher',zh: '#前舞蹈老師',    delay: 5.0  },
-  { en: '#2 Cats 1 Dog',        zh: '#兩貓一狗',      delay: 6.8  },
+  { en: en.tags.ux,           zh: zh.tags.ux,           delay: 0.2  },
+  { en: en.tags.taipei_seattle, zh: zh.tags.taipei_seattle, delay: 0.8  },
+  { en: en.tags.figma_claude, zh: zh.tags.figma_claude, delay: 1.5  },
+  { en: en.tags.film,         zh: zh.tags.film,         delay: 2.4  },
+  { en: en.tags.photographer, zh: zh.tags.photographer, delay: 3.4  },
+  { en: en.tags.dancer,       zh: zh.tags.dancer,       delay: 5.0  },
+  { en: en.tags.pets,         zh: zh.tags.pets,         delay: 6.8  },
 ];
 ---
 
