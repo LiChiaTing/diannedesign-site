@@ -88,14 +88,14 @@ import Footer from '../../components/layout/Footer.astro';
     <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
       <div class="max-w-3xl">
         <div class="flex items-center gap-3 mb-8 reveal">
-          <div class="w-1.5 h-1.5 rounded-full" style="background:#BE6156;"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
           <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
             <span class="en-text">Why This Exists</span>
             <span class="zh-text">為什麼要做這個</span>
           </span>
         </div>
 
-        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid #BE6156; padding-left:1.5rem;">
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid var(--accent); padding-left:1.5rem;">
           <span class="en-text">"I started crocheting as a beginner with no in-person instruction. AI helped me decode patterns — but everything lived in a single chat thread, and I kept losing my place."</span>
           <span class="zh-text">「我是一個沒有人教的鈎織新手，靠 AI 幫我看懂織圖。但所有資訊都存在同一個對話視窗裡，很容易就找不到之前討論的內容。」</span>
         </blockquote>
@@ -141,9 +141,9 @@ import Footer from '../../components/layout/Footer.astro';
           </div>
         </div>
 
-        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(190,97,86,0.06); border:1px solid rgba(190,97,86,0.15); transition-delay:0.4s;">
+        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(224,79,114,0.06); border:1px solid rgba(224,79,114,0.15); transition-delay:0.4s;">
           <p class="text-sm leading-relaxed" style="color:#555;">
-            <span class="status-dot" style="background:#BE6156;"></span>
+            <span class="status-dot" style="background:var(--accent);"></span>
             <strong class="en-text">Status: In progress.</strong>
             <strong class="zh-text">狀態：製作中。</strong>
             <span class="en-text"> Core features are built and deployed. User testing and final polish not yet started.</span>
@@ -428,7 +428,7 @@ import Footer from '../../components/layout/Footer.astro';
 
         <div class="next-steps reveal" style="transition-delay:0.1s">
           <div class="next-item">
-            <div class="next-dot active" style="background:#BE6156; animation: breathe-dot 2.5s ease-in-out infinite;"></div>
+            <div class="next-dot active" style="background:var(--accent); animation: breathe-dot 2.5s ease-in-out infinite;"></div>
             <div>
               <div class="text-sm font-medium mb-1">
                 <span class="en-text">User testing — real crochet beginners</span>
@@ -480,32 +480,6 @@ import Footer from '../../components/layout/Footer.astro';
 
 <style>
   /* ── Tags ───────────────────────────────────────────────────────── */
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 10px;
-    border-radius: 9999px;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    background: rgba(0,0,0,0.05);
-    color: #555;
-    border: 1px solid rgba(0,0,0,0.08);
-  }
-  .tag-accent {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 10px;
-    border-radius: 9999px;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    background: rgba(94,115,85,0.1);
-    color: #5E7355;
-    border: 1px solid rgba(94,115,85,0.2);
-  }
   .tag-warn {
     display: inline-flex;
     align-items: center;
@@ -515,14 +489,14 @@ import Footer from '../../components/layout/Footer.astro';
     font-weight: 600;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    background: rgba(190,97,86,0.1);
-    color: #BE6156;
-    border: 1px solid rgba(190,97,86,0.2);
+    background: rgba(224,79,114,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(224,79,114,0.2);
   }
 
   /* ── Demo link ──────────────────────────────────────────────────── */
   .demo-link {
-    color: #5E7355;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.2s;
@@ -557,7 +531,7 @@ import Footer from '../../components/layout/Footer.astro';
     border-radius: 1rem;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.06);
-    background: #FAF7F2;
+    background: #f5f5f5;
     transition: transform 0.3s ease;
   }
   .screenshot-frame:hover { transform: translateY(-3px); }
@@ -583,7 +557,7 @@ import Footer from '../../components/layout/Footer.astro';
     padding: 1.5rem;
     border-radius: 1rem;
     border: 1px solid rgba(0,0,0,0.06);
-    background: #FAF7F2;
+    background: #f5f5f5;
   }
   .loopy-logo {
     width: 120px;

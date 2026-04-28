@@ -3,7 +3,8 @@
     "work": "Work",
     "about": "About",
     "creative": "Creative",
-    "contact": "Contact"
+    "contact": "Contact",
+    "resume": "Resume"
   },
   "hero": {
     "badge": "Designs in Figma. Builds with Claude.",

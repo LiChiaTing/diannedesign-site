@@ -3,7 +3,8 @@
     "work": "作品",
     "about": "關於",
     "creative": "創作",
-    "contact": "聯絡"
+    "contact": "聯絡",
+    "resume": "履歷"
   },
   "hero": {
     "badge": "以 Figma 設計。使用 Claude 開發。",

@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const experience = [
+  {
+    company: 'miirr.ai',
+    role: 'Product Designer (Contract)',
+    date: 'Aug – Sep 2025',
+    bullets: [
+      'Designed AI-assisted user workflows for a SaaS platform, translating abstract technical capabilities into intuitive interfaces.',
+      'Created high-fidelity prototypes and collaborated with engineers to define responsive layouts for complex data inputs, delivering an investor-ready demo within 4 weeks by leveraging AI-assisted design workflows.',
+    ],
+  },
+  {
+    company: 'Arxtect',
+    role: 'Product Designer (Contract)',
+    date: 'Jun – Nov 2025',
+    bullets: [
+      'Collaborated with cross-functional teams to design B2B dashboards, successfully simplifying complex data workflows.',
+      'Developed and maintained scalable UI components, reducing development friction and ensuring consistency across the product suite.',
+      'Translated complex business requirements into clear user flows and wireframes, focusing on usability and efficiency.',
+    ],
+  },
+  {
+    company: 'Afghan Health Organization (AHAO)',
+    role: 'Volunteer Website Designer',
+    date: 'Oct 2024 – Present',
+    bullets: [
+      'Led the complete redesign of afghanhealth.org, restructuring the information architecture (IA) to improve navigation and discoverability.',
+      'Ensured all designs met WCAG accessibility standards, creating an inclusive digital experience for diverse communities.',
+    ],
+  },
+  {
+    company: 'Appy.yo',
+    role: 'UX Design Intern (Remote)',
+    date: 'Jul – Aug 2023',
+    bullets: [
+      'Conducted user research and usability testing with a diverse participant pool, integrating findings into design iterations.',
+      'Produced 45+ high-fidelity screens and interactive prototypes in Figma, demonstrating strong visual craft and attention to detail.',
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: 'AI LaTeX Editor',
+    subtitle: 'Design-to-Code Renovation',
+    desc: 'Led the end-to-end design renovation for an AI-powered research tool, restructuring the information architecture to handle complex document collaboration. Established a scalable design system that significantly reduced engineering handoff friction and improved overall typesetting efficiency.',
+  },
+  {
+    title: 'FLARE',
+    subtitle: 'Civic Tech PWA',
+    desc: 'Designed a community safety web app integrating real-time alerts, focusing on intuitive user flows during high-stress edge cases and system constraints.',
+  },
+];
+
+const previous = [
+  {
+    role: 'Co-Founder & Operations Lead',
+    company: 'Lindy Island Swing Studio | Taipei, Taiwan',
+    date: 'Jun 2017 – Feb 2020',
+    desc: 'Applied user-centered thinking to optimize end-to-end service workflows. Managed complex logistics for international events and oversaw digital marketing strategies to drive user acquisition.',
+  },
+  {
+    role: 'Marketing & Operations Specialist',
+    company: 'The Westin · Q Square · Shin Kong Mitsukoshi | Taipei, Taiwan',
+    date: '2011 – 2017',
+    desc: 'Background in high-volume operations and customer experience optimization.',
+  },
+];
+---
+
+<BaseLayout title="Resume — Dianne (Li-Chia) Ting">
+  <Header />
+
+  <main>
+
+    <!-- English-only notice (shown in Chinese mode only) -->
+    <div class="zh-text px-8 md:px-16 lg:px-24 pt-28 md:pt-36">
+      <span class="text-xs" style="color:#bbb;">本頁以英文呈現 · This page is in English</span>
+    </div>
+
+    <!-- ─── HERO ──────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-24 md:pt-32 pb-10 en-text">
+      <div class="max-w-5xl">
+        <div class="mb-4 reveal">
+          <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color:var(--accent);">Product Designer</p>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-none" style="letter-spacing:-0.03em;">
+            Dianne (Li-Chia) Ting
+          </h1>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm reveal" style="color:#777; transition-delay:0.1s;">
+          <span>Seattle, WA</span>
+          <span style="color:#ccc;">·</span>
+          <a href="mailto:dianneting.design@gmail.com" class="hover:text-black transition-colors" data-hover>dianneting.design@gmail.com</a>
+          <span style="color:#ccc;">·</span>
+          <a href="https://linkedin.com/in/dianneting" target="_blank" rel="noopener" class="hover:text-black transition-colors" data-hover>linkedin.com/in/dianneting</a>
+          <span style="color:#ccc;">·</span>
+          <a href="https://diannedesign.me" class="hover:text-black transition-colors" data-hover>diannedesign.me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DOWNLOAD BUTTON ───────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pb-12 reveal en-text" style="transition-delay:0.2s;">
+      <a
+        href="/resume-print.html?print=1"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-3 text-sm font-medium transition-opacity hover:opacity-80"
+        style="background:var(--accent); color:#fff; padding: 12px 24px; border-radius:6px;"
+        data-hover
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1v9M4.5 6.5L8 10l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Download PDF
+      </a>
+      <p class="mt-3 text-xs" style="color:#bbb;">Opens a print-ready version — save as PDF from your browser</p>
+    </div>
+
+    <div class="px-8 md:px-16 lg:px-24">
+      <div style="height:1px; background:var(--border);"></div>
+    </div>
+
+    <!-- ─── BODY: two-column on large screens ────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 py-16 md:py-24 en-text">
+      <div class="max-w-5xl grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 lg:gap-20 items-start">
+
+        <!-- MAIN COLUMN -->
+        <div>
+
+          <!-- Summary -->
+          <section class="mb-16 reveal">
+            <div class="resume-label">Summary</div>
+            <p class="text-base md:text-lg font-light leading-relaxed" style="color:#444; border-left:2px solid var(--accent); padding-left:20px;">
+              Product Designer with an M.S. in User Experience (GPA 4.0), specializing in translating complex business logic into intuitive, scalable SaaS interfaces. Combines a strong foundation in high-volume operations with advanced technical execution capabilities to accelerate design-to-code workflows. Proven ability to leverage AI-assisted processes to simplify data-heavy platforms and establish robust design systems.
+            </p>
+          </section>
+
+          <!-- Experience -->
+          <section class="mb-16">
+            <div class="resume-label reveal">Experience</div>
+            <div class="flex flex-col gap-12">
+              {experience.map((item, i) => (
+                <div class="exp-entry reveal" style={`transition-delay:${i * 0.07}s`}>
+                  <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+                    <span class="text-lg font-semibold" style="letter-spacing:-0.01em;">{item.company}</span>
+                    <span class="text-xs" style="color:var(--gray);">{item.date}</span>
+                  </div>
+                  <div class="text-sm mb-4" style="color:#666;">{item.role}</div>
+                  <ul class="flex flex-col gap-2">
+                    {item.bullets.map(b => (
+                      <li class="text-sm leading-relaxed flex gap-3" style="color:#444;">
+                        <span style="color:var(--accent); flex-shrink:0; margin-top:2px;">—</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- Selected Projects -->
+          <section class="mb-16">
+            <div class="resume-label reveal">Selected Projects</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.map((p, i) => (
+                <div
+                  class="reveal"
+                  style={`transition-delay:${i * 0.08}s; border:1px solid var(--border); border-radius:8px; padding:20px;`}
+                >
+                  <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:var(--accent);">{p.subtitle}</div>
+                  <div class="text-base font-semibold mb-3" style="letter-spacing:-0.01em;">{p.title}</div>
+                  <p class="text-sm leading-relaxed" style="color:#555;">{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- Previous Experience -->
+          <section>
+            <div class="resume-label reveal">Previous Experience</div>
+            <div class="flex flex-col gap-8">
+              {previous.map((item, i) => (
+                <div class="reveal" style={`transition-delay:${i * 0.06}s; opacity:0.85;`}>
+                  <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+                    <span class="text-base font-medium">{item.role}</span>
+                    <span class="text-xs" style="color:var(--gray);">{item.date}</span>
+                  </div>
+                  <div class="text-sm mb-2" style="color:#888;">{item.company}</div>
+                  <p class="text-sm leading-relaxed" style="color:#666;">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="lg:sticky lg:top-28 flex flex-col gap-10">
+
+          <!-- Education -->
+          <div class="reveal">
+            <div class="resume-label">Education</div>
+            <div class="flex flex-col gap-5">
+              <div>
+                <div class="text-sm font-semibold leading-snug">M.S. User Experience</div>
+                <div class="text-xs mt-0.5" style="color:#555;">Arizona State University</div>
+                <div class="text-xs mt-0.5" style="color:var(--gray);">GPA 4.0 · 2022–2024</div>
+                <div class="text-xs mt-1 leading-relaxed" style="color:#888;">Focus: Research-driven design and measuring user engagement metrics.</div>
+              </div>
+              <div>
+                <div class="text-sm font-semibold leading-snug">B.F.A. Media Art</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px; background:var(--border);"></div>
+
+          <!-- Core Competencies -->
+          <div class="reveal">
+            <div class="resume-label">Core Competencies</div>
+            <div class="flex flex-col gap-5">
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:#555;">Design & Strategy</div>
+                <div class="flex flex-wrap gap-1.5">
+                  {['SaaS Workflow Design', 'Information Architecture', 'Design Systems', 'Rapid Prototyping', 'Accessibility (WCAG)'].map(s => (
+                    <span class="tag">{s}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:#555;">Tech & AI Workflows</div>
+                <div class="flex flex-wrap gap-1.5">
+                  {['Figma', 'Cursor', 'Claude', 'Vercel', 'Astro', 'Tailwind CSS', 'HTML/CSS'].map(s => (
+                    <span class="tag">{s}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px; background:var(--border);"></div>
+
+          <!-- Download CTA (repeated in sidebar) -->
+          <div class="reveal">
+            <div class="resume-label">Download</div>
+            <a
+              href="/resume-print.html?print=1"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 text-xs font-medium transition-opacity hover:opacity-80"
+              style="background:var(--accent); color:#fff; padding:9px 16px; border-radius:5px;"
+              data-hover
+            >
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1v9M4.5 6.5L8 10l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Download PDF
+            </a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .resume-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .exp-entry {
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+    transition: border-color 0.3s ease;
+  }
+
+  .exp-entry:hover {
+    border-color: var(--accent);
+  }
+</style>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  reveals.forEach(el => observer.observe(el));
+</script>
