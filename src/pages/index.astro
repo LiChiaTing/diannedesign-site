@@ -44,7 +44,7 @@ const featured = allWork
           </span>
         </div>
 
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 md:mb-8 reveal" style="transition-delay:0.1s">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-tight tracking-tight mb-6 md:mb-8 reveal" style="transition-delay:0.1s">
           <span class="en-text">{en.hero.headline_line1}<br/>{en.hero.headline_line2}</span>
           <span class="zh-text">{zh.hero.headline_line1}<br/>{zh.hero.headline_line2}</span>
         </h1>
@@ -66,9 +66,8 @@ const featured = allWork
         </div>
 
         <!-- Workflow strip -->
-        <div class="flex items-center gap-2 mt-8 reveal" style="transition-delay:0.4s">
-          <span class="text-xs tracking-widest uppercase" style="color:#ccc;">{en.hero.workflowLabel}</span>
-          <span style="color:#e0e0e0; font-size:10px;">·</span>
+        <div class="flex items-center gap-2 mt-8 reveal flex-nowrap" style="transition-delay:0.4s">
+          <span class="text-xs tracking-widest uppercase mr-4" style="color:#ccc;">{en.hero.workflowLabel}</span>
           <span class="text-xs" style="color:#bbb;">Figma</span>
           <span class="text-xs" style="color:#ddd;">›</span>
           <span class="text-xs" style="color:#bbb;">Claude</span>
