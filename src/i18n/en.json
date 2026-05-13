@@ -8,12 +8,12 @@
   },
   "hero": {
     "badge": "Designs in Figma. Builds with Claude.",
-    "headline_line1": "Product",
-    "headline_line2": "Designer.",
-    "sub": "Dianne turns complex ideas into clear, intuitive experiences. Based in Seattle. Originally from Taipei.",
+    "headline_line1": "Product Designer",
+    "headline_line2": "AI & SaaS.",
+    "sub": "Specializing in AI-driven tools and scalable SaaS platforms. Based in Seattle. Originally from Taipei.",
     "cta": "See my work →",
     "ctaAbout": "About me",
-    "workflowLabel": "How I Work",
+    "workflowLabel": "Design to Deploy",
     "live": "Live"
   },
   "work": {

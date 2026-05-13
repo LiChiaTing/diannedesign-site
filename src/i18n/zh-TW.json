@@ -8,12 +8,12 @@
   },
   "hero": {
     "badge": "以 Figma 設計。使用 Claude 開發。",
-    "headline_line1": "產品",
-    "headline_line2": "設計師。",
-    "sub": "Dianne 將複雜的想法轉化為清晰直觀的體驗。現居西雅圖,來自台北。",
+    "headline_line1": "AI · SaaS",
+    "headline_line2": "產品設計師。",
+    "sub": "專注於 AI 工具與可擴展 SaaS 平台的體驗設計。現居西雅圖，來自台北。",
     "cta": "查看我的作品 →",
     "ctaAbout": "關於我",
-    "workflowLabel": "我的工作方式",
+    "workflowLabel": "設計到上線",
     "live": "上線"
   },
   "work": {

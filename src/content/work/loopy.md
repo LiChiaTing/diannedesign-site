@@ -1,7 +1,7 @@
 ---
 title: "Loopy"
 tagline: "A personal crochet companion — AI-assisted pattern reading, progress tracking, and inspiration in one place"
-date: "2026-03-01"
+date: "2026-03-06"
 tags: ["Personal Project", "Mobile App", "AI Collaboration"]
 cover: "/images/projects/loopy/loopy.png"
 featured: true
