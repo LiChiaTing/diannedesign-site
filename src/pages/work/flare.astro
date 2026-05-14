@@ -152,13 +152,64 @@ import Footer from '../../components/layout/Footer.astro';
           </div>
         </div>
 
-        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(232,98,26,0.06); border:1px solid rgba(232,98,26,0.15); transition-delay:0.3s;">
+        <div class="mt-10 p-5 rounded-xl reveal" style="background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.08); transition-delay:0.3s;">
           <p class="text-sm leading-relaxed" style="color:#555;">
-            <span class="status-dot" style="background:#E8621A;"></span>
-            <strong class="en-text">Status: In progress.</strong>
-            <strong class="zh-text">狀態：進行中。</strong>
-            <span class="en-text"> Final QA and language polish underway. Next step: outreach to civil organizations — ICEout.org, Stop ICE network, immigrant rights coalitions — to explore data partnership and distribution.</span>
-            <span class="zh-text"> 最終品質檢測與語言潤飾進行中。下一步：聯繫公民組織 — ICEout.org、Stop ICE network、移民權利聯盟 — 探討資料夥伴關係與推廣合作。</span>
+            <span class="status-dot" style="background:#999;"></span>
+            <strong class="en-text">Status: Paused.</strong>
+            <strong class="zh-text">狀態：暫停。</strong>
+            <span class="en-text"> The Trump administration has begun pursuing legal action against developers of tools that interfere with ICE operations. As someone directly affected by the current immigration climate, continuing public distribution creates personal legal risk I'm not in a position to take right now. FLARE exists. The work is done. What happens next depends on what becomes safe.</span>
+            <span class="zh-text"> 川普政府已開始對製作干擾移民執法工具的開發者提起法律訴訟。作為一個直接受當前移民政策影響的人，繼續公開發布會帶來我目前無法承擔的個人法律風險。FLARE 存在。這份工作已完成。接下來會發生什麼，取決於什麼時候是安全的。</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── WHO USES THIS ──────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Two Users, One Interface</span>
+            <span class="zh-text">兩種使用者，一個界面</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">There are two distinct mental states that open FLARE — and the entire information architecture was designed around the harder one.</span>
+          <span class="zh-text">打開 FLARE 的人有兩種截然不同的心理狀態 — 整個資訊架構是為了更艱難的那種而設計的。</span>
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 reveal" style="transition-delay:0.2s">
+          <div class="user-state-card calm">
+            <div class="user-state-label">
+              <span class="en-text">The daily checker</span>
+              <span class="zh-text">日常查看者</span>
+            </div>
+            <p class="text-sm leading-relaxed" style="color:#555;">
+              <span class="en-text">Calm, routine. Opens the app each morning to confirm the neighborhood is clear before leaving. Needs quick reassurance and a clean "all safe" signal — then closes the app and moves on.</span>
+              <span class="zh-text">平靜、日常化。每天早上打開 app 確認附近安全再出門。需要快速的安心感和明確的「安全」訊號 — 然後關掉繼續過日子。</span>
+            </p>
+          </div>
+          <div class="user-state-card urgent">
+            <div class="user-state-label">
+              <span class="en-text">The crisis scanner</span>
+              <span class="zh-text">緊急確認者</span>
+            </div>
+            <p class="text-sm leading-relaxed" style="color:#555;">
+              <span class="en-text">Already anxious — heard something, sensed something. Opens FLARE to confirm what they fear might be true. Every second of confusion or loading is a second of compounded panic.</span>
+              <span class="zh-text">已經很緊張 — 聽到了什麼、感覺到什麼。打開 FLARE 是為了確認他們害怕是真實的事情。每一秒的困惑或載入都是加倍的恐慌。</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl reveal" style="background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.06); transition-delay:0.3s;">
+          <p class="text-sm leading-relaxed" style="color:#555;">
+            <span class="en-text"><strong>Design implication:</strong> Every screen is designed for the second user first — information visible in under 3 seconds, alert status auto-loaded by geolocation. Most ICE alert platforms show national-level data, which tells you what's happening across the country but can't answer "should I leave my house right now?" FLARE opens to your city, not a map of America.</span>
+            <span class="zh-text"><strong>設計影響：</strong>每個畫面都優先為第二種使用者設計 — 資訊在 3 秒內可見，警報狀態依地理位置自動載入。大多數 ICE 警報平台顯示全國性資訊，能告訴你全國動態，但無法回答「我現在應該出門嗎？」FLARE 打開時直接顯示你所在的城市，不是美國地圖。</span>
           </p>
         </div>
       </div>
@@ -203,6 +254,63 @@ import Footer from '../../components/layout/Footer.astro';
           <div class="screenshot-label">
             <span class="en-text">Seattle — safe status</span>
             <span class="zh-text">西雅圖 — 安全狀態</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── DESIGN LANGUAGE ─────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Design Language</span>
+            <span class="zh-text">設計語言</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">The "Tactical HUD" concept came from a specific feeling: life in America for many immigrants right now doesn't feel like citizenship — it feels like a survival game, where the government isn't a protector but a threat. Checking ICE activity is the equivalent of knowing where the enemy is on the map. I wanted the interface to reflect that reality honestly, without making it feel brutal. In a life already full of pressure, a little tactile playfulness matters.</span>
+          <span class="zh-text">「戰術抬頭顯示器」這個概念來自一種具體的感受：對許多移民來說，現在在美國的生活感覺不像公民身份 — 更像是生存遊戲，政府不是保護者而是威脅。查看 ICE 動態等同於在地圖上確認敵人的位置。我希望界面誠實地反映這個現實，但不讓它感覺殘酷。在本來就充滿壓力的生活裡，一點觸感的趣味性是有意義的。</span>
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style="transition-delay:0.2s">
+          <div class="purpose-card">
+            <div class="lang-token" style="background:rgba(232,98,26,0.1); color:#E8621A;">●</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Orange — not red</span>
+              <span class="zh-text">橘，而非紅</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Red felt too hostile — it shuts people down. Orange signals urgency without aggression. And on the internet, orange is Trump's color. Using it as a warning marker carries its own quiet meaning.</span>
+              <span class="zh-text">紅色感覺太具敵意 — 會讓人心理關閉。橘色傳達緊迫感而不帶攻擊性。而在網路上，橘色是川普的代表色。用它作為警戒色，本身帶有一層安靜的隱喻。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="lang-token" style="background:rgba(0,0,0,0.04); color:#333; font-size:0.75rem; font-weight:600; letter-spacing:-0.02em;">Aa</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">DM Sans + IBM Plex Mono</span>
+              <span class="zh-text">DM Sans + IBM Plex Mono</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">DM Sans for warmth and legibility under stress. IBM Plex Mono for timestamps and data — the visual precision of a system you can trust with your safety.</span>
+              <span class="zh-text">DM Sans 帶來溫度與壓力下的可讀性。IBM Plex Mono 用於時間戳與數據 — 傳遞一個可以信任的系統的視覺精確感。</span>
+            </p>
+          </div>
+          <div class="purpose-card">
+            <div class="lang-token" style="background:#111; color:#fff; font-size:0.8rem;">◑</div>
+            <h3 class="text-sm font-semibold mb-2">
+              <span class="en-text">Dark & light modes</span>
+              <span class="zh-text">深淺色模式</span>
+            </h3>
+            <p class="text-sm" style="color:#666;">
+              <span class="en-text">Dark mode for low-light or nighttime use. Light mode for daylight. The interface should never draw attention to you when you're checking it in public.</span>
+              <span class="zh-text">深色模式用於低光源或夜間情境。淺色模式用於白天。當你在公共場合查看時，界面不應該讓你顯眼。</span>
+            </p>
           </div>
         </div>
       </div>
@@ -344,23 +452,12 @@ import Footer from '../../components/layout/Footer.astro';
 
           <div class="decision-row">
             <div class="decision-prompt">
-              <span class="en-text">"use the flag of Taiwan"</span>
-              <span class="zh-text">「使用台灣的旗子」</span>
-            </div>
-            <div class="decision-result">
-              <span class="en-text">Traditional Chinese 🇹🇼, not Simplified 🇨🇳 — a precision call that matters to the community this app serves.</span>
-              <span class="zh-text">繁體中文 🇹🇼，而非簡體中文 🇨🇳 — 對這款應用程式服務的社群而言，這是一個至關重要的精準選擇。</span>
-            </div>
-          </div>
-
-          <div class="decision-row">
-            <div class="decision-prompt">
               <span class="en-text">"so government can't force it down"</span>
               <span class="zh-text">「這樣政府就無法強制下架」</span>
             </div>
             <div class="decision-result">
-              <span class="en-text">PWA over native app. No App Store, no Play Store, no single point of removal. Installable directly from the browser.</span>
-              <span class="zh-text">選擇 PWA 而非原生應用程式。不依賴 App Store 或 Play Store，消除單一下架風險。可直接從瀏覽器安裝。</span>
+              <span class="en-text">PWA over native app. No App Store, no Play Store, no single point of removal. An app store is a chokepoint — a URL is not. The platform choice is itself a safety design decision.</span>
+              <span class="zh-text">選擇 PWA 而非原生應用程式。不依賴 App Store 或 Play Store，消除單一下架風險。應用程式商店是一個控制點 — 網址不是。平台的選擇本身就是一個安全設計決策。</span>
             </div>
           </div>
 
@@ -370,8 +467,8 @@ import Footer from '../../components/layout/Footer.astro';
               <span class="zh-text">「用戶可能在緊急情況下點擊」</span>
             </div>
             <div class="decision-result">
-              <span class="en-text">Know Your Rights redesigned for trauma situations: first screen shows 5 bullets, then English script phrases for communicating with ICE agents even if English isn't your first language.</span>
-              <span class="zh-text">「了解你的權利」針對創傷情境重新設計：第一個畫面顯示 5 個要點，接著是與移民執法人員溝通的英文腳本，即使英文不是你的母語也能使用。</span>
+              <span class="en-text">Know Your Rights redesigned for trauma situations: first screen shows 5 bullets, then English script phrases for communicating with ICE agents even if English isn't your first language. Designed for the moment your hands are shaking — critical information first, no scrolling required.</span>
+              <span class="zh-text">「了解你的權利」針對創傷情境重新設計：第一個畫面顯示 5 個要點，接著是與移民執法人員溝通的英文腳本，即使英文不是你的母語也能使用。為手在發抖的那個時刻設計 — 最關鍵的資訊優先，不需要滑動。</span>
             </div>
           </div>
 
@@ -381,8 +478,8 @@ import Footer from '../../components/layout/Footer.astro';
               <span class="zh-text">「永遠不要使用假資訊」</span>
             </div>
             <div class="decision-result">
-              <span class="en-text">Zero mock data policy across the entire app. Every alert shown is from a live source. Empty state over false reassurance.</span>
-              <span class="zh-text">全應用程式零假資料政策。每一個顯示的警報都來自即時資料來源。寧可顯示空狀態，也不給予虛假安慰。</span>
+              <span class="en-text">Zero mock data policy across the entire app. Every alert shown is from a live source. A safety app that shows "all clear" when it has no data is actively dangerous — silence is more honest than false reassurance.</span>
+              <span class="zh-text">全應用程式零假資料政策。每一個顯示的警報都來自即時資料來源。一個在沒有資料時顯示「全部安全」的安全應用程式是主動危險的 — 沉默比虛假安慰更誠實。</span>
             </div>
           </div>
 
@@ -392,8 +489,8 @@ import Footer from '../../components/layout/Footer.astro';
               <span class="zh-text">「把發送訊號功能先拿掉」</span>
             </div>
             <div class="decision-result">
-              <span class="en-text">v.2 pivot to read-only aggregator. Removed user reporting — pulled only from verified external organizations. Simpler trust model, lower legal exposure.</span>
-              <span class="zh-text">v.2 轉型為唯讀聚合器。移除用戶通報功能 — 僅從經驗證的外部組織拉取資料。更簡單的信任模型，更低的法律風險。</span>
+              <span class="en-text">v.2 pivot to read-only aggregator. Removed user reporting — pulled only from verified external organizations. One unverified report could send someone toward danger instead of away from it. Verified-only sources trade feature richness for trustworthiness — the right call for a safety tool.</span>
+              <span class="zh-text">v.2 轉型為唯讀聚合器。移除用戶通報功能 — 僅從經驗證的外部組織拉取資料。一條未經驗證的通報可能讓人往危險的方向走而非遠離危險。僅使用經驗證的來源，以功能豐富度換取可信度 — 對安全工具而言，這是正確的取捨。</span>
             </div>
           </div>
 
@@ -454,15 +551,15 @@ import Footer from '../../components/layout/Footer.astro';
 
         <div class="next-steps reveal" style="transition-delay:0.1s">
           <div class="next-item">
-            <div class="next-dot active"></div>
+            <div class="next-dot pending"></div>
             <div>
               <div class="text-sm font-medium mb-1">
-                <span class="en-text">Final QA & language polish</span>
-                <span class="zh-text">最終品質檢測與語言潤飾</span>
+                <span class="en-text">Waiting for a safer window</span>
+                <span class="zh-text">等待更安全的時機</span>
               </div>
               <p class="text-xs" style="color:#999;">
-                <span class="en-text">Completing edge case testing across 6 languages and all alert states.</span>
-                <span class="zh-text">完成 6 種語言和所有警報狀態的邊界情況測試。</span>
+                <span class="en-text">The legal landscape around ICE-tracking tools is actively shifting. Distribution will resume when the risk to me personally is lower.</span>
+                <span class="zh-text">圍繞 ICE 追蹤工具的法律環境正在快速變化。當個人風險降低時，發布計劃將會恢復。</span>
               </p>
             </div>
           </div>
@@ -474,8 +571,8 @@ import Footer from '../../components/layout/Footer.astro';
                 <span class="zh-text">聯繫公民組織</span>
               </div>
               <p class="text-xs" style="color:#999;">
-                <span class="en-text">Reaching out to ICEout.org, Stop ICE network, and local immigrant rights coalitions for partnership and distribution support.</span>
-                <span class="zh-text">聯繫 ICEout.org、Stop ICE network 及當地移民權利聯盟，尋求夥伴關係與推廣支持。</span>
+                <span class="en-text">When the time is right — connecting with ICEout.org, Stop ICE network, and immigrant rights coalitions who may be better positioned to distribute this safely.</span>
+                <span class="zh-text">時機合適時 — 聯繫 ICEout.org、Stop ICE network 及移民權利聯盟，由更有條件安全發布的組織來推廣。</span>
               </p>
             </div>
           </div>
@@ -713,6 +810,36 @@ import Footer from '../../components/layout/Footer.astro';
     font-size: 0.75rem;
     color: #999;
     letter-spacing: 0.02em;
+  }
+
+  /* ── User State Cards ───────────────────────────────────────────── */
+  .user-state-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .user-state-card.urgent {
+    border-color: rgba(232,98,26,0.2);
+    background: rgba(232,98,26,0.02);
+  }
+  .user-state-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111;
+  }
+  .user-state-card.urgent .user-state-label { color: #E8621A; }
+
+  /* ── Design Language token ──────────────────────────────────────── */
+  .lang-token {
+    width: 2rem; height: 2rem;
+    border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   /* ── Next Steps ─────────────────────────────────────────────────── */
