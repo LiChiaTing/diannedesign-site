@@ -177,6 +177,42 @@ const conversations = [
       </div>
     </div>
 
+    <!-- ─── 02.5 THE VISUAL LANGUAGE ─────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
+        <div>
+          <span class="text-xs tracking-widest uppercase" style="color:#bbb;">Design</span>
+        </div>
+        <div>
+          <h2 class="text-2xl font-light mb-6 reveal">The Visual Language</h2>
+
+          <div class="space-y-10 reveal" style="transition-delay:.05s">
+
+            <div class="vl-item">
+              <div class="vl-label">Less is more</div>
+              <p class="vl-desc">Most portfolios compete for attention — bold gradients, full-bleed imagery, animated everything. The decision here was the opposite: extreme whitespace, a single accent colour, Inter at light weight. The work is the loudest thing on the page. The site's job is to get out of the way.</p>
+            </div>
+
+            <div class="vl-item">
+              <div class="vl-label">Accent — #E04F72</div>
+              <p class="vl-desc">This pink isn't a brand exercise — it's a personal one. On a near-white canvas it catches the eye without competing with content. It marks every action, every hover state, every important line. Warm enough to feel human. Specific enough to be memorable. It's the one place the site has a personality of its own.</p>
+            </div>
+
+            <div class="vl-item">
+              <div class="vl-label">The orbital hero</div>
+              <p class="vl-desc">A static headline looks like every other portfolio. The orbital card animation exists for one reason: you should feel that this site is alive within the first two seconds of arriving. The cards carry both professional identity and personal detail — a static layout can hold one, an animated one holds both without hierarchy. The cats, when they eventually walk out, are a discovery rather than a feature.</p>
+            </div>
+
+            <div class="vl-item">
+              <div class="vl-label">"Where We Are" — honest by design</div>
+              <p class="vl-desc">Most portfolios hide incompleteness. This one names it. The progress tracker is there because this site is itself the work — an ongoing build, not a finished artefact. Showing the real status is consistent with the thesis: a portfolio should reflect how its owner actually works, not perform a version of finished they haven't reached yet.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── 03 THE WORKFLOW ───────────────────────────────────────── -->
     <section class="px-8 md:px-16 lg:px-24 mb-32">
       <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 max-w-4xl">
@@ -326,7 +362,7 @@ const conversations = [
               <p><span style="color:#bbb;"># Your role</span></p>
               <p>You are Dianne's site agent. When writing about Dianne, use third person, warm and direct tone.</p>
               <p class="mt-3"><span style="color:#bbb;"># To update the NOW section</span></p>
-              <p>Edit <span style="color:#E04F72;">public/data/now.json</span> — no rebuild needed.</p>
+              <p>Edit <span style="color:#E04F72;">src/data/now.json</span> — triggers a Vercel redeploy.</p>
               <p class="mt-3"><span style="color:#bbb;"># Design system</span></p>
               <p>Accent: <span style="color:#E04F72;">#E04F72</span> · Font: Inter · Generous whitespace · Mobile-first.</p>
             </div>
@@ -377,6 +413,27 @@ const conversations = [
 
 
 <style>
+  /* ── Visual Language items ──────────────────────────────────────── */
+  .vl-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .vl-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .vl-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #E04F72;
+    margin-bottom: 0.5rem;
+  }
+  .vl-desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: #555;
+    max-width: 52ch;
+  }
+
   .phone-frame {
     width: 326px;
     height: 680px;
