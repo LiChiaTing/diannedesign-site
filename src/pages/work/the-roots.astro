@@ -1,0 +1,577 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<BaseLayout title="The Roots — Dianne Ting">
+  <Header />
+
+  <main>
+
+    <!-- ─── BACK NAV ──────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pt-24 md:pt-32 pb-0">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← <span class="en-text">All Work</span><span class="zh-text">全部作品</span>
+      </a>
+    </div>
+
+    <!-- English-only notice (shown in Chinese mode only) -->
+    <div class="zh-text px-8 md:px-16 lg:px-24 mt-4">
+      <span class="text-xs" style="color:#bbb;">本案例研究以英文呈現</span>
+    </div>
+
+    <!-- ─── HERO ──────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-12 pb-20 md:pb-28">
+      <div class="max-w-4xl">
+
+        <div class="flex flex-wrap items-center gap-2 mb-6 reveal">
+          <span class="tag">Personal Project</span>
+          <span class="tag">Mobile App</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Product Strategy</span>
+          <span class="tag-warn">
+            <span class="en-text">In Progress</span>
+            <span class="zh-text">製作中</span>
+          </span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay:0.1s">The Roots</h1>
+
+        <p class="text-xl md:text-2xl font-light leading-relaxed max-w-2xl reveal" style="color:#555; transition-delay:0.2s">
+          A mobile app helping first-generation U.S. immigrants navigate the financial, legal, and social systems that American life assumes you already know.
+        </p>
+
+        <div class="flex flex-wrap gap-10 mt-12 reveal" style="transition-delay:0.3s">
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Role</div>
+            <div class="text-sm font-medium">Solo Researcher, Designer & Developer</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Stack</div>
+            <div class="text-sm font-medium">React Native · Expo · TypeScript</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Timeline</div>
+            <div class="text-sm font-medium">2026 — ongoing</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Industry</div>
+            <div class="text-sm font-medium">Civic Tech · Social Impact</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Live Demo</div>
+            <div class="text-sm font-medium">
+              <a href="https://the-roots-sooty.vercel.app" target="_blank" rel="noopener" class="demo-link">the-roots-sooty.vercel.app →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── METRICS ──────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-16">
+      <div class="grid grid-cols-3 gap-6 max-w-xl reveal">
+        <div class="metric-card">
+          <div class="metric-value">2</div>
+          <div class="metric-label">Distinct personas served</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">5</div>
+          <div class="metric-label">Life phases mapped</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">1</div>
+          <div class="metric-label">Unified journey</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── THE PROBLEM ──────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Problem</span>
+        </div>
+
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid var(--accent); padding-left:1.5rem;">
+          "I'm an immigrant. The American system assumes you already know how to open a bank account, build credit, file taxes as a visa holder, read a lease. I didn't. Most immigrants don't."
+        </blockquote>
+
+        <p class="text-base leading-relaxed mb-6 reveal" style="color:#555; transition-delay:0.2s">
+          The U.S. system doesn't fail immigrants through malice — it fails them through assumption. Banking forms assume you know what a checking account is. Lease agreements are legal documents written in fast English. Tax rules for F-1 and H1B holders aren't covered in any orientation. Getting five of these things wrong in the first year doesn't cause inconvenience — it can take years to undo.
+        </p>
+        <p class="text-base leading-relaxed reveal" style="color:#555; transition-delay:0.3s">
+          The Roots was built to close that gap. Not as a resource directory, but as a structured companion that walks immigrants through each challenge, in the right order, with the right depth.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 01 RESEARCH ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">01</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Research — Two Personas, One App</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Before any screen was designed, the research surfaced the project's core tension: the people who need this app are not one type of person — they're two, with fundamentally different problems.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Designing for both without compromising either became the central design challenge.
+        </p>
+      </div>
+
+      <!-- Two persona cards -->
+      <div class="persona-grid reveal" style="transition-delay:0.15s">
+        <div class="persona-card persona-1">
+          <div class="persona-tag">Persona 1</div>
+          <div class="persona-name">"The Isolated Pioneer"</div>
+          <div class="persona-quote">"I don't know if this is urgent, and I don't know who to ask. I'm afraid of making a mistake I can't undo."</div>
+          <div class="persona-details">
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">Time in US</span>
+              <span class="persona-detail-value">0–18 months</span>
+            </div>
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">English</span>
+              <span class="persona-detail-value">Basic / Conversational</span>
+            </div>
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">Network</span>
+              <span class="persona-detail-value">None or minimal</span>
+            </div>
+          </div>
+          <div class="persona-needs">
+            <div class="persona-needs-label">Core Needs</div>
+            <div class="persona-needs-list">Step-by-step guidance · Native language support · Document checklists · Emergency phrases</div>
+          </div>
+        </div>
+
+        <div class="persona-card persona-2">
+          <div class="persona-tag">Persona 2</div>
+          <div class="persona-name">"The Academic Adrift"</div>
+          <div class="persona-quote">"I aced my grad school courses, but I have no idea how to build credit or file taxes as an H1B holder. I don't know what I don't know."</div>
+          <div class="persona-details">
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">Time in US</span>
+              <span class="persona-detail-value">2–8 years (campus bubble)</span>
+            </div>
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">English</span>
+              <span class="persona-detail-value">Fluent / Professional</span>
+            </div>
+            <div class="persona-detail-row">
+              <span class="persona-detail-label">Network</span>
+              <span class="persona-detail-value">Peers in the same situation</span>
+            </div>
+          </div>
+          <div class="persona-needs">
+            <div class="persona-needs-label">Core Needs</div>
+            <div class="persona-needs-list">Surface unknown unknowns · Immigration-aware context · Visa status logic · Verified sources</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.25s">
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The research identified five life phases where the system fails both personas — in order of urgency: <strong>Financial Foundation</strong>, <strong>Housing</strong>, <strong>Healthcare</strong>, <strong>Transportation</strong>, and <strong>Social Capital</strong>. Each phase contains challenges that hit Persona 1 as immediate survival problems and Persona 2 as invisible landmines they don't know exist yet.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 02 CORE DESIGN DECISION ──────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">02</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Core Design Decision — One Journey</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The obvious solution to serving two different user types would be to build two different apps, or a branching onboarding that routes each persona to a separate experience. That approach was rejected early.
+        </p>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The insight that changed the architecture: both personas face the exact same set of life challenges. The differences aren't <em>what</em> they need — they're <em>when</em> they encounter it, and <em>how deep</em> they need to go. Persona 1 needs to open a bank account in week one. Persona 2 already has one, but doesn't know they should have started building credit two years ago.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The solution: a single unified journey, structured as a progressive milestone system. Every challenge is on the path. Users mark what they've already completed and move on — no content is ever hidden, no fork ever creates a dead end. Persona 1 works through it sequentially. Persona 2 skips the basics, ticks them off, and discovers the gaps they didn't know they had.
+        </p>
+      </div>
+
+      <!-- Journey decision callout -->
+      <div class="decision-callout reveal" style="transition-delay:0.2s">
+        <div class="decision-callout-inner">
+          <div class="decision-col">
+            <div class="decision-col-label">What they both face</div>
+            <div class="decision-col-body">Banking · Credit · Taxes · Housing · Health insurance · Renter's rights · Transportation · Community</div>
+          </div>
+          <div class="decision-divider"></div>
+          <div class="decision-col">
+            <div class="decision-col-label">What's different</div>
+            <div class="decision-col-body">Timeline, depth of context needed, language support, and whether the risk is "I don't know this yet" or "I already got this wrong"</div>
+          </div>
+          <div class="decision-divider"></div>
+          <div class="decision-col">
+            <div class="decision-col-label">The design answer</div>
+            <div class="decision-col-body">One journey. Progressive depth. Checkoff-based progress. No forks, no dead ends.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 03 DESIGN SYSTEM ─────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">03</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Design System</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The visual language was built around a single tension: authority and warmth. An app dealing with legal documents, tax deadlines, and immigration paperwork needs to feel trustworthy. But the users are often in vulnerable, high-stress situations — an interface that feels cold or institutional will be abandoned.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The three-colour system resolves this directly.
+        </p>
+      </div>
+
+      <div class="brand-colours-grid reveal" style="transition-delay:0.15s">
+        <div class="brand-colour-item">
+          <div class="brand-swatch" style="background:#4A5FA8;"></div>
+          <div class="brand-colour-name">Indigo</div>
+          <div class="brand-colour-role">Trust & authority — signals that this tool handles serious information with seriousness</div>
+        </div>
+        <div class="brand-colour-item">
+          <div class="brand-swatch" style="background:#8B7EC8;"></div>
+          <div class="brand-colour-name">Lavender</div>
+          <div class="brand-colour-role">Warmth & approachability — softens the indigo, makes the app feel like a guide rather than a government form</div>
+        </div>
+        <div class="brand-colour-item">
+          <div class="brand-swatch" style="background:#E8A838;"></div>
+          <div class="brand-colour-name">Gold</div>
+          <div class="brand-colour-role">Milestone & achievement — used exclusively for completed steps and progress markers, so every checkoff feels earned</div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.25s">
+        <p class="text-base leading-relaxed mb-4" style="color:#555;">
+          Typography uses <strong>Plus Jakarta Sans</strong> for display and headings — modern, confident, legible at small sizes — and <strong>Noto Sans</strong> for body text, chosen specifically for its wide language coverage. When multilingual support is added, Noto Sans handles non-Latin scripts without a typeface change.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Background tone is <code class="inline-code">#F8F7FC</code> — a faint lavender-white rather than pure white. Warm enough to feel approachable, neutral enough to keep medical and financial content legible at a glance.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── WHAT'S NEXT ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">What's Next</span>
+        </div>
+
+        <div class="next-steps reveal" style="transition-delay:0.1s">
+          <div class="next-item">
+            <div class="next-dot active"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">Visual polish — V2 redesign</div>
+              <p class="text-xs" style="color:#999;">The current V1 is a functional prototype. V2 will apply the design system fully across all screens and refine component hierarchy.</p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">Multilingual support</div>
+              <p class="text-xs" style="color:#999;">Spanish, Mandarin, and Hindi as first targets — the top three non-English languages among U.S. newcomers. Noto Sans is already in place for this.</p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">AI guide integration</div>
+              <p class="text-xs" style="color:#999;">Contextual AI tied to the user's current milestone — not a general chatbot, but an assistant that knows where you are in the journey and what question you're likely to have next.</p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">Community layer — Circles</div>
+              <p class="text-xs" style="color:#999;">Connecting users with community members who've navigated the same milestone. Verified answers from people who've been there, not just resources from organizations that haven't.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 reveal" style="transition-delay:0.2s">
+          <a href="https://the-roots-sooty.vercel.app" target="_blank" rel="noopener" class="text-link" data-hover>
+            View live prototype → the-roots-sooty.vercel.app
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <Footer />
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Tags ───────────────────────────────────────────────────────── */
+  .tag-warn {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: rgba(224,79,114,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(224,79,114,0.2);
+  }
+
+  /* ── Demo link ──────────────────────────────────────────────────── */
+  .demo-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .demo-link:hover { opacity: 0.7; }
+
+  /* ── Section number ─────────────────────────────────────────────── */
+  .section-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Metrics ────────────────────────────────────────────────────── */
+  .metric-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-size: 0.72rem;
+    color: #999;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Persona cards ──────────────────────────────────────────────── */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  @media (max-width: 768px) {
+    .persona-grid { grid-template-columns: 1fr; }
+  }
+  .persona-card {
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .persona-1 { border-top: 3px solid #4A5FA8; }
+  .persona-2 { border-top: 3px solid #8B7EC8; }
+  .persona-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 0.4rem;
+  }
+  .persona-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #111;
+  }
+  .persona-quote {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #555;
+    font-style: italic;
+    padding: 0.75rem 1rem;
+    background: #f9f9f9;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .persona-details { margin-bottom: 1rem; }
+  .persona-detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .persona-detail-row:last-child { border-bottom: none; }
+  .persona-detail-label { color: #999; }
+  .persona-detail-value { font-weight: 500; color: #333; }
+  .persona-needs-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 0.35rem;
+  }
+  .persona-needs-list {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Decision callout ───────────────────────────────────────────── */
+  .decision-callout {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(74,95,168,0.15);
+    background: rgba(74,95,168,0.04);
+    overflow: hidden;
+  }
+  .decision-callout-inner {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  }
+  @media (max-width: 768px) {
+    .decision-callout-inner {
+      grid-template-columns: 1fr;
+    }
+    .decision-divider { display: none; }
+  }
+  .decision-col {
+    padding: 1.75rem;
+  }
+  .decision-divider {
+    background: rgba(74,95,168,0.12);
+    align-self: stretch;
+  }
+  .decision-col-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4A5FA8;
+    margin-bottom: 0.6rem;
+  }
+  .decision-col-body {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #555;
+  }
+
+  /* ── Brand colour grid ──────────────────────────────────────────── */
+  .brand-colours-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 640px) {
+    .brand-colours-grid { grid-template-columns: 1fr; }
+  }
+  .brand-colour-item {
+    padding: 1.25rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .brand-swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .brand-colour-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: #111;
+  }
+  .brand-colour-role {
+    font-size: 0.72rem;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  /* ── Inline code ────────────────────────────────────────────────── */
+  .inline-code {
+    font-family: monospace;
+    font-size: 0.82em;
+    background: #f5f5f5;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #555;
+  }
+
+  /* ── Next Steps ─────────────────────────────────────────────────── */
+  .next-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+  .next-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .next-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .next-dot.active {
+    background: var(--accent);
+    animation: breathe-dot 2.5s ease-in-out infinite;
+  }
+  .next-dot.pending {
+    background: transparent;
+    border: 1.5px solid rgba(0,0,0,0.2);
+  }
+  @keyframes breathe-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── Text link ──────────────────────────────────────────────────── */
+  .text-link {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    background: #E04F72;
+    padding: 2px 7px 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: opacity 0.2s ease;
+  }
+  .text-link:hover { opacity: 0.8; }
+</style>
