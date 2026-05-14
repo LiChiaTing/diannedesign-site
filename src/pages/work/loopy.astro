@@ -197,6 +197,74 @@ import Footer from '../../components/layout/Footer.astro';
     <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
     <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
 
+    <!-- ─── UX DECISIONS ─────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+
+        <div class="flex items-center gap-3 mb-10 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">
+            <span class="en-text">Key UX Decisions</span>
+            <span class="zh-text">關鍵 UX 決定</span>
+          </span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-10 reveal" style="color:#555; transition-delay:0.1s">
+          <span class="en-text">There were no wireframes. The design system document — written before any code — served as the single early artefact, defining visual constraints and component rules. From there, every structural decision was made and validated directly in the live interface.</span>
+          <span class="zh-text">這個專案沒有線稿。設計系統文件在程式碼之前就寫好，作為唯一的早期工件，定義視覺限制和元件規則。從那之後，每個結構性決定都直接在即時介面中做出並驗證。</span>
+        </p>
+
+        <div class="ux-decisions-list reveal" style="transition-delay:0.2s">
+
+          <div class="ux-decision-item">
+            <div class="ux-decision-header">
+              <span class="ux-decision-num">01</span>
+              <span class="ux-decision-title">
+                <span class="en-text">Bottom tab bar — not a hamburger menu</span>
+                <span class="zh-text">底部 Tab Bar，不是側欄選單</span>
+              </span>
+            </div>
+            <p class="ux-decision-body">
+              <span class="en-text">Crochet is a two-handed, eyes-on-the-work activity. The phone is held in one hand while the other is stitching. A bottom tab bar keeps every section thumb-reachable without looking away or repositioning — a hamburger menu would require a deliberate gesture that interrupts the making flow.</span>
+              <span class="zh-text">鈎織是雙手都在工作、眼睛看著作品的活動。手機單手握著，另一隻手在織。底部 Tab Bar 讓每個功能都在拇指範圍內，不需要視線離開作品或重新握持手機 — 側欄選單需要一個刻意的手勢，會打斷創作流程。</span>
+            </p>
+          </div>
+
+          <div class="ux-decision-item">
+            <div class="ux-decision-header">
+              <span class="ux-decision-num">02</span>
+              <span class="ux-decision-title">
+                <span class="en-text">Pattern and counter on the same screen</span>
+                <span class="zh-text">織圖說明與計圈器在同一個畫面</span>
+              </span>
+            </div>
+            <p class="ux-decision-body">
+              <span class="en-text">This was the single most important UX decision in the app. The original pain point was switching between a chat thread (for pattern context) and a counter app — two separate tools, two separate contexts, constant interruption. Combining them into one screen removes that entirely: the row instruction is always visible alongside the count, so nothing is ever lost or forgotten between taps.</span>
+              <span class="zh-text">這是整個 App 最重要的 UX 決定。原始痛點就是在對話視窗（織圖脈絡）和計圈 App 之間切換 — 兩個工具、兩個脈絡、不斷中斷。把兩者合在同一個畫面徹底消除這個問題：每行的說明永遠和計圈數字並排顯示，兩個 tap 之間什麼都不會遺失或忘記。</span>
+            </p>
+          </div>
+
+          <div class="ux-decision-item">
+            <div class="ux-decision-header">
+              <span class="ux-decision-num">03</span>
+              <span class="ux-decision-title">
+                <span class="en-text">Cards over list rows for inspiration</span>
+                <span class="zh-text">靈感頁面用 Card，不用清單列</span>
+              </span>
+            </div>
+            <p class="ux-decision-body">
+              <span class="en-text">Inspiration content is visual — a thumbnail-less list of URLs tells you nothing. Cards with automatic platform detection and preview thumbnails let you scan your saved ideas the same way you browse Instagram or Pinterest: visually, not textually. The collection becomes a moodboard, not a bookmark folder.</span>
+              <span class="zh-text">靈感內容是視覺的 — 沒有縮圖的網址清單毫無意義。帶有自動平台偵測和預覽縮圖的 Card 讓你像瀏覽 Instagram 或 Pinterest 一樣掃視已存的靈感：視覺化，而非文字化。收藏夾變成了情緒板，不只是書籤。</span>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ─────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
     <!-- ─── DESIGN SYSTEM ────────────────────────────────────────── -->
     <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
       <div class="max-w-3xl">
@@ -621,6 +689,38 @@ import Footer from '../../components/layout/Footer.astro';
     width: 2rem;
     flex-shrink: 0;
     padding-top: 0.1rem;
+  }
+
+  /* ── UX Decisions ───────────────────────────────────────────────── */
+  .ux-decisions-list { display: flex; flex-direction: column; }
+  .ux-decision-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .ux-decision-item:last-child { border-bottom: none; }
+  .ux-decision-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .ux-decision-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+  .ux-decision-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+  }
+  .ux-decision-body {
+    font-size: 0.83rem;
+    line-height: 1.7;
+    color: #555;
+    padding-left: calc(0.65rem + 1rem + 1ch);
   }
 
   /* ── Phase Timeline ─────────────────────────────────────────────── */
