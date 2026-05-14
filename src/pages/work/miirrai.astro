@@ -217,8 +217,11 @@ import Footer from '../../components/layout/Footer.astro';
         <p class="text-base leading-relaxed mb-6" style="color:#555;">
           The core product flow — document upload → AI processing → data review → export — was designed to demystify the "black box" of AI. At every stage, users can see what the system is doing.
         </p>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The review step was the most critical UX decision in the entire flow. AI makes mistakes. Fashion data is high-stakes — a wrong SKU or a mis-read quantity has real commercial consequences. Giving users full edit access at the review stage wasn't a compromise; it was the feature. It reframes the AI from an autonomous operator into a capable assistant: fast first draft, human final call.
+        </p>
         <p class="text-base leading-relaxed" style="color:#555;">
-          The export phase was especially deliberate: two paths (CSV for legacy systems, Shopify for modern e-commerce) directly addressed the split between traditional and digital-native fashion buyers.
+          The export phase was equally deliberate: two paths (CSV for legacy systems, Shopify for modern e-commerce) directly addressed the persona split between traditional buyers still working in spreadsheets and digital-native teams already running on e-commerce infrastructure.
         </p>
       </div>
 
@@ -241,21 +244,41 @@ import Footer from '../../components/layout/Footer.astro';
 
     <!-- ─── 03 VISUALS ────────────────────────────────────────────── -->
     <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
-      <div class="max-w-3xl reveal">
+      <div class="max-w-3xl mb-12 reveal">
         <div class="flex items-center gap-3 mb-8">
           <span class="section-num">03</span>
           <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Visuals that Build Trust</span>
         </div>
         <p class="text-base leading-relaxed mb-6" style="color:#555;">
-          For an early-stage AI startup, visual language is a trust signal before it's anything else.
+          For an early-stage AI startup, visual language is a trust signal before it's anything else. The design challenge wasn't just aesthetics — it was convincing a conservative industry that this tool was worth adopting.
         </p>
         <p class="text-base leading-relaxed mb-6" style="color:#555;">
-          Dianne designed both the product UI and the marketing landing page with a single goal: make miirr.ai look like a serious business partner, not a Silicon Valley experiment. The aesthetic is clean and editorial — confident without being cold. It speaks to tech-savvy users without alienating the conventional buyers the product needs to win over.
+          The original brand used deep purple. But miirr.ai's core job is processing dense information — product photos, vendor documents, spreadsheet data. Deep purple at that density becomes oppressive. The decision was to pull back: shift the palette to light pink and blue, used sparingly as accents and borders only. Content — the photos, the data — stays the hero. The background stays white.
         </p>
         <p class="text-base leading-relaxed" style="color:#555;">
-          The landing page was structured to translate complex AI capabilities into a clear value proposition, positioning miirr.ai as infrastructure for modern fashion buying rather than a novelty feature.
+          Typography was equally deliberate. Dianne presented the founder with several pairing options, but the guiding constraint was readability first: a clean sans-serif base for all data-heavy views, with the option to introduce a more editorial weight at headline level. The result is a product that feels like a serious business tool without looking like enterprise software.
         </p>
       </div>
+
+      <figure class="reveal" style="transition-delay:0.15s">
+        <div class="img-frame before-after-padded" style="background:#fff;">
+          <img src="/images/projects/miirrai/miirr%20style%20guide.png" alt="miirr.ai style guide — colour system and typography" loading="lazy" />
+        </div>
+        <figcaption>Style guide — colour system, typography choices, and component rules. Pink and blue as accents only; white backgrounds keep the product data front and centre.</figcaption>
+      </figure>
+
+      <div class="max-w-3xl mt-12 mb-12 reveal" style="transition-delay:0.2s">
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The landing page was structured around a single goal: make visitors want to try the product. Rather than leading with technical features, the copy hierarchy was built around outcomes — what fashion buyers gain, not how the AI works. Every section drives toward one CTA, positioning miirr.ai as infrastructure for modern buying rather than a novelty tool.
+        </p>
+      </div>
+
+      <figure class="reveal" style="transition-delay:0.25s">
+        <div class="img-frame">
+          <img src="/images/projects/miirrai/miirr%20landingpage.png" alt="miirr.ai landing page" loading="lazy" />
+        </div>
+        <figcaption>Landing page — outcome-led copy, editorial visual system, single CTA. Designed to convert fashion buyers who are evaluating AI tools for the first time.</figcaption>
+      </figure>
     </section>
 
     <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
