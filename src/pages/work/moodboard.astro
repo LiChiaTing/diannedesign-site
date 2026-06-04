@@ -1,0 +1,1159 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+
+const base = '/images/projects/moodboard';
+
+// The six finished screens, captured live from the shipped React app.
+const screens = [
+  { src: `${base}/moodboard-01-hero.png`,        name: 'Landing',        note: 'The promise in one line — “Your pieces don’t talk to each other.”' },
+  { src: `${base}/moodboard-02-upload.png`,       name: 'Upload',         note: 'Any photo works. Messy is fine — we read colour and structure, not tidiness.' },
+  { src: `${base}/moodboard-03-budgetstyle.png`,  name: 'Budget + Style', note: 'Budget slider first, style tiles second. The core design decision, made visible.' },
+  { src: `${base}/moodboard-04-loading.png`,      name: 'Generating',     note: 'A named, multi-step pipeline — the wait is the feature, not a spinner.' },
+  { src: `${base}/moodboard-05-results.png`,      name: 'Results',        note: 'Transformed room on the left, a real shoppable product list on the right.' },
+  { src: `${base}/moodboard-06-save.png`,         name: 'Save',           note: 'Take it with you — PDF, shareable link, or a before/after image for socials.' },
+];
+
+// User journey map — emotion arc + the opportunity each stage opened.
+// Pulled straight from the hackathon UX research doc (3 personas + journey map).
+const journey = [
+  { stage: 'Trigger',        emoji: '😩', emotion: 'Frustrated',   score: 2,  color: '#9AA0A6', note: 'No starting point — “it just feels wrong.”' },
+  { stage: 'Discover',       emoji: '🤔', emotion: 'Curious',      score: 4,  color: '#5BA4CF', note: 'Trust barrier — prove it’s not a gimmick, fast.' },
+  { stage: 'Upload',         emoji: '😅', emotion: 'Anxious',      score: 3,  color: '#C5AEED', note: 'Photo anxiety — signal “messy is fine.”' },
+  { stage: 'Budget + Style', emoji: '😌', emotion: 'Engaged',      score: 6,  color: '#4CAF72', note: 'Decision fatigue — budget filter before style.' },
+  { stage: 'Generating',     emoji: '😯', emotion: 'Anticipating', score: 7,  color: '#F5D030', note: 'Dead time — name each step so the wait feels earned.' },
+  { stage: 'Results',        emoji: '🤩', emotion: 'Delighted',    score: 10, color: '#F4724A', note: 'Reality gap — composite into their real room.', peak: true },
+  { stage: 'Save & Share',   emoji: '😊', emotion: 'Confident',    score: 9,  color: '#F2A0BC', note: 'Action gap — save-for-later is the real CTA.' },
+];
+const jPad = 50, jStep = 100;
+const jPts = journey.map((d, i) => ({ x: jPad + i * jStep, y: 95 - d.score * 7.5 }));
+const jLine = jPts.map(p => `${p.x},${p.y}`).join(' ');
+const jArea = `M ${jPts[0].x},100 ` + jPts.map(p => `L ${p.x},${p.y}`).join(' ') + ` L ${jPts[jPts.length - 1].x},100 Z`;
+---
+
+<BaseLayout title="MoodBoard — Dianne Ting">
+  <Header />
+
+  <main>
+
+    <!-- ─── BACK NAV ──────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24 pt-24 md:pt-32 pb-0">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm hover:text-accent transition-colors" style="color:#999;" data-hover>
+        ← <span class="en-text">All Work</span><span class="zh-text">全部作品</span>
+      </a>
+    </div>
+
+    <!-- English-only notice (shown in Chinese mode only) -->
+    <div class="zh-text px-8 md:px-16 lg:px-24 mt-4">
+      <span class="text-xs" style="color:#bbb;">本案例研究以英文呈現</span>
+    </div>
+
+    <!-- ─── HERO ──────────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pt-12 pb-16 md:pb-24">
+      <div class="max-w-4xl">
+
+        <div class="flex flex-wrap items-center gap-2 mb-6 reveal">
+          <span class="tag">Hackathon</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Design System</span>
+          <span class="tag">React</span>
+          <span class="tag-win">🏆 1st Place · Apify Prize</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light leading-none tracking-tight mb-6 reveal" style="transition-delay:0.1s">MoodBoard</h1>
+
+        <p class="text-xl md:text-2xl font-light leading-relaxed max-w-2xl reveal" style="color:#555; transition-delay:0.2s">
+          Upload a photo of your room, set a budget, tap a few style tiles — and get your <em>actual</em> space transformed, with a real, shoppable product list sourced live from the web. Built in 17 hours, as a team of four.
+        </p>
+
+        <div class="flex flex-wrap gap-x-10 gap-y-6 mt-12 reveal" style="transition-delay:0.3s">
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Role</div>
+            <div class="text-sm font-medium">Sole Designer — UX Research, Design System, Frontend</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Team</div>
+            <div class="text-sm font-medium">4 people</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Timeline</div>
+            <div class="text-sm font-medium">17 hours · May 29–30, 2026</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Event</div>
+            <div class="text-sm font-medium">Cascadia AI Hackathon · thinkspace, Seattle</div>
+          </div>
+          <div>
+            <div class="text-xs font-medium tracking-widest uppercase mb-1" style="color:#999;">Live Demo</div>
+            <div class="text-sm font-medium">
+              <a href="https://moodboard-wine.vercel.app" target="_blank" rel="noopener" class="demo-link" data-hover>moodboard-wine.vercel.app →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HERO SCREENSHOT ───────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 pb-20 md:pb-28">
+      <div class="screen-card hero-shot reveal" style="transition-delay:0.1s">
+        <img src={`${base}/moodboard-01-hero.png`} alt="MoodBoard landing screen — Warm Studio design system" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── METRICS ──────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl reveal">
+        <div class="metric-card">
+          <div class="metric-value">17<span class="metric-unit">hrs</span></div>
+          <div class="metric-label">Idea to working product</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">6</div>
+          <div class="metric-label">Screens designed & shipped</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">12<span class="metric-unit">/54</span></div>
+          <div class="metric-label">Overall placing</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">$500</div>
+          <div class="metric-label">1st place · Apify Prize</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── THE PROBLEM ──────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Problem</span>
+        </div>
+
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-10 reveal" style="transition-delay:0.1s; color:#111; border-left:3px solid var(--accent); padding-left:1.5rem;">
+          Finding furniture that actually fits — your space, your style, your budget — means hours lost in an ocean of online options. And the tools that promise to help either ignore the budget, or leave you with a pretty picture and no way to actually buy.
+        </blockquote>
+
+        <p class="text-base leading-relaxed mb-6 reveal" style="color:#555; transition-delay:0.2s">
+          We’re all renters — so this was a pain we’d each lived, not one we imagined. Whether you’re filling an empty room from scratch or working around furniture you already own, it breaks at three distinct points. MoodBoard was built to close all three at once.
+        </p>
+
+        <div class="gap-grid reveal" style="transition-delay:0.25s">
+          <div class="gap-item">
+            <div class="gap-num">01</div>
+            <div class="gap-title">Starting from nothing</div>
+            <p class="gap-body">IKEA alone carries thousands of products; Wayfair, millions. Without a visual direction, every choice feels like it could be wrong — so people impulse-buy or stall.</p>
+          </div>
+          <div class="gap-item">
+            <div class="gap-num">02</div>
+            <div class="gap-title">Budget</div>
+            <p class="gap-body">Existing tools render a redesigned room. None search for <em>actual purchasable products</em> that fit a real budget. The gap between inspiration and action stays exactly where it was.</p>
+          </div>
+          <div class="gap-item">
+            <div class="gap-num">03</div>
+            <div class="gap-title">Coherence</div>
+            <p class="gap-body">People who furnished piece by piece end up with rooms that feel random — not bad taste, just each purchase made in isolation. The room has no thread.</p>
+          </div>
+        </div>
+
+        <p class="text-base leading-relaxed mt-10 reveal" style="color:#555; transition-delay:0.3s">
+          MoodBoard searches the web in real time for products that match the user’s style and budget, composites them into a photo of their actual room, and delivers a prioritised shopping list they can act on immediately.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ═══ TIMELINE WRAP (01–05, the 17-hour build clock) ═══════════ -->
+    <div class="timeline">
+
+    <!-- ─── 01 RESEARCH ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="time-mark"><span class="time-when">Fri · 8:00 PM</span><span class="time-elapsed">hour 0</span></div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">01</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Two Hours of Research, Three User Types</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The idea was locked at 8pm. The venue closed at 10pm. Those two hours went to research — first a fast scan of existing tools to pin down the gap (they render a pretty room, but none shop it to a real budget), then the real depth into the people. Three personas, built around the users who actually redecorate on a real budget.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Different situations, different stakes — but one shared problem: not a lack of taste, but too much noise. All three needed the field narrowed, fast, to things that would actually work together in their specific space.
+        </p>
+      </div>
+
+      <!-- Three persona cards -->
+      <div class="persona-grid reveal" style="transition-delay:0.15s">
+        <div class="persona-card" style="--pc:#F4724A;">
+          <div class="persona-head">
+            <div class="persona-tag">Persona 1 · Existing renter</div>
+            <div class="persona-name">Alex <span>· 28</span></div>
+            <div class="persona-context">Remote worker · 1-bed · furnished piecemeal over 2 years</div>
+          </div>
+          <div class="persona-budget"><span>Budget</span><strong>$350</strong></div>
+          <div class="persona-quote">“Give me suggestions. Don’t tell me to prompt it — I usually don’t know what I want.”</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Goals</div>
+            <ul class="persona-list">
+              <li>Make the room feel cohesive — pieces that belong together</li>
+              <li>A saved plan to shop from gradually, not all at once</li>
+              <li>Discover taste by <em>seeing</em> it, not describing it</li>
+            </ul>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Pain points</div>
+            <ul class="persona-list pains">
+              <li>Bought pieces separately — the room feels random</li>
+              <li>Can’t translate Pinterest into a real decision</li>
+              <li>Loses track of spend across shopping sessions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-card" style="--pc:#5BA4CF;">
+          <div class="persona-head">
+            <div class="persona-tag">Persona 2 · New mover</div>
+            <div class="persona-name">Jordan <span>· 26</span></div>
+            <div class="persona-context">First solo apartment · moved from shared housing · mostly empty</div>
+          </div>
+          <div class="persona-budget"><span>Budget</span><strong>$600</strong></div>
+          <div class="persona-quote">“I don’t even know where to start. The room is just… blank.”</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Goals</div>
+            <ul class="persona-list">
+              <li>A starting kit — the essential 6–10 pieces</li>
+              <li>Commit to a style they won’t regret in 6 months</li>
+              <li>A clear spend order — what to buy first</li>
+            </ul>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Pain points</div>
+            <ul class="persona-list pains">
+              <li>Blank-canvas paralysis — nothing to anchor from</li>
+              <li>Fear of style regret — can’t commit unseen</li>
+              <li>Urgency + overwhelm — buying fast = random room</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="persona-card" style="--pc:#C5AEED;">
+          <div class="persona-head">
+            <div class="persona-tag">Persona 3 · Student / new grad</div>
+            <div class="persona-name">Maya <span>· 21</span></div>
+            <div class="persona-context">First real apartment · shops IKEA, Marketplace, thrift</div>
+          </div>
+          <div class="persona-budget"><span>Budget</span><strong>$120</strong></div>
+          <div class="persona-quote">“I want it to look curated, not cheap. But I literally have $120.”</div>
+          <div class="persona-block">
+            <div class="persona-block-label">Goals</div>
+            <ul class="persona-list">
+              <li>Look intentional and curated — not budget</li>
+              <li>Pieces under $30 — IKEA, thrift, or dupes</li>
+              <li>A shareable “room makeover” moment</li>
+            </ul>
+          </div>
+          <div class="persona-block">
+            <div class="persona-block-label">Pain points</div>
+            <ul class="persona-list pains">
+              <li>Tools always recommend things out of budget</li>
+              <li>Style exists, execution doesn’t — can’t afford it</li>
+              <li>Feels excluded — “this tool isn’t for me”</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.25s">
+        <p class="text-base leading-relaxed" style="color:#555;">
+          That finding anchored every subsequent decision: <strong>no open text inputs</strong>. Every choice had to be visual, bounded, and immediately actionable.
+        </p>
+      </div>
+
+      <!-- Journey map -->
+      <div class="max-w-3xl mt-16 mb-10 reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">User Journey Map</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          As a team, we first talked through the flow and pulled out the screens we’d need and what each one had to do. From there, I used the personas and this map to pin down the emotion at every step in detail — and made it my guide for the design that followed. Every later decision — budget-first, the named loading screen, the composited “your actual room” reveal — traces back to a stage on this map.
+        </p>
+      </div>
+
+      <div class="journey reveal" style="transition-delay:0.1s">
+        <svg class="journey-curve" viewBox="0 0 700 100" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(244,114,74,0.22)" />
+              <stop offset="1" stop-color="rgba(244,114,74,0)" />
+            </linearGradient>
+          </defs>
+          <path d={jArea} fill="url(#jgrad)" />
+          <polyline points={jLine} fill="none" stroke="#F4724A" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+        <div class="journey-cols">
+          {journey.map((d) => (
+            <div class={`journey-col${d.peak ? ' is-peak' : ''}`} style={`--jc:${d.color}`}>
+              <div class="journey-emoji">{d.emoji}</div>
+              <div class="journey-stage">{d.stage}</div>
+              <div class="journey-emotion">{d.emotion}</div>
+              <div class="journey-note">{d.note}</div>
+              {d.peak && <div class="journey-peak-tag">★ Emotional peak</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 02 DESIGN DIRECTION ──────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="time-mark"><span class="time-when">Fri · ~Midnight</span><span class="time-elapsed">hour 4</span></div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">02</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Design Direction, Decided at Midnight</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Most AI design tools cluster around two visual modes: clean SaaS grey, or professional-grade dark-mode tools dense with controls. Both say the same thing implicitly — <em>this tool is for people who already know what they’re doing.</em>
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The persona research had made the target user clear: someone overwhelmed by too many choices, not someone who needed more professional controls. So the direction landed deliberately opposite — warm, encouraging, a little playful. I named the system <strong>Warm Studio</strong>.
+        </p>
+      </div>
+
+      <blockquote class="design-quote reveal" style="transition-delay:0.15s">
+        The interface should feel like a knowledgeable friend, not an interior design tool.
+      </blockquote>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 03 DESIGN SYSTEM ─────────────────────────────────────── -->
+    <section class="warm-section px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="time-mark"><span class="time-when">Sat · Morning</span><span class="time-elapsed">hour 12</span></div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">03</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">System Before Screens — “Warm Studio”</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          The next morning, before a single screen was designed, I built the design system. In a team of four under time pressure, a design system isn’t optional — it’s the communication layer. With it, the rules are already made and engineers can move in parallel without waiting on design.
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Cream backgrounds instead of white. Heavy DM Sans — bold enough to feel confident, rounded enough to stay approachable. Organic colour blobs used sparingly: personality, not decoration.
+        </p>
+      </div>
+
+      <!-- Colour palette -->
+      <div class="warm-palette-card reveal" style="transition-delay:0.15s">
+        <div class="warm-palette">
+          <div class="warm-swatch"><span class="warm-blob" style="background:#F4724A;"></span><span class="warm-name">Coral</span><span class="warm-hex">#F4724A</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#F2A0BC;"></span><span class="warm-name">Pink</span><span class="warm-hex">#F2A0BC</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#4CAF72;"></span><span class="warm-name">Green</span><span class="warm-hex">#4CAF72</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#5BA4CF;"></span><span class="warm-name">Blue</span><span class="warm-hex">#5BA4CF</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#F5D030;"></span><span class="warm-name">Yellow</span><span class="warm-hex">#F5D030</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#C5AEED;"></span><span class="warm-name">Lavender</span><span class="warm-hex">#C5AEED</span></div>
+          <div class="warm-swatch"><span class="warm-blob warm-blob-light" style="background:#F4F1EC;"></span><span class="warm-name">Canvas</span><span class="warm-hex">#F4F1EC</span></div>
+          <div class="warm-swatch"><span class="warm-blob" style="background:#1C1C1C;"></span><span class="warm-name">Ink</span><span class="warm-hex">#1C1C1C</span></div>
+        </div>
+      </div>
+
+      <!-- System facts -->
+      <div class="warm-facts reveal" style="transition-delay:0.2s">
+        <div class="warm-fact"><div class="warm-fact-num">11</div><div class="warm-fact-label">Design tokens — 6 accents, 5 neutrals</div></div>
+        <div class="warm-fact"><div class="warm-fact-num">DM Sans</div><div class="warm-fact-label">One typeface, weights 400–900</div></div>
+        <div class="warm-fact"><div class="warm-fact-num">Copy-paste</div><div class="warm-fact-label">Tokens written to drop straight into global CSS</div></div>
+      </div>
+
+      <!-- Budget-first decision callout -->
+      <div class="max-w-3xl mt-16 mb-8 reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#F4724A;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Most Deliberate Decision</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The sharpest call in the system wasn’t a colour or a typeface — it was the <strong>sequence of inputs</strong> on the Budget + Style screen.
+        </p>
+      </div>
+
+      <div class="decision-callout reveal" style="transition-delay:0.1s">
+        <div class="decision-callout-inner">
+          <div class="decision-col">
+            <div class="decision-col-label">The decision</div>
+            <div class="decision-col-body">Budget slider first. Style tiles second. Always in that order.</div>
+          </div>
+          <div class="decision-divider"></div>
+          <div class="decision-col">
+            <div class="decision-col-label">Why</div>
+            <div class="decision-col-body">For all three personas, budget is the real constraint — not style. Seeing style before anchoring to a number is window shopping: it builds desire before checking reality.</div>
+          </div>
+          <div class="decision-divider"></div>
+          <div class="decision-col">
+            <div class="decision-col-label">For Maya especially</div>
+            <div class="decision-col-body">Budget-first is a respect signal — this tool knows you have limits, and it’s working within them from the start.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 04 THE FINISHED SOFTWARE ─────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="time-mark"><span class="time-when">Sat · Midday</span><span class="time-elapsed">hour 16</span></div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">04</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Wireframe to Handoff — The Finished Product</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Six screens, each with a single primary action, each mapped to a moment in the journey: Landing → Upload → Budget + Style → Generating → Results → Save.
+        </p>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          Here the process leaned on AI as an accelerator. Once the design system was set, I had Claude regenerate the wireframes in the Warm Studio direction — turning a low-fi layout into a hi-fi screen I could actually react to. I used that hi-fi version to lock direction with the team, then fed it back to Claude to generate the React code. That working frontend went straight to the shared repo, where my teammates wired up the backend. No redlines, no spec document — <strong>the running code <em>was</em> the handoff.</strong>
+        </p>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Below are all six screens, captured live from the shipped product.
+        </p>
+      </div>
+
+      <!-- Screen gallery -->
+      <div class="screen-gallery reveal" style="transition-delay:0.1s">
+        {screens.map((s) => (
+          <figure class="screen-card">
+            <img src={s.src} alt={`MoodBoard ${s.name} screen`} loading="lazy" />
+            <figcaption class="screen-cap">
+              <span class="screen-cap-name">{s.name}</span>
+              <span class="screen-cap-note">{s.note}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── THE DEMO — BEFORE / AFTER ────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Demo — Your Actual Room, Transformed</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The moment the product either delivers its promise or doesn’t: the user’s real room, with new pieces placed in it — every item sourced live and priced to a $350 budget.
+        </p>
+      </div>
+
+      <div class="ba-grid reveal" style="transition-delay:0.1s">
+        <figure class="ba-card">
+          <div class="ba-badge ba-before">Before</div>
+          <img src={`${base}/room-before.jpg`} alt="The user’s actual room, before transformation" loading="lazy" />
+        </figure>
+        <figure class="ba-card">
+          <div class="ba-badge ba-after">After</div>
+          <img src={`${base}/room-after.png`} alt="The same room, transformed with shoppable products within budget" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 05 WHAT SHIPPED ──────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl reveal">
+        <div class="time-mark is-final"><span class="time-when">Sat · 1:00 PM</span><span class="time-elapsed">submitted · hour 17</span></div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">05</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">What Shipped, What Didn’t</span>
+        </div>
+        <p class="text-base leading-relaxed mb-6" style="color:#555;">
+          At 1pm on May 30th, the team submitted a working product. The Apify-powered product search worked. The room photo composite worked. All six screens ran end-to-end. What got cut: the mobile version and the landing page — both planned, both dropped when it became clear there was only time for the core flow. <strong>A product that does one thing well beats a polished one you can’t demo.</strong>
+        </p>
+        <p class="text-base leading-relaxed mb-10" style="color:#555;">
+          Two skills sharpened under pressure. First, <strong>design-direction speed</strong> — reading a space of reference images quickly and locking the right visual language without circling back. Second, <strong>collaborating with engineers through code</strong> — not handing off specs, but pushing working React to a shared repo and fixing issues in real time alongside people building the backend. That kind of collaboration only happens under a deadline.
+        </p>
+      </div>
+    </section>
+    </div><!-- ═══ /TIMELINE WRAP ═══ -->
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── 06 UNDER THE HOOD ────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="section-num">06</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Under the Hood</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          The hackathon required every team to use sponsor tools — and in our case, the sponsors became the product. Four services, four jobs.
+        </p>
+      </div>
+
+      <div class="stack-grid reveal" style="transition-delay:0.15s">
+        <div class="stack-card">
+          <div class="stack-name">AWS Bedrock</div>
+          <p class="stack-role">Reads the uploaded room photo — detecting existing furniture, colours, and layout.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-name">Apify</div>
+          <p class="stack-role">Scrapes the live web in real time for purchasable products that match style and budget. No fixed database — real results.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-name">Claude API</div>
+          <p class="stack-role">Curates the scraped candidates, writes the “why this fits” reason on each card, and generates the moodboard PDF.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-name">Box</div>
+          <p class="stack-role">Stores session photos and returns the finished PDF as a shareable download link.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-name">React</div>
+          <p class="stack-role">The frontend — my piece of the stack.</p>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mt-12 reveal" style="transition-delay:0.2s">
+        <p class="text-base leading-relaxed" style="color:#555;">
+          One thing the architecture made clear for the design: the Generating screen couldn’t be a generic spinner. The pipeline is genuinely multi-step — room analysis, web scraping, AI curation, PDF render. The loading screen shows each step by name (“Reading your room… Searching the web… Finding products…”) because the wait needed to feel purposeful, not broken. <strong>The wait is the feature.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── PHOTOS — placeholder, awaiting Dianne's images ───────── -->
+    <!--
+      📷 TO ADD: hackathon / award / team photos.
+      Drop image files into  public/images/projects/moodboard/
+      then replace each `.photo-placeholder` block below with:
+        <figure class="photo-card"><img src={`${base}/your-photo.jpg`} alt="…" loading="lazy" /><figcaption>Caption</figcaption></figure>
+    -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">From the Hackathon</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          17 hours, four people, thinkspace Seattle — from idea-lock at 8pm to a working product on stage.
+        </p>
+      </div>
+
+      <div class="photo-grid4 reveal" style="transition-delay:0.1s">
+        <figure class="photo-card">
+          <img src={`${base}/photo-venue.jpeg`} style="object-position:center 45%" alt="The hackathon venue — thinkspace, on the Seattle waterfront" loading="lazy" />
+          <figcaption><span class="photo-step">01</span> The venue — thinkspace, on the Seattle waterfront.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src={`${base}/photo-building.jpeg`} style="object-position:center 48%" alt="The team building the core flow on laptops" loading="lazy" />
+          <figcaption><span class="photo-step">02</span> Heads-down — building the core flow.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src={`${base}/photo-submitted.jpeg`} style="object-position:center 42%" alt="The team after submitting, MoodBoard running on a laptop" loading="lazy" />
+          <figcaption><span class="photo-step">03</span> Submitted — the product running on the laptop.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src={`${base}/photo-demo.jpeg`} style="object-position:center 40%" alt="The team demoing on stage, the Budget + Style screen projected behind them" loading="lazy" />
+          <figcaption><span class="photo-step">04</span> Demo on stage — the Budget&nbsp;+&nbsp;Style screen, live.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── WHAT'S NEXT ───────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">What’s Next</span>
+        </div>
+
+        <div class="next-steps reveal" style="transition-delay:0.1s">
+          <div class="next-item">
+            <div class="next-dot active"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">Mobile-first redesign</div>
+              <p class="text-xs" style="color:#999;">The users it’s designed for live on mobile. Upload becomes tap-to-photograph; Results becomes a swipeable card stack rather than a side-by-side layout. The interaction model changes enough to design from scratch, not adapt down.</p>
+            </div>
+          </div>
+          <div class="next-item">
+            <div class="next-dot pending"></div>
+            <div>
+              <div class="text-sm font-medium mb-1">Style inference from saved content</div>
+              <p class="text-xs" style="color:#999;">Most users have been curating their taste for years — in Pinterest boards, saved Instagram posts, TikTok lists. Connecting those lets the AI build a far more accurate picture than a handful of tile taps ever could.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── THE TEAM — placeholder, awaiting teammate replies ────── -->
+    <!--
+      👥 TO ADD: teammate details once they reply.
+      For each person fill in name + what they built. Add a photo by replacing
+      the `.team-avatar` initials block with <img class="team-avatar" src="…" />.
+    -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-3xl mb-12 reveal">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-1.5 h-1.5 rounded-full bg-accent"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">The Team — Four People, 17 Hours</span>
+        </div>
+        <p class="text-base leading-relaxed" style="color:#555;">
+          Four people, four clear ownerships — design, room generation, AI curation, and the data layer. Each owned their slice end-to-end.
+        </p>
+      </div>
+
+      <div class="team-grid reveal" style="transition-delay:0.1s">
+        <div class="team-card">
+          <div class="team-avatar" style="background:#F4724A; color:#fff;">DT</div>
+          <div class="team-name">Dianne Ting</div>
+          <div class="team-role">Designer · Frontend</div>
+          <p class="team-built">Owned design and frontend — ran the UX research, built the Warm Studio design system (tokens, type, components), and shipped the React upload&nbsp;→&nbsp;style&nbsp;→&nbsp;budget&nbsp;→&nbsp;result flow.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:#5BA4CF; color:#fff;">SP</div>
+          <div class="team-name">Sai Kiran Peddola</div>
+          <div class="team-role">Backend</div>
+          <p class="team-built">Owned the room-generation backend — a Spring Boot service on AWS Bedrock (Stability inpaint) that paints furniture into the photo, with a gradient mask so the original walls and ceiling blend into the result.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:#C5AEED; color:#1C1C1C;">VY</div>
+          <div class="team-name">Varsha Yarragunta</div>
+          <div class="team-role">AI / Integration</div>
+          <p class="team-built">Owned the AI product curator — wired Apify’s Amazon &amp; IKEA scrapers into Claude to recommend budget-aware products that match the user’s style and work together as a room.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:#4CAF72; color:#fff;">MP</div>
+          <div class="team-name">Mansa Vijay Patidar</div>
+          <div class="team-role">Backend / Data</div>
+          <p class="team-built">Owned the Box data layer — handled photo uploads and per-session folders, persisting each room photo and its generated result to Box storage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <!-- ─── OUTCOME ──────────────────────────────────────────────── -->
+    <section class="px-8 md:px-16 lg:px-24 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8 reveal">
+          <div class="w-1.5 h-1.5 rounded-full" style="background:#111;"></div>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:#999;">Outcome</span>
+        </div>
+        <p class="text-2xl md:text-3xl font-light leading-relaxed reveal" style="transition-delay:0.1s; color:#111;">
+          Top <strong>12 of 54</strong> teams, and <strong>1st place in the Apify Prize</strong> category — <span style="color:var(--accent);">$500</span> — at Cascadia AI Hackathon 2026. For most of us, it was our first hackathon.
+        </p>
+      </div>
+
+      <figure class="team-photo screen-card reveal mt-12" style="transition-delay:0.15s">
+        <img src={`${base}/photo-team-award.jpeg`} alt="The four-person team on stage after winning 1st place in the Apify Prize" loading="lazy" />
+        <figcaption class="screen-cap">
+          <span class="screen-cap-name">🏆 On stage — 1st place, Apify Prize</span>
+          <span class="screen-cap-note">The full four-person team at the Cascadia AI Hackathon closing.</span>
+        </figcaption>
+      </figure>
+
+      <div class="max-w-2xl mt-10 reveal" style="transition-delay:0.2s">
+        <a href="https://moodboard-wine.vercel.app" target="_blank" rel="noopener" class="text-link" data-hover>
+          Try the live demo → moodboard-wine.vercel.app
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────────── -->
+    <div class="px-8 md:px-16 lg:px-24"><div style="height:1px; background:rgba(0,0,0,0.06);"></div></div>
+
+    <Footer />
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Win badge ──────────────────────────────────────────────────── */
+  .tag-win {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 11px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: #1C1C1C;
+    color: #F5D030;
+    border: 1px solid #1C1C1C;
+  }
+
+  /* ── Demo link ──────────────────────────────────────────────────── */
+  .demo-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .demo-link:hover { opacity: 0.7; }
+
+  /* ── Section number ─────────────────────────────────────────────── */
+  .section-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Timeline (left build-clock rail) ───────────────────────────── */
+  .timeline { position: relative; }
+  .time-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .time-mark::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #F4724A;
+    box-shadow: 0 0 0 4px rgba(244,114,74,0.12);
+    flex: none;
+  }
+  .time-when {
+    font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #F4724A;
+  }
+  .time-elapsed {
+    font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: #c2b6af;
+  }
+  .time-mark.is-final::before {
+    background: #4CAF72;
+    box-shadow: 0 0 0 4px rgba(76,175,114,0.16);
+  }
+  .time-mark.is-final .time-when { color: #2f9159; }
+
+  /* On wide screens, draw a continuous thread down the left gutter and
+     hang each timestamp dot on it — the reader feels the hours pass. */
+  @media (min-width: 1024px) {
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 4.75rem;
+      top: 2rem;
+      bottom: 2rem;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(244,114,74,0.40), rgba(244,114,74,0.10));
+    }
+    .time-mark::before {
+      position: absolute;
+      left: -1.3rem;
+      top: 0.18rem;
+    }
+  }
+
+  /* ── Hero screenshot ────────────────────────────────────────────── */
+  .hero-shot { max-width: 1100px; }
+
+  /* ── Generic screen card ────────────────────────────────────────── */
+  .screen-card {
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.08);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 18px 50px -20px rgba(0,0,0,0.28);
+  }
+  .screen-card img { display: block; width: 100%; height: auto; }
+
+  /* ── Metrics ────────────────────────────────────────────────────── */
+  .metric-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .metric-unit { font-size: 1rem; font-weight: 300; color: #999; margin-left: 2px; }
+  .metric-label {
+    font-size: 0.72rem;
+    color: #999;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  /* ── Problem gaps ───────────────────────────────────────────────── */
+  .gap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 768px) { .gap-grid { grid-template-columns: 1fr; } }
+  .gap-item {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+  }
+  .gap-num {
+    font-size: 0.65rem; font-weight: 700; color: #ccc;
+    letter-spacing: 0.08em; margin-bottom: 0.5rem;
+  }
+  .gap-title { font-size: 0.95rem; font-weight: 600; color: #111; margin-bottom: 0.6rem; }
+  .gap-body { font-size: 0.8rem; line-height: 1.6; color: #666; }
+
+  /* ── Persona cards ──────────────────────────────────────────────── */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) { .persona-grid { grid-template-columns: 1fr; } }
+  .persona-card {
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-top: 3px solid var(--pc, #F4724A);
+    background: #fff;
+  }
+  .persona-head { margin-bottom: 1rem; }
+  .persona-tag {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--pc, #bbb); margin-bottom: 0.5rem;
+  }
+  .persona-name { font-size: 1.1rem; font-weight: 700; color: #111; }
+  .persona-name span { font-weight: 400; color: #999; }
+  .persona-context { font-size: 0.72rem; color: #999; line-height: 1.5; margin-top: 0.35rem; }
+  .persona-budget {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 0.55rem 0.85rem; margin-bottom: 1rem;
+    background: #faf8f4; border-radius: 0.6rem;
+  }
+  .persona-budget span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
+  .persona-budget strong { font-size: 1.15rem; font-weight: 700; color: var(--pc, #F4724A); }
+  .persona-quote {
+    font-size: 0.82rem; line-height: 1.65; color: #444; font-style: italic;
+    padding: 0.8rem 1rem; margin-bottom: 1.25rem;
+    border-left: 2px solid var(--pc, #eee);
+    background: #faf9f7; border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .persona-block { margin-bottom: 1.1rem; }
+  .persona-block:last-child { margin-bottom: 0; }
+  .persona-block-label {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #bbb; margin-bottom: 0.5rem;
+  }
+  .persona-list { list-style: none; margin: 0; padding: 0; }
+  .persona-list li {
+    position: relative; padding-left: 1rem; margin-bottom: 0.45rem;
+    font-size: 0.76rem; line-height: 1.5; color: #666;
+  }
+  .persona-list li:last-child { margin-bottom: 0; }
+  .persona-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.5em;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--pc, #ccc);
+  }
+  .persona-list.pains li::before {
+    border-radius: 0; width: 7px; height: 1.5px; top: 0.72em;
+    background: #d2a08f;
+  }
+
+  /* ── Journey map ────────────────────────────────────────────────── */
+  .journey {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 1.25rem;
+    background: #fff;
+    overflow: hidden;
+  }
+  .journey-curve {
+    width: 100%;
+    height: 96px;
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .journey-cols {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .journey-col {
+    padding: 1.1rem 0.9rem 1.3rem;
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-top: 3px solid var(--jc);
+    text-align: left;
+  }
+  .journey-col:first-child { border-left: none; }
+  .journey-col.is-peak { background: rgba(244,114,74,0.04); }
+  .journey-emoji { font-size: 1.4rem; line-height: 1; margin-bottom: 0.55rem; }
+  .journey-stage { font-size: 0.78rem; font-weight: 700; color: #111; margin-bottom: 0.2rem; line-height: 1.2; }
+  .journey-emotion {
+    display: inline-block;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--jc);
+    margin-bottom: 0.6rem;
+  }
+  .journey-note { font-size: 0.7rem; line-height: 1.5; color: #777; }
+  .journey-peak-tag {
+    margin-top: 0.55rem;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.03em;
+    color: #F4724A;
+  }
+  /* Mobile: the horizontal curve loses meaning — stack the stages instead */
+  @media (max-width: 760px) {
+    .journey-curve { display: none; }
+    .journey-cols { grid-template-columns: 1fr 1fr; }
+    .journey-col { border-left: none; border-top: 3px solid var(--jc); border-bottom: 1px solid rgba(0,0,0,0.05); }
+  }
+  @media (max-width: 460px) {
+    .journey-cols { grid-template-columns: 1fr; }
+  }
+
+  /* ── Design quote (big pull) ────────────────────────────────────── */
+  .design-quote {
+    max-width: 56rem;
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #111;
+    padding: 2rem 2.5rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, rgba(244,114,74,0.07), rgba(197,174,237,0.10));
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  @media (max-width: 640px) { .design-quote { font-size: 1.3rem; padding: 1.5rem; } }
+
+  /* ── Warm Studio section wash ───────────────────────────────────── */
+  .warm-section { background: #F4F1EC; }
+
+  .warm-palette-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 1.5rem;
+    padding: 2.25rem 1.75rem;
+  }
+  .warm-palette {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.5rem 0.75rem;
+  }
+  @media (max-width: 900px) { .warm-palette { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 460px) { .warm-palette { grid-template-columns: repeat(2, 1fr); } }
+  .warm-swatch {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.6rem; text-align: center;
+  }
+  /* Organic colour blobs — echoing the homepage's irregular shapes */
+  .warm-blob {
+    width: 3.4rem; height: 3.4rem;
+    border-radius: 47% 53% 43% 57% / 55% 48% 52% 45%;
+    box-shadow: 0 7px 18px -7px rgba(0,0,0,0.22);
+  }
+  .warm-blob-light { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+  .warm-swatch:nth-child(1) .warm-blob { border-radius: 42% 58% 67% 33% / 45% 44% 56% 55%; }
+  .warm-swatch:nth-child(2) .warm-blob { border-radius: 63% 37% 41% 59% / 58% 49% 51% 42%; }
+  .warm-swatch:nth-child(3) .warm-blob { border-radius: 38% 62% 58% 42% / 54% 35% 65% 46%; }
+  .warm-swatch:nth-child(4) .warm-blob { border-radius: 55% 45% 35% 65% / 38% 57% 43% 62%; }
+  .warm-swatch:nth-child(5) .warm-blob { border-radius: 67% 33% 52% 48% / 37% 60% 40% 63%; }
+  .warm-swatch:nth-child(6) .warm-blob { border-radius: 45% 55% 62% 38% / 60% 42% 58% 40%; }
+  .warm-swatch:nth-child(7) .warm-blob { border-radius: 50% 50% 40% 60% / 48% 53% 47% 52%; }
+  .warm-swatch:nth-child(8) .warm-blob { border-radius: 60% 40% 47% 53% / 43% 62% 38% 57%; }
+  .warm-name { font-size: 0.78rem; font-weight: 600; color: #1C1C1C; }
+  .warm-hex { font-size: 0.65rem; font-family: monospace; color: #999; }
+
+  .warm-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 768px) { .warm-facts { grid-template-columns: 1fr; } }
+  .warm-fact {
+    padding: 1.25rem 1.5rem; background: #fff;
+    border-radius: 0.875rem; border: 1px solid rgba(0,0,0,0.05);
+  }
+  .warm-fact-num { font-size: 1.5rem; font-weight: 200; color: #1C1C1C; margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+  .warm-fact-label { font-size: 0.72rem; color: #7A7060; line-height: 1.4; }
+
+  /* ── Decision callout ───────────────────────────────────────────── */
+  .decision-callout {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(244,114,74,0.2);
+    background: rgba(255,255,255,0.6);
+    overflow: hidden;
+  }
+  .decision-callout-inner { display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; }
+  @media (max-width: 768px) {
+    .decision-callout-inner { grid-template-columns: 1fr; }
+    .decision-divider { display: none; }
+  }
+  .decision-col { padding: 1.75rem; }
+  .decision-divider { background: rgba(244,114,74,0.15); align-self: stretch; }
+  .decision-col-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #F4724A; margin-bottom: 0.6rem;
+  }
+  .decision-col-body { font-size: 0.82rem; line-height: 1.65; color: #555; }
+
+  /* ── Screen gallery ─────────────────────────────────────────────── */
+  .screen-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) { .screen-gallery { grid-template-columns: 1fr; } }
+  .screen-gallery .screen-card { margin: 0; }
+  .screen-cap {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .screen-cap-name {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #111;
+  }
+  .screen-cap-note { font-size: 0.78rem; color: #999; line-height: 1.5; }
+
+  /* ── Before / After ─────────────────────────────────────────────── */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } }
+  .ba-card {
+    position: relative; margin: 0;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 18px 50px -20px rgba(0,0,0,0.28);
+  }
+  .ba-card img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
+  .ba-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    padding: 4px 12px; border-radius: 9999px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ba-before { background: rgba(28,28,28,0.75); color: #fff; }
+  .ba-after  { background: #4CAF72; color: #fff; }
+
+  /* ── Stack grid ─────────────────────────────────────────────────── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 900px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .stack-grid { grid-template-columns: 1fr; } }
+  .stack-card {
+    padding: 1.25rem; background: #fff;
+    border-radius: 0.875rem; border: 1px solid rgba(0,0,0,0.06);
+  }
+  .stack-name { font-size: 0.85rem; font-weight: 700; color: #111; margin-bottom: 0.5rem; }
+  .stack-role { font-size: 0.75rem; color: #777; line-height: 1.55; }
+
+  /* ── Photo gallery — uniform 2×2 grid, focus-point cropped ──────── */
+  .photo-grid4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  @media (max-width: 640px) { .photo-grid4 { grid-template-columns: 1fr; } }
+  .photo-card {
+    margin: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #fff;
+    box-shadow: 0 14px 40px -20px rgba(0,0,0,0.25);
+  }
+  .photo-card img {
+    display: block; width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center; /* overridden per-photo inline */
+  }
+  .photo-card figcaption {
+    padding: 0.85rem 1.1rem;
+    font-size: 0.78rem; color: #777; line-height: 1.5;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .photo-step {
+    font-size: 0.62rem; font-weight: 700; color: #ccc;
+    letter-spacing: 0.08em; margin-right: 0.4rem;
+  }
+
+  /* ── Team group photo ───────────────────────────────────────────── */
+  .team-photo { margin: 0 0 1.5rem; }
+  .team-photo img {
+    display: block; width: 100%;
+    aspect-ratio: 12 / 5;
+    object-fit: cover;
+    object-position: center 62%; /* bias down to the team's faces, not the projection */
+  }
+
+  /* ── Team grid ──────────────────────────────────────────────────── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
+  .team-card {
+    padding: 1.5rem; background: #fff;
+    border-radius: 1rem; border: 1px solid rgba(0,0,0,0.06);
+  }
+  .team-avatar {
+    width: 3rem; height: 3rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: #F4F1EC; color: #1C1C1C;
+    font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 0.9rem; object-fit: cover;
+  }
+  .team-name { font-size: 0.9rem; font-weight: 600; color: #111; }
+  .team-role { font-size: 0.7rem; color: #F4724A; font-weight: 600; margin: 0.15rem 0 0.6rem; }
+  .team-built { font-size: 0.75rem; color: #777; line-height: 1.55; }
+  .team-tbd { border-style: dashed; }
+  .team-tbd .team-avatar { background: #f4f4f4; color: #ccc; }
+  .team-tbd .team-name, .team-tbd .team-built { color: #bbb; }
+
+  /* ── Next Steps ─────────────────────────────────────────────────── */
+  .next-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+  .next-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .next-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .next-dot.active { background: var(--accent); animation: breathe-dot 2.5s ease-in-out infinite; }
+  .next-dot.pending { background: transparent; border: 1.5px solid rgba(0,0,0,0.2); }
+  @keyframes breathe-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+</style>
