@@ -9,3 +9,10 @@ dist/
 
 # Internal docs (Claude memory, wireframes — not for public)
 _docs/
+
+# Local design assets (not part of the website build)
+_assets/
+
+# Tooling & editor settings (local only)
+.specstory/
+.vscode/
