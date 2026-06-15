@@ -7,7 +7,7 @@
     "resume": "Resume"
   },
   "hero": {
-    "badge": "Designs in Figma. Builds with Claude.",
+    "badge": "From problem to shipped product.",
     "headline_line1": "Product Designer",
     "headline_line2": "AI & SaaS.",
     "sub": "Specializing in AI-driven tools and scalable SaaS platforms. Based in Seattle. Originally from Taipei.",
@@ -54,7 +54,7 @@
       },
       "ux": {
         "title": "UX → Seattle",
-        "body": "A Master's in User Experience brought Dianne to the Pacific Northwest. She now designs for AI-powered products, works across research, interaction, and visual design — and builds her portfolio alongside Claude."
+        "body": "A Master's in User Experience brought Dianne to the Pacific Northwest. She now designs for AI-powered products and works end-to-end — from research and interaction to visual design and shipping the final build — so ideas reach real users, not just mockups."
       }
     },
     "philosophyPre": "For me, design isn't just about interfaces. It's about removing friction, creating clarity, and sparking delight. I love when something I create helps people get from",
@@ -78,10 +78,10 @@
   "tags": {
     "ux": "#UX Designer",
     "taipei_seattle": "#Taipei → Seattle",
-    "figma_claude": "#Figma & Claude",
-    "film": "#Film Background",
-    "photographer": "#Photographer",
-    "dancer": "#Former Dance Teacher",
+    "figma_claude": "#Design → Build → Ship",
+    "film": "#Film → Visual Storytelling",
+    "photographer": "#Photographer's Eye",
+    "dancer": "#Co-Founder · 7 yrs in Ops",
     "pets": "#2 Cats 1 Dog",
     "no_driving": "#Doesn't Drive"
   }
