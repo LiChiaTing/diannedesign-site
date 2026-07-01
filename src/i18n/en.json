@@ -70,10 +70,12 @@
   },
   "contact": {
     "label": "Contact",
-    "headline": "Let's work together."
+    "headline": "Let's work together.",
+    "bookChat": "Book a chat"
   },
   "footer": {
-    "built": "Designed by Dianne. Built with Claude."
+    "built": "Designed by Dianne. Built with Claude.",
+    "bookChat": "Book a chat"
   },
   "tags": {
     "ux": "#Product Designer",

@@ -70,10 +70,12 @@
   },
   "contact": {
     "label": "聯絡方式",
-    "headline": "讓我們一起合作。"
+    "headline": "讓我們一起合作。",
+    "bookChat": "預約對談"
   },
   "footer": {
-    "built": "由 Dianne 設計。與 Claude 共同打造。"
+    "built": "由 Dianne 設計。與 Claude 共同打造。",
+    "bookChat": "預約對談"
   },
   "tags": {
     "ux": "#產品設計師",
